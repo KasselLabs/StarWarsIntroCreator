@@ -10,6 +10,16 @@ export const fetchStatus = async (key) => {
     },
   });
   return response.data;
+
+  // return {
+  //   url: 'https://s3.amazonaws.com/star-wars-intros/AL6yNfOxCGkHKBUi54xp.mp4',
+  // };
+
+  // if (key === 'x') {
+  //   return { queue: 300 };
+  // }
+
+  // return { queue: 30 };
 };
 
 export const requestDownload = async (key, email) => {
@@ -20,4 +30,6 @@ export const requestDownload = async (key, email) => {
     },
   });
   return response.data;
+
+  // return { queue: 200 };
 };
