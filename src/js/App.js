@@ -5,7 +5,7 @@ import AudioController from './AudioController';
 import { usingIE } from './auxiliar';
 import { documentReady, urlHashChange } from './utils';
 import { loadAndPlay, loadDownloadPage, setCreateMode, loadAndEdit } from './actions';
-import { sendGAPageView } from './googleanalytics';
+import sendGAPageView from './googleanalytics';
 import { defaultOpening, defaultKey } from './config';
 import ApplicationState, { PLAYING, EDITING } from './ApplicationState';
 
