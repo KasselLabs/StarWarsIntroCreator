@@ -1,6 +1,5 @@
 node_modules/
 dist/*
-public/libs/
-/.project
 *.log
-.cache
+.cache/
+coverage/

@@ -1,0 +1,235 @@
+.starwarsAnimation {
+  display: none;
+  letter-spacing:.15em;
+  font: 700 1em 'News Cycle', sans-serif;
+  font-variant-ligatures: none;
+
+  // intro text
+  .introBackground {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0;
+      animation: introBackgroundAnimation 9s * $timeFactor;
+
+      .intro {
+        padding: 0 100px;
+        color: $introColor;
+        font-weight: 400;
+        font-size: 500%;
+        opacity: 0;
+        transform: scaleX(1.1);
+        animation: introTextAnimation 6s * $timeFactor ease-out 1s * $timeFactor;
+
+        @media $HD{
+          font-size: 350%; // TODO: try to use vw unit
+        }
+      }
+  }
+
+  #logo {
+    position: static;
+    text-align: center;
+    font-family: StarWars;
+
+    margin: 0 auto;
+    opacity: 0;
+    animation: logoAnimation 11s * $timeFactor cubic-bezier(0.11, 0.51, 0.48, 0.88) 9s * $timeFactor;
+
+    .logoSub {
+      width: 100vw;
+    }
+
+    #logoSvg{
+      font-size: 210px;
+    }
+  }
+
+  // titles animation
+  #titles {
+    $titles-width = 14.65em;
+
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 50%;
+    overflow: hidden;
+    margin: 0 0 0 (- $titles-width / 2);
+    width: $titles-width;
+    height: 50em;
+    text-align: justify;
+    word-wrap: break-word;
+    font-size: 350%;
+    transform-origin: 50% 100%;
+    transform: perspective(300px) rotateX(25deg);
+
+    @media screen and (min-width: 1920px) and (max-width: 1920px) {
+        zoom: 1.9;
+        transform: perspective(266px) rotateX(29deg) scaleX(1.2);
+        -moz-transform: perspective(300px) rotateX(19deg) scale(2.3);
+    }
+
+    @media screen and (min-width: 1366px) and (max-width: 1366px) {
+        zoom: 1.6;
+        transform: perspective(216px) rotateX(26deg);
+        -moz-transform: perspective(300px) rotateX(26deg) scale(1.6);
+    }
+
+    @media screen and (min-width: 1280px) and (max-width: 1280px) {
+        zoom: 1.5;
+        transform: perspective(216px) rotateX(26deg);
+        -moz-transform: perspective(300px) rotateX(26deg) scale(1.5);
+    }
+
+    > div {
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        animation: titlesAnimation 73s * $timeFactor linear 13s * $timeFactor forwards;
+
+      > p {
+        margin: 1.35em 0 1.85em 0;
+        line-height: 1.35em;
+
+        backface-visibility: hidden;
+      }
+
+      .tcenter {
+        margin: 1.35em 0 -1em 0;
+        text-align: center;
+      }
+    }
+
+    #title {
+      transform: scaleY(2);
+      margin-top: 3.5em;
+      margin-bottom: 1.6em;
+      text-transform: uppercase;
+
+      &.SWFont {
+        margin-top: 1.35em;
+        margin-bottom: -.1em;
+        transform: scaleY(1);
+        font-weight: normal;
+        font-size: 210%;
+        font-family: StarWarsTitle;
+        text-transform: lowercase;
+      }
+    }
+
+    #episode {
+      margin-bottom: -2em;
+    }
+
+    #text {
+      // line-height: 1.5em; // old version
+      line-height: 1.4em;
+    }
+  }
+
+  // end animation to deathstar
+  #backgroundSpace {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4100px;
+    background: url('../assets/bg-stars.png') repeat;
+
+    #deathstar {
+      position: absolute;
+      right: 100px;
+      bottom: 1150px;
+      width: 655px;
+      height: 663px;
+
+      &.centerCustom { // not used, but can be for customizations
+        right: 0;
+        left: 0;
+        margin: auto;
+      }
+    }
+  }
+
+}
+
+
+ // background scroll at the end
+body.runningVideo {
+  overflow: hidden;
+
+  .starwarsAnimation {
+    display: initial;
+  }
+
+  #backgroundSpace {
+    animation: scrolldown 7s * $timeFactor 86s * $timeFactor forwards;
+  }
+}
+
+@keyframes introTextAnimation {
+  0% {
+    opacity: 0;
+  }
+    20% {
+    opacity: 1;
+  }
+    90% {
+    opacity: 1;
+  }
+    100% {
+    opacity: 0;
+  }
+}
+
+@keyframes introBackgroundAnimation {
+    0% {
+    opacity: 1;
+  }
+  100% {
+      opacity: 1;
+    }
+}
+
+@keyframes logoAnimation {
+    0% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+    95% {
+    opacity: 1;
+  }
+    100% {
+    transform: scale(.01);
+    opacity: 0;
+  }
+}
+
+@keyframes titlesAnimation {
+  0% {
+    top: 100%;
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    top: 20%;
+    opacity: 0;
+  }
+}
+
+@keyframes scrolldown {
+  0% {
+      transform: translateY(0);
+  }
+  100% {
+      transform: translateY(-2200px);
+  }
+}

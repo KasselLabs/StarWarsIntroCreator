@@ -1,0 +1,214 @@
+$greenShadow = #45f500;
+
+$inputBorderColor = alpha($titlesColor, .2);
+$inputBorderColorHover = alpha($titlesColor, .5);
+$inputBorderColorFocus = $titlesColor;
+
+inputStyle() {
+
+  $inputBorder = 3px solid $inputBorderColor;
+
+  padding: .3em;
+  outline: 0;
+  border: $inputBorder;
+  border-radius: 3px;
+  background-color: $formBackgroundColor;
+  transition: border-color .3s ease-out;
+
+
+  &:hover{
+    border-color: $inputBorderColorHover;
+  }
+
+  &:active, &:focus {
+    border-color: $inputBorderColorFocus;
+  }
+}
+
+$marginTopFormInput = 20px;
+
+
+$actionButtonStyle {
+  starWarsFontStyle();
+  outline: 0;
+  border: 0;
+  background: transparent;
+  text-shadow: none;
+  font-size: 50px;
+  cursor: pointer;
+  transition: text-shadow .5s ease-out;
+
+  &:focus, &:hover {
+    text-shadow: -1px 1px 8px $greenShadow, 1px -1px 8px $greenShadow;
+  }
+}
+
+// Used only in the Logo input. The text is a outlined SVG Text
+// Stroke font-character
+// @param  {Integer} $stroke - Stroke width
+// @param  {Color}   $color  - Stroke color
+// @return {List}            - text-shadow list
+stroke($stroke, $color) {
+  $shadow = ();
+  $from = $stroke * -1;
+  $range = ($from)..($stroke);
+  for $i in $range {
+    for $j in $range {
+      append($shadow, ($i)px ($j)px 0 $color);
+      append($shadow, \,);
+    }
+  }
+  pop($shadow);
+  $shadow;
+}
+
+#configForm {
+  display: flex;
+  margin-bottom: 100px;
+  justify-content: center;
+  color: $titlesColor;
+
+  form {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    font-family: $defaultFontFamily;
+
+    input, textarea {
+      overflow-x: hidden;
+      margin-top: $marginTopFormInput;
+      margin-bottom: 0;
+      width: 97%;
+      color: $titlesColor;
+      word-break: break-word;
+      font-size: 14px;
+
+      inputStyle();
+    }
+
+    textarea {
+      font-family: monospace;
+      resize: none;
+
+      &#f-logo {
+        width: calc(97% - 22px);
+        height: 92px;
+        color: black;
+        text-shadow: stroke(2, $titlesColor);
+        font-size: 50px;
+        font-family: StarWars;
+        line-height: 86%;
+        caret-color: $titlesColor; // partial support https://caniuse.com/#search=caret-color
+      }
+    }
+
+    #playButton {
+      @extend $actionButtonStyle;
+      z-index: 10;
+      margin-top: 20px;
+    }
+
+    #playButtonSpan {
+      margin-top: 20px;
+    }
+
+    #downloadButton {
+      @extend $actionButtonStyle;
+
+      display: none;
+      margin-bottom: 30px;
+      font-size: 60px;
+      animation: pulseDownloadButton 3s ease 0s infinite;
+
+      &:focus, &:hover {
+        text-shadow: -1px 1px 93px $greenShadow, 1px -1px 23px $greenShadow;
+        animation: none;
+      }
+
+      &.show {
+        display: block;
+      }
+    }
+
+    #f-intro {
+      color: $introColor;
+    }
+
+    #f-text {
+      height: 200px;
+    }
+
+    #f-logo, #f-title, #f-episode {
+      text-align: center;
+    }
+
+    .center-checkbox {
+      margin-top: $marginTopFormInput;
+      user-select: none;
+
+      label {
+        display: inline;
+        vertical-align: middle;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      .regular-checkbox {
+        display: block;
+        margin-top: 0;
+        opacity: 0;
+
+        &:hover {
+          &+label {
+            border-color: $inputBorderColorHover;
+          }
+        }
+
+        &:focus {
+          &+label {
+            border-color: $inputBorderColorFocus;
+          }
+        }
+
+        &+label {
+          inputStyle();
+          display: inline-block;
+          width: 9px;
+          height: 9px;
+          border-radius: 3px;
+        }
+
+        &:checked + label:after {
+          position: relative;
+          top: -4px;
+          color: $titlesColor;
+          content: '\25A0';
+          letter-spacing: 0;
+          font-size: 14px;
+          cursor: pointer;
+        }
+      }
+
+    }
+  }
+}
+
+@keyframes pulseDownloadButton {
+    0%{
+        text-shadow: none;
+    }
+
+    40%{
+        text-shadow: -1px 1px 93px $greenShadow, 1px -1px 23px $greenShadow;
+    }
+
+    60%{
+        text-shadow: -1px 1px 93px $greenShadow, 1px -1px 23px $greenShadow;
+    }
+
+    100%{
+        text-shadow: none;
+    }
+}
