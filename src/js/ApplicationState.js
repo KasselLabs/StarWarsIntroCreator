@@ -51,7 +51,7 @@ class ApplicationState {
       page,
       ...props,
     };
-    console.log(this.state);
+    // console.log(this.state);
     this.renderState();
   }
 
