@@ -23,7 +23,7 @@
 </div>
 </div>
 <script>
-  var isFromBrazil = () => {
+  function isFromBrazil() {
     var browserLanguage = navigator.language || navigator.userLanguage;
     var ptBR = 'pt-BR';
     if (ptBR === browserLanguage) {
@@ -36,7 +36,7 @@
     }
 
     return false;
-  };
+  }
 
   var code = location.hash.split('#!/')[1];
   if (code) {
