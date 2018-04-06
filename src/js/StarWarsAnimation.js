@@ -53,7 +53,7 @@ class StarWarsAnimation {
 
     // LOGO
     const starwarsDefaultText = 'star\nwars';
-    const logoSvgContainer = animation.querySelector('#logoSvg');
+    const logoSvgContainer = animation.querySelector('.logoSvg');
     const logoDefaultContainer = animation.querySelector('#logoDefault');
 
     // logo can't be empty
