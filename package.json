@@ -5,13 +5,15 @@
   "author": "Kassel Labs <kassellabs@googlegroups.com>",
   "license": "MIT",
   "scripts": {
-    "build": "parcel build ./src/index.html --public-url /StarWarsIntroCreator/",
+    "build": "rm -rf ./dist && parcel build ./src/index.html --public-url /StarWarsIntroCreator/",
+    "build-dev": "yarn build --public-url /",
     "start": "parcel ./src/index.html -p 8080 --no-hmr",
     "test": "jest",
     "test:watch": "yarn test --watchAll",
     "test:coverage": "yarn test --coverage",
     "test:coverage:results": "google-chrome coverage/lcov-report/index.html",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "deploy": "yarn build && ghpages -p dist"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
@@ -26,8 +28,9 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "ghpages": "^0.0.10",
     "jest": "^22.4.2",
-    "parcel-bundler": "^1.6.2",
+    "parcel-bundler": "^1.7.0",
     "stylint": "^1.5.9",
     "stylus": "^0.54.5"
   },
