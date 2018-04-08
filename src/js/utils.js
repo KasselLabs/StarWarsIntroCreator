@@ -52,11 +52,13 @@ export const appendKeyframesRule = (keyframeName, ruleToAppend) => {
   for (let i = 0; i < styleSheets.length; i += 1) {
     const styleSheet = styleSheets[i];
     // loop in all css rules
-    for (let j = 0; j < styleSheet.cssRules.length; j += 1) {
-      const rule = styleSheet.cssRules[j];
-      if (rule.name === keyframeName && rule.type === window.CSSRule.KEYFRAMES_RULE) {
-        cssRuleToChange = rule;
-        // keep looping to get the last matching rule.
+    if (!styleSheet.href || -1 === styleSheet.href.indexOf('necolas')) {
+      for (let j = 0; j < styleSheet.cssRules.length; j += 1) {
+        const rule = styleSheet.cssRules[j];
+        if (rule.name === keyframeName && rule.type === window.CSSRule.KEYFRAMES_RULE) {
+          cssRuleToChange = rule;
+          // keep looping to get the last matching rule.
+        }
       }
     }
   }
