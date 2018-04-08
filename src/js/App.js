@@ -2,7 +2,7 @@ import swal from 'sweetalert2';
 
 import UrlHandler from './UrlHandler';
 import AudioController from './AudioController';
-import { usingIE } from './auxiliar';
+import { usingMSEdge } from './auxiliar';
 import { documentReady, urlHashChange } from './utils';
 import { loadAndPlay, loadDownloadPage, setCreateMode, loadAndEdit } from './actions';
 import sendGAPageView from './googleanalytics';
@@ -52,14 +52,14 @@ const startApplication = () => {
 
 
   documentReady(() => {
-    if (usingIE()) {
+    window.dispatchEvent(new Event('hashchange'));
+    if (usingMSEdge()) {
       swal(
-        'internet explorer detected',
-        'This website is not compatible with Internet Explorer, please use Chrome. Sorry for the inconvenience.',
-        'error',
+        'microsoft edge',
+        'This website is not optimized to work with Microsoft Edge, we recommend to use Chrome for the best experience. Sorry for the inconvenience.',
+        'warning',
       );
     }
-    window.dispatchEvent(new Event('hashchange'));
   });
 };
 

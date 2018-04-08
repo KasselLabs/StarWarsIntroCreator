@@ -1,9 +1,6 @@
 import swal from 'sweetalert2';
 
-import { getIEVersion } from './utils';
 import ApplicationState, { CREATING } from './ApplicationState';
-
-export const usingIE = () => -1 !== getIEVersion();
 
 export const checkSWFontCompatibility = (title) => {
   const supportedChars = ' qwertyuiopasdfghjklzxcvbnm0123456789!$'.split(''); // all supported supported chars
@@ -73,4 +70,10 @@ export const calculateTimeToRender = (queuePosition) => {
     time += ` and ${minutes} minutes`;
   }
   return time;
+};
+
+export const usingMSEdge = () => {
+  const ua = window.navigator.userAgent;
+  const foundEdge = ua.indexOf('Edge/');
+  return -1 !== foundEdge;
 };
