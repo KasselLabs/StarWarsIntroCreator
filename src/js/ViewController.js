@@ -12,6 +12,7 @@ class ViewController {
   constructor() {
     this.body = document.querySelector('body');
     this.downloadButton = document.querySelector('#downloadButton');
+    this.requestInteractionButton = document.querySelector('#requestInteractionButton');
     this.form = document.querySelector('#configForm > form');
 
     this.formFields = {
@@ -83,12 +84,19 @@ class ViewController {
     this.body.classList.remove('showForm');
   }
 
-  setRequestWindowFocus() {
-    this.body.classList.add('requestFocus');
+  requestWindowInteraction() {
+    this.body.classList.add('requestInteraction');
+
+    return new Promise((resolve) => {
+      const listener = this.requestInteractionButton.addEventListener('click', () => {
+        this.requestInteractionButton.removeEventListener('click', listener, true);
+        resolve();
+      });
+    });
   }
 
-  unsetRequestWindowFocus() {
-    this.body.classList.remove('requestFocus');
+  _unsetRequestWindowInteraction() {
+    this.body.classList.remove('requestInteraction');
   }
 
   setDownloadPage() {
@@ -136,20 +144,33 @@ class ViewController {
   playOpening(opening) {
     window.scrollTo(0, 0);
     this.starWarsAnimation.load(opening);
-    this.setRequestWindowFocus();
+    this.requestWindowInteraction();
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       callOnFocus(async () => {
-        this.unsetRequestWindowFocus();
+        this._unsetRequestWindowInteraction();
         this.setRunningVideo();
+
         await AudioController.canPlay();
 
         this.starWarsAnimation.play();
+        try {
+          await AudioController.play();
+        } catch (e) {
+          this._resetAnimation();
+          const error = new Error('AutoPlayError');
+          reject(error);
+          return;
+        }
 
-        await AudioController.play();
         resolve();
       });
     });
+  }
+
+  _resetAnimation() {
+    this.unsetRunningVideo();
+    this.starWarsAnimation.reset();
   }
 
   killTimers() {
@@ -162,14 +183,9 @@ class ViewController {
       this.body.classList.add('showForm');
     };
 
-    const resetAnimation = () => {
-      this.unsetRunningVideo();
-      this.starWarsAnimation.reset();
-    };
-
     if (interruptAnimation) {
       showForm();
-      resetAnimation();
+      this._resetAnimation();
       AudioController.reset();
       return;
     }
@@ -177,7 +193,7 @@ class ViewController {
     this.showFormTimeout = setTimeout(() => {
       showForm();
       this.resetAnimationTimeout = setTimeout(() => {
-        resetAnimation();
+        this._resetAnimation();
       }, 6000);
     }, 2000);
   }

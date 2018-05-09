@@ -21,11 +21,16 @@ class AudioController {
   }
 
   play() {
-    return new Promise((resolve) => {
+    return new Promise(async (resolve, reject) => {
       // this.audio.currentTime = 92;
       // this.audio.playbackRate = 3;
       this.reset();
-      this.audio.play();
+      try {
+        await this.audio.play();
+      } catch (error) {
+        reject(error);
+        return;
+      }
 
       const endedListener = () => {
         resolve();

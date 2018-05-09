@@ -66,7 +66,18 @@ class ApplicationState {
 
       case PLAYING:
         setPaypalKey(key);
-        await ViewController.playOpening(opening);
+
+        try {
+          await ViewController.playOpening(opening);
+        } catch (error) {
+          const isAudioPlayError = 'AutoPlayError' === error.message;
+          if (!isAudioPlayError) {
+            throw error;
+          }
+          await ViewController.requestWindowInteraction();
+          await ViewController.playOpening(opening);
+        }
+
         UrlHandler.goToEditPage(key);
         break;
 
