@@ -2,7 +2,7 @@
   "name": "star-wars-intro-creator",
   "version": "2.0.0",
   "description": "Star Wars Intro Creator by Kassel Labs",
-  "author": "Kassel Labs <kassellabs@googlegroups.com>",
+  "author": "Kassel Labs <kassellabs@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "rm -rf ./dist && parcel build ./src/index.html --public-url /",
