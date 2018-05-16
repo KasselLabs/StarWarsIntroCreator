@@ -1,6 +1,8 @@
 import { firebases, defaultFirebase, defaultFirebasePrefix } from './config';
 import Http from './Http';
 
+const SERVER_TIMESTAMP = { '.sv': 'timestamp' };
+
 export const _parseFirebasekey = (key) => {
   const result = {
     baseURL: defaultFirebase,
@@ -78,6 +80,8 @@ export const fetchKey = async (initialKey) => {
 
 export const saveOpening = async (opening) => {
   const http = Http(defaultFirebase);
+
+  opening.created = SERVER_TIMESTAMP;
 
   const response = await http.post('/openings.json', opening);
   const key = `${defaultFirebasePrefix}${response.data.name.substr(1)}`;
