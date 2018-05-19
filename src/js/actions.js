@@ -121,36 +121,7 @@ export const downloadButtonHandler = async (opening) => {
 const _loadStatus = async (key) => {
   let statusObject;
   try {
-    const response = await fetchStatus(key);
-
-    // TODO remove for new API
-    const { url } = response;
-    if (url) {
-      statusObject = {
-        status: 'rendered',
-        downloadUrl: url,
-      };
-
-      return statusObject;
-    }
-
-    const queuePosition = response.queue;
-    const responseFake = await fetchStatus('x');
-    const queueSize = responseFake.queue;
-    statusObject = {
-      queueSize,
-      queuePosition,
-    };
-
-    let statusType = queuePosition === queueSize ?
-      'not_queued' :
-      'queued';
-
-    statusType = queuePosition < 20 ? 'bumped' : statusType;
-    statusType = 0 === queuePosition ? 'rendering' : statusType;
-
-    statusObject.status = statusType;
-    // end TODO
+    statusObject = await fetchStatus(key);
   } catch (error) {
     apiError(`We could not contact our servers for the download of ID: "${key}"`, true);
   }
@@ -171,18 +142,7 @@ export const loadDownloadPage = async (key) => {
 export const requestIntroDownload = async (key, email) => {
   let statusObject = null;
   try {
-    // TODO with new api
-    // statusObject = await requestDownload(key, email);
-
-    // TODO remove for new api
-    const responseFake = await requestDownload(key, email);
-    const queuePosition = responseFake.queue;
-    statusObject = {
-      queuePosition,
-    };
-
-    statusObject.status = 'queued';
-    // end TODO
+    statusObject = await requestDownload(key, email);
   } catch (error) {
     apiError('We could not contact our servers to request the download your intro', false, true);
   }
