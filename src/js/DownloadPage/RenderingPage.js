@@ -6,13 +6,12 @@ import { RENDERING } from './constants';
 
 const RenderingPage = ({ statusType, openingKey, finishRequestHandle }) => {
   const text = RENDERING === statusType ?
-    'Your donation has been verified, your video being rendered right now! ' :
-    'Your donation has been verified, your video will be rendered soon. ';
+    'Your video being rendered right now! You will receive your video by email in less than two hours.' :
+    'Your donation has been verified, your video will be rendered soon. You will receive your video by email in a few hours. '; // TODO show ETA here
   return (
     <div>
       <p>
         {text}
-        You will receive your video by email in less than two hours.
         This page will be updated when the video is ready.
       </p>
       <ContactButton />

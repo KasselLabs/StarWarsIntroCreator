@@ -45,7 +45,9 @@ const RequestDownloadPage = ({
       Your video request will be queued at position {queueSize + 1} of the queue.
       It may take up to {timeToRender} to have your video rendered.
       You can still donate to get it earlier if you want.
-      <DonateOrNotDonate {...props} hideNoDonateOption />
+      <p>
+        <DonateOrNotDonate {...props} hideNoDonateOption />
+      </p>
     </p>
   );
 
