@@ -13,7 +13,7 @@
     "test:coverage": "yarn test --coverage",
     "test:coverage:results": "google-chrome coverage/lcov-report/index.html",
     "lint": "eslint .",
-    "deploy": "yarn build && ghpages -p dist"
+    "deploy": "yarn build && cp CNAME dist/ && ghpages -p dist"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
