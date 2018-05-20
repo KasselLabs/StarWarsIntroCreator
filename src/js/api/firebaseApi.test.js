@@ -1,6 +1,6 @@
 import { _parseFirebasekey, _parseSpecialKeys, _generateUrlWithKey } from './firebaseApi';
 
-jest.mock('./config');
+jest.mock('../config');
 
 describe('firebaseApi.js', () => {
   it('should parse special keys', () => {

@@ -1,4 +1,4 @@
-import { serverApi } from './config';
+import { serverApi } from '../config';
 import Http from './Http';
 
 const httpApi = Http(serverApi);

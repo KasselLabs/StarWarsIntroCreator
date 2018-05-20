@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 import swal from 'sweetalert2';
-import { requestIntroDownload } from '../actions';
+import { requestIntroDownload } from '../api/actions';
 
 class EmailRequestField extends Component {
   handleSubmit = async (e) => {

@@ -1,11 +1,11 @@
 import swal from 'sweetalert2';
 
-import UrlHandler from './UrlHandler';
+import UrlHandler from './extras/UrlHandler';
 import AudioController from './AudioController';
-import { usingMSEdge } from './auxiliar';
-import { documentReady, urlHashChange } from './utils';
-import { loadAndPlay, loadDownloadPage, setCreateMode, loadAndEdit } from './actions';
-import sendGAPageView from './googleanalytics';
+import { usingMSEdge } from './extras/auxiliar';
+import { documentReady, urlHashChange } from './extras/utils';
+import { loadAndPlay, loadDownloadPage, setCreateMode, loadAndEdit } from './api/actions';
+import sendGAPageView from './extras/googleanalytics';
 import { defaultOpening, defaultKey } from './config';
 import ApplicationState, { PLAYING, EDITING } from './ApplicationState';
 

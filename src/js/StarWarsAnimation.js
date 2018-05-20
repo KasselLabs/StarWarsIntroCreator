@@ -1,5 +1,5 @@
-import { checkSWFontCompatibility } from './auxiliar';
-import { appendKeyframesRule } from './utils';
+import { checkSWFontCompatibility } from './extras/auxiliar';
+import { appendKeyframesRule } from './extras/utils';
 
 class StarWarsAnimation {
   constructor() {

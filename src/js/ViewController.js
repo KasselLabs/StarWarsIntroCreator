@@ -1,12 +1,12 @@
 import { defaultOpening } from './config';
-import { callOnFocus, isFromBrazil } from './utils';
+import { callOnFocus, isFromBrazil } from './extras/utils';
 import AudioController from './AudioController';
 import ApplicationState from './ApplicationState';
-import UrlHandler from './UrlHandler';
-import { playButtonHandler, downloadButtonHandler } from './actions';
+import UrlHandler from './extras/UrlHandler';
+import { playButtonHandler, downloadButtonHandler } from './api/actions';
 import StarWarsAnimation from './StarWarsAnimation';
 import { mountDownloadPage, unmountDownloadPage } from './mountDownloadPage';
-import bitcoinEther from './bitcoinEther';
+import bitcoinEther from './extras/bitcoinEther';
 
 class ViewController {
   constructor() {

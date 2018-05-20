@@ -4,8 +4,8 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import '../styles/main.styl';
 import '../../.env';
 
-import './facebooksdk';
-import './googleanalytics';
+import './extras/facebooksdk';
+import './extras/googleanalytics';
 
 import startApplication from './App';
 

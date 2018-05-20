@@ -1,7 +1,7 @@
 import ViewController from './ViewController';
 import AudioController from './AudioController';
-import UrlHandler from './UrlHandler';
-import { setPaypalKey } from './paypal';
+import UrlHandler from './extras/UrlHandler';
+import { setPaypalKey } from './extras/paypal';
 
 export const CREATING = 'CREATING';
 export const LOADING = 'LOADING';

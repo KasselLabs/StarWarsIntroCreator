@@ -1,9 +1,9 @@
 import { h, Component } from 'preact';
 
-import { calculateTimeToRender } from '../auxiliar';
+import { calculateTimeToRender } from '../extras/auxiliar';
 import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
 import ContactButton from './ContactButton';
-import UrlHandler from '../UrlHandler';
+import UrlHandler from '../extras/UrlHandler';
 
 class VideoRequestSent extends Component {
   handleOkButton = () => {

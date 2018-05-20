@@ -1,6 +1,6 @@
 import swal from 'sweetalert2';
 
-import ApplicationState, { CREATING } from './ApplicationState';
+import ApplicationState, { CREATING } from '../ApplicationState';
 
 export const checkSWFontCompatibility = (title) => {
   const supportedChars = ' qwertyuiopasdfghjklzxcvbnm0123456789!$'.split(''); // all supported supported chars

@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import DonateOrNotDonate from './DonateOrNotDonate';
-import { calculateTimeToRender } from '../auxiliar';
+import { calculateTimeToRender } from '../extras/auxiliar';
 import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
 import ContactButton from './ContactButton';
 
@@ -37,7 +37,8 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
         If you don&apos;t receive the video that we promise, you can request a refund on PayPal.
       </p>
       <p>
-        <b>Attention!</b> Before sending the download request make sure there are no typos in your text
+        <b>Attention!</b>
+        Before sending the download request make sure there are no typos in your text
         to grant that your video will be with the correct text.&nbsp;
         <a href={urlToEdit}>
           Click here to go back and check your text.

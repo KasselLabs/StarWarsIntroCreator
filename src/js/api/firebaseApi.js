@@ -1,4 +1,4 @@
-import { firebases, defaultFirebase, defaultFirebasePrefix } from './config';
+import { firebases, defaultFirebase, defaultFirebasePrefix } from '../config';
 import Http from './Http';
 
 const SERVER_TIMESTAMP = { '.sv': 'timestamp' };
@@ -68,8 +68,17 @@ export const fetchKey = async (initialKey) => {
   });
   const response = await http.get(url);
   const opening = response.data;
-  delete opening.created; // Remove created for when the opening is compared to the form it should ignore this property.
-  // const opening = {"center":true,"episode":"Episode VIII","intro":"Kassel Labs","logo":"kassel\nlabs","text":"Kassel Labs\n\nkassel\nlabs\n\nKASSEL LABS\n\nKASSEL\nLABS\n\nkassel labs","title":"KASSEL LABS"};
+
+  // Remove created for when the opening is compared to the form it should ignore this property.
+  delete opening.created;
+  // const opening = {
+  //   "center":true,
+  //   "episode":"Episode VIII",
+  //   "intro":"Kassel Labs",
+  //   "logo":"kassel\nlabs",
+  //   "text":"Kassel Labs\n\nkassel\nlabs\n\nKASSEL LABS\n\nKASSEL\nLABS\n\nkassel labs"
+  //   ,"title":"KASSEL LABS"
+  // };
   if (!opening) {
     const error = new Error(`Opening not found: ${initialKey}`);
     Raven.captureException(error);

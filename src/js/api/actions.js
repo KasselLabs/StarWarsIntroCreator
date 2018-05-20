@@ -1,12 +1,12 @@
 import swal from 'sweetalert2';
 import isEqual from 'lodash.isequal';
 
-import UrlHandler from './UrlHandler';
-import ViewController from './ViewController';
-import ApplicationState, { CREATING, PLAYING, EDITING, LOADING, DOWNLOAD } from './ApplicationState';
+import UrlHandler from '../extras/UrlHandler';
+import ViewController from '../ViewController';
+import ApplicationState, { CREATING, PLAYING, EDITING, LOADING, DOWNLOAD } from '../ApplicationState';
 import { fetchKey, saveOpening } from './firebaseApi';
 import { fetchStatus, requestDownload } from './serverApi';
-import { apiError } from './auxiliar';
+import { apiError } from '../extras/auxiliar';
 
 export const setCreateMode = (props = {}) => {
   ApplicationState.setState(CREATING, props);

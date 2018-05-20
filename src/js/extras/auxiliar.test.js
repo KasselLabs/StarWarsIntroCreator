@@ -1,7 +1,7 @@
 import { checkSWFontCompatibility, calculateTimeToRender } from './auxiliar';
 
 jest.mock('sweetalert2');
-jest.mock('./ApplicationState');
+jest.mock('../ApplicationState');
 
 describe('auxiliar functions', () => {
   it('should validate for SWFont', () => {

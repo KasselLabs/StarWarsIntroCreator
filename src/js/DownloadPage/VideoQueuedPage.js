@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import DonateOrNotDonate from './DonateOrNotDonate';
-import { calculateTimeToRender } from '../auxiliar';
+import { calculateTimeToRender } from '../extras/auxiliar';
 import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
 import ContactButton from './ContactButton';
 

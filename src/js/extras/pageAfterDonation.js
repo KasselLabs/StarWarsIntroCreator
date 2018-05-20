@@ -1,2 +1,2 @@
-import '../../.env';
+import '../../../.env';
 import './googleanalytics';

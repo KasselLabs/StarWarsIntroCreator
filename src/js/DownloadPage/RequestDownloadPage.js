@@ -3,7 +3,7 @@ import DonateOrNotDonate from './DonateOrNotDonate';
 import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
 import ContactButton from './ContactButton';
 import EmailRequestField from './EmailRequestField';
-import { calculateTimeToRender } from '../auxiliar';
+import { calculateTimeToRender } from '../extras/auxiliar';
 
 const RequestDownloadPage = ({
   donate,
