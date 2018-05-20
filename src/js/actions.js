@@ -64,8 +64,8 @@ export const playButtonHandler = async (opening) => {
   const lastOpening = ApplicationState.state.opening;
   const lastKey = ApplicationState.state.key;
 
-  const isOpeningChanged = !isEqual(lastOpening, opening);
-  if (!isOpeningChanged) {
+  const isOpeningUnchanged = isEqual(lastOpening, opening);
+  if (isOpeningUnchanged) {
     UrlHandler.setKeyToPlay(lastKey);
     return;
   }
