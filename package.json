@@ -5,8 +5,8 @@
   "author": "Kassel Labs <kassellabs@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf ./dist && parcel build ./src/index.html ./src/donation_success/index.html",
-    "start": "parcel ./src/index.html ./src/donation_success/index.html -p 8080 --no-hmr",
+    "build": "rm -rf ./dist && parcel build ./src/index.html",
+    "start": "parcel ./src/index.html -p 8080 --no-hmr",
     "test": "jest",
     "test:watch": "yarn test --watchAll",
     "test:coverage": "yarn test --coverage",
