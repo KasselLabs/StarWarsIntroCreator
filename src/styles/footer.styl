@@ -1,4 +1,4 @@
-$footerCreditsColor = #9e9e42;
+$footerCreditsColor = alpha($titlesColor, .8);
 
 footer {
   font-family: $defaultFontFamily;
@@ -12,11 +12,7 @@ footer {
     font-size: .9em;
 
     a {
-      color: $titlesColor;
       text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
     }
   }
 
