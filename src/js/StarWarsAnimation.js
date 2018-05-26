@@ -14,7 +14,9 @@ class StarWarsAnimation {
 
   reset() {
     const animation = this.animationContainer.querySelector('.starwarsAnimation');
-    this.animationContainer.removeChild(animation);
+    if (animation) {
+      this.animationContainer.removeChild(animation);
+    }
 
     const cloned = this.animationCloned.cloneNode(true);
     this.animation = cloned;
