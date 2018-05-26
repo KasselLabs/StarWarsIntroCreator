@@ -87,6 +87,7 @@ export const playButtonHandler = async (opening) => {
     key = await saveOpening(opening);
   } catch (error) {
     apiError('There was an error creating your intro.');
+    return;
   }
 
   UrlHandler.setKeyToPlay(key);
