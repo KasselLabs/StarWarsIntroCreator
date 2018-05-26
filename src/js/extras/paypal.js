@@ -1,6 +1,11 @@
 export const setPaypalKey = (key) => {
   const inputs = document.querySelectorAll('input[type=hidden][name=custom]');
-  inputs.forEach((input) => {
+  let inputsArray = inputs;
+  if (!inputs.forEach) {
+    inputsArray = Array.from(inputs);
+  }
+
+  inputsArray.forEach((input) => {
     input.value = key;
   });
 };

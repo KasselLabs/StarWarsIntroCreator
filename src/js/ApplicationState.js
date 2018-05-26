@@ -82,11 +82,13 @@ class ApplicationState {
         break;
 
       case EDITING:
+        setPaypalKey(key);
         ViewController.setFormValues(opening);
         ViewController.showDownloadButton();
         break;
 
       case DOWNLOAD:
+        setPaypalKey(key);
         ViewController.setDownloadPage();
         break;
 
