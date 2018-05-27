@@ -27,7 +27,7 @@ export const callOnFocus = (callback) => {
 
 export const appendKeyframesRule = (keyframeName, ruleToAppend) => {
   const { styleSheets } = document;
-  let cssRuleToChange;
+  let cssRuleToChange = null;
   Raven.captureBreadcrumb({
     message: 'Appending CSS Keyframes',
     category: 'appendKeyframesRule',
@@ -38,8 +38,13 @@ export const appendKeyframesRule = (keyframeName, ruleToAppend) => {
   // loop in all stylesheets
   for (let i = 0; i < styleSheets.length; i += 1) {
     const styleSheet = styleSheets[i];
+
+    if (cssRuleToChange) {
+      break;
+    }
+
     // loop in all css rules
-    if ((!styleSheet.href || -1 === styleSheet.href.indexOf('necolas')) && styleSheet.cssRules) {
+    if (!styleSheet.href || -1 === styleSheet.href.indexOf('necolas')) {
       Raven.captureBreadcrumb({
         message: 'Appending CSS Keyframes',
         category: 'appendKeyframesRule',
