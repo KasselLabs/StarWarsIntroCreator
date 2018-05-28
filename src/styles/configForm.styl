@@ -83,13 +83,13 @@ stroke($stroke, $color) {
       width: 97%;
       color: $titlesColor;
       word-break: break-word;
+      letter-spacing: .05em;
       font-size: 14px;
 
       inputStyle();
     }
 
     textarea {
-      font-family: monospace;
       resize: none;
 
       &#f-logo {
@@ -101,6 +101,7 @@ stroke($stroke, $color) {
         font-family: StarWars;
         line-height: 86%;
         caret-color: $titlesColor; // partial support https://caniuse.com/#search=caret-color
+        letter-spacing: initial;
       }
     }
 
