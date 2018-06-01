@@ -12,7 +12,7 @@
     "test:coverage": "yarn test --coverage",
     "test:coverage:results": "google-chrome coverage/lcov-report/index.html",
     "lint": "eslint .",
-    "deploy": "yarn build && cp CNAME dist/ && ghpages -p dist"
+    "deploy": "yarn build && cp CNAME dist/ && gh-pages -d dist -m "
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
@@ -27,7 +27,7 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "ghpages": "^0.0.10",
+    "gh-pages": "^1.1.0",
     "jest": "^22.4.2",
     "parcel-bundler": "^1.8.1",
     "stylint": "^1.5.9",
