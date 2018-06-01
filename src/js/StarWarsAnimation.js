@@ -1,5 +1,6 @@
 import { checkSWFontCompatibility } from './extras/auxiliar';
 import { appendKeyframesRule } from './extras/utils';
+import escapeHtml from './extras/escapeHtml';
 
 class StarWarsAnimation {
   constructor() {
@@ -27,9 +28,7 @@ class StarWarsAnimation {
     const { animation } = this;
 
     // INTRO TEXT
-    const introHtml = opening.intro
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
+    const introHtml = escapeHtml(opening.intro)
       .replace(/\n/g, '<br>');
 
     animation.querySelector('#intro').innerHTML = introHtml;
@@ -45,7 +44,8 @@ class StarWarsAnimation {
     }
 
     // TEXT
-    const paragraphs = opening.text.trim().split('\n').join('</p><p>');
+    const escapedText = escapeHtml(opening.text);
+    const paragraphs = escapedText.trim().split('\n').join('</p><p>');
     const finalHtml = `<p>${paragraphs}</p>`;
     const textContainer = animation.querySelector('#text');
     textContainer.innerHTML = finalHtml;
