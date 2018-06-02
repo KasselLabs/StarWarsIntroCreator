@@ -69,8 +69,6 @@ export const fetchKey = async (initialKey) => {
   const response = await http.get(url);
   const opening = response.data;
 
-  // Remove created for when the opening is compared to the form it should ignore this property.
-  delete opening.created;
   // const opening = {
   //   "center":true,
   //   "episode":"Episode VIII",
@@ -82,7 +80,10 @@ export const fetchKey = async (initialKey) => {
   if (!opening) {
     const error = new Error(`Opening not found: ${initialKey}`);
     Raven.captureException(error);
+    return opening;
   }
+  // Remove created for when the opening is compared to the form it should ignore this property.
+  delete opening.created;
   openingsCache[initialKey] = opening;
   return opening;
 };
