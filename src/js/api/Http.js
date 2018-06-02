@@ -17,6 +17,7 @@ const _retryLastRequest = ({ config }, resolve) => {
     method: config.method,
     url: config.url,
     data: config.data ? JSON.parse(config.data) : null,
+    params: config.params,
   };
 
   return Http().request(options)
