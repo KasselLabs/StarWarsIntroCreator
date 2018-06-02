@@ -44,7 +44,14 @@ export const appendKeyframesRule = (keyframeName, ruleToAppend) => {
     }
 
     // loop in all css rules
-    if (!styleSheet.href || -1 === styleSheet.href.indexOf('necolas')) {
+    if (!!styleSheet.href && -1 === styleSheet.href.indexOf('necolas')) {
+      try {
+        let tryToReadRules = styleSheet.cssRules.length;
+      } catch (error) {
+        // prevent error on read css rules, go to the next rule.
+        continue;
+      }
+
       Raven.captureBreadcrumb({
         message: 'Appending CSS Keyframes',
         category: 'appendKeyframesRule',
