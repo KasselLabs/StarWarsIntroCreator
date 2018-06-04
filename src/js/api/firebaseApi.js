@@ -24,7 +24,7 @@ export const _parseFirebasekey = (key) => {
   return result;
 };
 
-export const _parseSpecialKeys = (key) => {
+export const parseSpecialKeys = (key) => {
   switch (key) {
     case 'Episode7':
       return 'AKcKeYMPogupSU_r1I_g';
@@ -55,7 +55,7 @@ export const fetchKey = async (initialKey) => {
     return openingFromCache;
   }
 
-  const rawkey = _parseSpecialKeys(initialKey);
+  const rawkey = parseSpecialKeys(initialKey);
   const { baseURL, key } = _parseFirebasekey(rawkey);
   const http = Http(baseURL);
 

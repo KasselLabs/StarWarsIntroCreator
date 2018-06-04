@@ -4,7 +4,7 @@ import isEqual from 'lodash.isequal';
 import UrlHandler from '../extras/UrlHandler';
 import ViewController from '../ViewController';
 import ApplicationState, { CREATING, PLAYING, EDITING, LOADING, DOWNLOAD } from '../ApplicationState';
-import { fetchKey, saveOpening } from './firebaseApi';
+import { fetchKey, saveOpening, parseSpecialKeys } from './firebaseApi';
 import { fetchStatus, requestDownload } from './serverApi';
 import { apiError } from '../extras/auxiliar';
 
@@ -119,7 +119,8 @@ export const downloadButtonHandler = async (opening) => {
   UrlHandler.goToDownloadPage(key);
 };
 
-const _loadStatus = async (key) => {
+const _loadStatus = async (rawKey) => {
+  const key = parseSpecialKeys(rawKey);
   let statusObject;
   try {
     statusObject = await fetchStatus(key);
@@ -140,7 +141,8 @@ export const loadDownloadPage = async (key) => {
   ApplicationState.setState(DOWNLOAD, { opening, key, downloadStatus });
 };
 
-export const requestIntroDownload = async (key, email) => {
+export const requestIntroDownload = async (rawKey, email) => {
+  const key = parseSpecialKeys(rawKey);
   let statusObject = null;
   try {
     statusObject = await requestDownload(key, email);

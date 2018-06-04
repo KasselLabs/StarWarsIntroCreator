@@ -1,18 +1,18 @@
-import { _parseFirebasekey, _parseSpecialKeys, _generateUrlWithKey } from './firebaseApi';
+import { _parseFirebasekey, parseSpecialKeys, _generateUrlWithKey } from './firebaseApi';
 
 jest.mock('../config');
 
 describe('firebaseApi.js', () => {
   it('should parse special keys', () => {
     const key1 = 'Episode7';
-    expect(_parseSpecialKeys(key1)).toBe('AKcKeYMPogupSU_r1I_g');
+    expect(parseSpecialKeys(key1)).toBe('AKcKeYMPogupSU_r1I_g');
     const key2 = 'Episode8';
-    expect(_parseSpecialKeys(key2)).toBe('AL6yNfOxCGkHKBUi54xp');
+    expect(parseSpecialKeys(key2)).toBe('AL6yNfOxCGkHKBUi54xp');
   });
 
   it('should return the same key', () => {
     const key1 = 'xasdasd';
-    expect(_parseSpecialKeys(key1)).toBe('xasdasd');
+    expect(parseSpecialKeys(key1)).toBe('xasdasd');
   });
 
   it('should parse Firebase key', () => {
