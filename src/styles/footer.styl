@@ -1,5 +1,13 @@
 $footerCreditsColor = alpha($titlesColor, .8);
 
+mobileFooter() {
+  @media mobile {
+    transform: scale(2);
+    margin: 10% 25%;
+    width: 50%;
+  }
+}
+
 footer {
   font-family: $defaultFontFamily;
 
@@ -14,9 +22,19 @@ footer {
     a {
       text-decoration: none;
     }
+
+    img {
+      height: 20px;
+
+      @media mobile {
+        height: 40px;
+      }
+    }
   }
 
   .socialButtons {
+    mobileFooter();
+
     position: fixed;
     bottom: 1em;
     left: 1em;
@@ -50,7 +68,13 @@ footer {
     }
   }
 
-  .rightFooter{
+  .rightFooter {
+    mobileFooter();
+
+    @media mobile {
+      margin-top: 30%;
+    }
+
     position: fixed;
     right: 1em;
     bottom: 1em;
@@ -70,6 +94,25 @@ footer {
 
     #anotherServiceLink {
       margin-bottom: 20px;
+    }
+  }
+
+  @media only screen and (max-device-width : 1024px)  {
+
+    .socialButtons {
+      position: initial;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .rightFooter {
+      position: initial;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
     }
   }
 }

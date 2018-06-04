@@ -19,6 +19,17 @@
     background-color: $formBackgroundColor;
     letter-spacing: .05em;
 
+    @media mobile {
+      max-width: 1000px;
+      width: 80%;
+
+      iframe {
+        margin: 10% 25%;
+        width: 50%;
+        transform: scale(2);
+      }
+    }
+
     h2 {
       starWarsFontStyle();
       text-align: center;
@@ -48,6 +59,24 @@
       margin-left: 39px;
       padding: 6px;
       line-height: 6px;
+
+      @media mobile {
+        margin: 20px;
+        padding: 14px;
+        font-size: 2em;
+        line-height: 13px;
+        width: auto;
+      }
+    }
+
+    p {
+      @media mobile {
+        font-size: 2em;
+
+        * {
+          font-size: inherit;
+        }
+      }
     }
 
     #downloadVideoButton {
@@ -62,6 +91,15 @@
 .donateOrNotDonateButtons {
   display: flex;
   justify-content: center;
+
+  @media mobile {
+    flex-direction: column;
+    align-items: center;
+
+    button {
+      flex: 1;
+    }
+  }
 }
 
 .requestDownloadPage {
@@ -71,6 +109,19 @@
 
     &.isBrazil {
       height: 123px;
+    }
+  }
+
+  @media mobile {
+    iframe {
+      margin: 10% 25%;
+      width: 50%;
+      transform: scale(2);
+      height: 56px;
+
+      &.isBrazil {
+        height: 143px;
+      }
     }
   }
 }
@@ -98,6 +149,11 @@
       width: 80%;
       color: $titlesColor;
       font-size: 1.2em;
+
+      @media mobile {
+        width: 100%;
+        font-size: 2.4em;
+      }
     }
   }
 }

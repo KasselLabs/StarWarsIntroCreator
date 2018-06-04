@@ -15,6 +15,9 @@ inputStyle() {
   background-color: $formBackgroundColor;
   transition: border-color .3s ease-out;
 
+  @media mobile {
+    border-radius: 6px;
+  }
 
   &:hover{
     border-color: $inputBorderColorHover;
@@ -22,6 +25,14 @@ inputStyle() {
 
   &:active, &:focus {
     border-color: $inputBorderColorFocus;
+  }
+}
+
+fontSizeResponsive() {
+  font-size: 14px;
+
+  @media mobile {
+    font-size: 28px;
   }
 }
 
@@ -40,6 +51,10 @@ $actionButtonStyle {
 
   &:focus, &:hover {
     text-shadow: -1px 1px 8px $greenShadow, 1px -1px 8px $greenShadow;
+  }
+
+  @media mobile {
+    font-size: 100px;
   }
 }
 
@@ -69,6 +84,10 @@ stroke($stroke, $color) {
   justify-content: center;
   color: $titlesColor;
 
+  @media mobile {
+    margin-bottom: 160px;
+  }
+
   form {
     z-index: 1;
     display: flex;
@@ -76,6 +95,10 @@ stroke($stroke, $color) {
     align-items: center;
     width: 500px;
     font-family: $defaultFontFamily;
+
+    @media mobile {
+      width: 800px;
+    }
 
     input, textarea {
       overflow-x: hidden;
@@ -85,7 +108,7 @@ stroke($stroke, $color) {
       color: $titlesColor;
       word-break: break-word;
       letter-spacing: .05em;
-      font-size: 14px;
+      fontSizeResponsive();
 
       inputStyle();
     }
@@ -103,6 +126,12 @@ stroke($stroke, $color) {
         line-height: 86%;
         caret-color: $titlesColor; // partial support https://caniuse.com/#search=caret-color
         letter-spacing: initial;
+
+        @media mobile {
+          font-size: 100px;
+          height: 184px;
+          text-shadow: stroke(4, $titlesColor);
+        }
       }
     }
 
@@ -114,6 +143,7 @@ stroke($stroke, $color) {
 
     #playButtonSpan {
       margin-top: 20px;
+      fontSizeResponsive();
     }
 
     #downloadButton {
@@ -132,6 +162,10 @@ stroke($stroke, $color) {
       &.show {
         display: block;
       }
+
+      @media mobile {
+        font-size: 120px;
+      }
     }
 
     #f-intro {
@@ -140,6 +174,10 @@ stroke($stroke, $color) {
 
     #f-text {
       height: 200px;
+
+      @media mobile {
+        height 400px;
+      }
     }
 
     #f-logo, #f-title, #f-episode {
@@ -153,8 +191,12 @@ stroke($stroke, $color) {
       label {
         display: inline;
         vertical-align: middle;
-        font-size: 14px;
         cursor: pointer;
+        fontSizeResponsive();
+
+        @media mobile {
+          margin-left: 15px;
+        }
       }
 
       .regular-checkbox {
@@ -179,7 +221,11 @@ stroke($stroke, $color) {
           display: inline-block;
           width: 9px;
           height: 9px;
-          border-radius: 3px;
+
+          @media mobile {
+            width: 18px;
+            height: 18px;
+          }
         }
 
         &:checked + label:after {
@@ -188,11 +234,14 @@ stroke($stroke, $color) {
           color: $titlesColor;
           content: '\25A0';
           letter-spacing: 0;
-          font-size: 14px;
           cursor: pointer;
+          fontSizeResponsive();
+
+          @media mobile {
+            top: -8px;
+          }
         }
       }
-
     }
   }
 }

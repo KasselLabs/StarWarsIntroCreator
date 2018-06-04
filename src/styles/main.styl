@@ -37,6 +37,8 @@ $errorRed = #ab0000;
 $panelTextColor = #d0ad3e;
 $warningYellow = $panelTextColor;
 
+mobile = 'only screen and (max-device-width : 500px)';
+
 html,
 body {
     display: initial;
@@ -50,10 +52,18 @@ body {
 
 h1 {
   font-size: 3em;
+
+  @media mobile {
+    font-size: 5em;
+  }
 }
 
 h2 {
   font-size: 2em;
+
+  @media mobile {
+    font-size: 4em;
+  }
 }
 
 iframe{
@@ -111,6 +121,7 @@ buttonStyle() {
   border-radius: 3px !important;
   background-color: $formBackgroundColor !important;
   color: $panelTextColor !important;
+  text-align: center;
   font-weight: 500;
   font-size: 1.0625em;
   font-family: $defaultFontFamily;
@@ -122,6 +133,18 @@ buttonStyle() {
 
   &:focus {
     box-shadow: 0 0 0 2px $buttonFocusColor !important;
+  }
+
+  @media mobile {
+    margin-top: 20px;
+    width: 100%;
+    border: 4px solid $panelTextColor !important;
+    border-radius: 6px !important;
+    font-size: 2em;
+
+    &:focus {
+      box-shadow: 0 0 0 4px $buttonFocusColor !important;
+    }
   }
 }
 

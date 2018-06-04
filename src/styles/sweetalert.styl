@@ -2,6 +2,10 @@
   border: 2px solid $panelTextColor;
   background-color: $formBackgroundColor;
 
+  @media mobile {
+    font-size: 2em;
+  }
+
   .swal2-title {
     starWarsFontStyle();
     margin-bottom: 1em;
@@ -16,6 +20,10 @@
   .swal2-actions:not(.swal2-loading) {
     button {
       buttonStyle();
+
+      @media mobile {
+        font-size: inherit;
+      }
     }
   }
 

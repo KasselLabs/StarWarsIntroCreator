@@ -4,6 +4,7 @@ import Http from './Http';
 const httpApi = Http(serverApi);
 
 export const fetchStatus = async (key) => {
+  // return { queue: 30 };
   const response = await httpApi.get('/status', {
     params: {
       code: key,
@@ -18,11 +19,10 @@ export const fetchStatus = async (key) => {
   // if (key === 'x') {
   //   return { queue: 300 };
   // }
-
-  // return { queue: 30 };
 };
 
 export const requestDownload = async (key, email) => {
+  // return { queue: 200 };
   const response = await httpApi.get('/request', {
     params: {
       code: key,
@@ -30,6 +30,4 @@ export const requestDownload = async (key, email) => {
     },
   });
   return response.data;
-
-  // return { queue: 200 };
 };
