@@ -59,7 +59,6 @@ export const appendKeyframesRule = (keyframeName, ruleToAppend) => {
           i,
           styleSheet,
           'styleSheet.href': styleSheet.href,
-          'styleSheet.cssRules': styleSheet.cssRules,
         },
       });
       for (let j = 0; j < styleSheet.cssRules.length; j += 1) {
