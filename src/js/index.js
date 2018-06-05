@@ -23,6 +23,7 @@ swal.setDefaults({
   Raven.config(process.env.RAVEN, {
     ignoreErrors: [
       'AutoPlayError',
+      'null is not an object (evaluating \'elt.parentNode\')',
     ],
     release: '0e4fdef81448dcfa0e16ecc4433ff3997aa53572',
   }).install();
