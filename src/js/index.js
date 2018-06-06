@@ -25,6 +25,12 @@ swal.setDefaults({
       'AutoPlayError',
       'null is not an object (evaluating \'elt.parentNode\')',
     ],
+    shouldSendCallback: (data) => {
+      if ('https://connect.facebook.net/en_US/sdk.js' === data.culprit) {
+        return false;
+      }
+      return true;
+    },
     release: '0e4fdef81448dcfa0e16ecc4433ff3997aa53572',
   }).install();
   Raven.context(() => {
