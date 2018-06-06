@@ -29,6 +29,11 @@ swal.setDefaults({
       if ('https://connect.facebook.net/en_US/sdk.js' === data.culprit) {
         return false;
       }
+      Raven.captureBreadcrumb({
+        message: 'Raven shouldSendCallback error data',
+        category: 'info',
+        data,
+      });
       return true;
     },
     release: '0e4fdef81448dcfa0e16ecc4433ff3997aa53572',
