@@ -6,8 +6,11 @@ import '../../.env';
 
 import './extras/facebooksdk';
 import './extras/googleanalytics';
+import registerServiceWorker from './registerServiceWorker';
 
 import startApplication from './App';
+
+registerServiceWorker();
 
 swal.setDefaults({
   customClass: 'starwars-sweetalert',
