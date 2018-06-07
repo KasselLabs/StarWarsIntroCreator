@@ -12,7 +12,7 @@ const _sendRavenNotification = (errorData) => {
   Raven.captureException(new Error(JSON.stringify(errorData)));
 };
 
-const _retryLastRequest = ({ config }, resolve) => {
+const _retryLastRequest = ({ config }) => {
   const options = {
     method: config.method,
     url: config.url,
@@ -20,11 +20,7 @@ const _retryLastRequest = ({ config }, resolve) => {
     params: config.params,
   };
 
-  return Http().request(options)
-    .then((response) => {
-      Tries.reset();
-      resolve(response);
-    });
+  return Http().request(options);
 };
 
 const _errorInterceptor = (error) => {
@@ -38,21 +34,20 @@ const _errorInterceptor = (error) => {
   //   return Promise.reject(error);
   // }
 
-  return new Promise((resolve, reject) => {
-    if (Tries.isMaxValue()) {
-      Tries.reset();
-      reject(error);
-      Raven.captureBreadcrumb({
-        message: `Error on request. Error code: ${error.code}`,
-        level: 'error',
-      });
-      _sendRavenNotification(JSON.stringify(error));
-      return;
-    }
+  if (Tries.isMaxValue()) {
+    Tries.reset();
+    Raven.captureBreadcrumb({
+      message: `Error on request. Error code: ${error.code}`,
+      level: 'error',
+      data: error.response,
+    });
 
-    Tries.increment();
-    _retryLastRequest(error, resolve);
-  });
+    _sendRavenNotification(error);
+    throw error;
+  }
+
+  Tries.increment();
+  return _retryLastRequest(error);
 };
 
 function Http(baseURL) {
