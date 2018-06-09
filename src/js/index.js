@@ -24,6 +24,11 @@ swal.setDefaults({
     ignoreErrors: [
       'AutoPlayError',
       'null is not an object (evaluating \'elt.parentNode\')',
+      'SetEvent is not defined',
+      'OnSceneLoad is not defined',
+      'captureMessage(raven)',
+      'from accessing a frame with origin',
+      'Minified exception occurred; use the non-minified dev environment for the full error',
     ],
     shouldSendCallback: (data) => {
       if ('https://connect.facebook.net/en_US/sdk.js' === data.culprit) {
