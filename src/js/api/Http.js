@@ -20,7 +20,11 @@ const _retryLastRequest = ({ config }) => {
     params: config.params,
   };
 
-  return Http().request(options);
+  return Http().request(options)
+    .then((response) => {
+      Tries.reset();
+      return response;
+    });
 };
 
 const _errorInterceptor = (error) => {
