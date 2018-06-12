@@ -26,10 +26,11 @@ swal.setDefaults({
       'null is not an object (evaluating \'elt.parentNode\')',
       'SetEvent is not defined',
       'OnSceneLoad is not defined',
-      'captureMessage(raven)',
+      'undefined',
       'from accessing a frame with origin',
       'Minified exception occurred; use the non-minified dev environment for the full error',
       'document.getElementsByTagName(\'embed\')[0].src',
+      '$ is not defined',
     ],
     shouldSendCallback: (data) => {
       if ('https://connect.facebook.net/en_US/sdk.js' === data.culprit) {
