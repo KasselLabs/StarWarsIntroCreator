@@ -43,7 +43,10 @@ const _errorInterceptor = (error) => {
     Raven.captureBreadcrumb({
       message: `Error on request. Error code: ${error.code}`,
       level: 'error',
-      data: error.response,
+      data: {
+        navigatorOnline: navigator.onLine,
+        response: error.response,
+      },
     });
 
     _sendRavenNotification(error);
