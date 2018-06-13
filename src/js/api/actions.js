@@ -121,12 +121,7 @@ export const downloadButtonHandler = async (opening) => {
 
 const _loadStatus = async (rawKey) => {
   const key = parseSpecialKeys(rawKey);
-  let statusObject;
-  try {
-    statusObject = await fetchStatus(key);
-  } catch (error) {
-    apiError(`We could not contact our servers for the download of ID: "${key}"`, true);
-  }
+  const statusObject = await fetchStatus(key);
   return statusObject;
 };
 
@@ -137,8 +132,18 @@ export const loadDownloadPage = async (key) => {
     return;
   }
 
-  const downloadStatus = await _loadStatus(key);
-  ApplicationState.setState(DOWNLOAD, { opening, key, downloadStatus });
+  try {
+    const downloadStatus = await _loadStatus(key);
+    ApplicationState.setState(DOWNLOAD, { opening, key, downloadStatus });
+  } catch (error) {
+    apiError(`We could not contact our servers for the download of ID: "${key}"`, true).then((result) => {
+      const closedOrClickedOut = result.dismiss === swal.DismissReason.backdrop
+        || result.dismiss === swal.DismissReason.close;
+      if (closedOrClickedOut) {
+        UrlHandler.goToEditPage(key);
+      }
+    });
+  }
 };
 
 export const requestIntroDownload = async (rawKey, email) => {

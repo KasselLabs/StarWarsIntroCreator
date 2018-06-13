@@ -20,13 +20,14 @@ I want to provide the following details:
 
   const cancelButtonText = reloadPage ? 'RELOAD PAGE' : 'CLOSE';
 
-  swal({
+  return swal({
     title: 'an unexpected error occured',
     text: `${message}.
     The empire may have intercepted our transmission.
     The alliance has already been informed and is working on correcting this.
     Please try again and if the problem persists, contact us to give more details clicking on the button below.`,
     type: 'error',
+    showCloseButton: true,
     showCancelButton: true,
     cancelButtonText,
     confirmButtonText: 'CONTACT SUPPORT',
@@ -41,6 +42,7 @@ I want to provide the following details:
     if (!keepPage) {
       ApplicationState.setState(CREATING);
     }
+    return result;
   });
 };
 
