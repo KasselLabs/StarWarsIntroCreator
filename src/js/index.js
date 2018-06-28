@@ -31,11 +31,19 @@ swal.setDefaults({
       'Minified exception occurred; use the non-minified dev environment for the full error',
       'document.getElementsByTagName(\'embed\')[0].src',
       '$ is not defined',
+      'Cannot redefine property: googletag',
+    ],
+    ignoreUrls: [
+      // Facebook blocked
+      /connect\.facebook\.net\/en_US\/all\.js/i,
+      // Chrome extensions
+      /extensions\//i,
+      /^chrome:\/\//i,
     ],
     shouldSendCallback: (data) => {
-      if ('https://connect.facebook.net/en_US/sdk.js' === data.culprit) {
-        return false;
-      }
+      // if ('https://connect.facebook.net/en_US/sdk.js' === data.culprit) {
+      //   return false;
+      // }
       Raven.captureBreadcrumb({
         message: 'Raven shouldSendCallback error data',
         category: 'info',
