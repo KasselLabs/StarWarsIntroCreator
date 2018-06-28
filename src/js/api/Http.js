@@ -28,23 +28,12 @@ const _retryLastRequest = ({ config }) => {
 };
 
 const _errorInterceptor = (error) => {
-  // const errorData = error.response;
-  // if (!errorData) {
-  //   Raven.captureBreadcrumb({
-  //     message: `Unknow error on request, probably timeout error. Error code: ${error.code}`,
-  //     level: 'error',
-  //   });
-  //   _sendRavenNotification(error);
-  //   return Promise.reject(error);
-  // }
-
   if (Tries.isMaxValue()) {
     Tries.reset();
     Raven.captureBreadcrumb({
       message: `Error on request. Error code: ${error.code}`,
       level: 'error',
       data: {
-        navigatorOnline: navigator.onLine,
         response: error.response,
       },
     });
