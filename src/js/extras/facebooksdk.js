@@ -1,3 +1,4 @@
+/* eslint-disable */
 if ('production' === process.env.NODE_ENV) {
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
