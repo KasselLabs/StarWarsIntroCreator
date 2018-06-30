@@ -46,9 +46,11 @@ export const appendKeyframesRule = (keyframeName, ruleToAppend) => {
     // loop in all css rules
     if (!!styleSheet.href && -1 === styleSheet.href.indexOf('necolas')) {
       try {
+        /* eslint-disable-next-line */
         let tryToReadRules = styleSheet.cssRules.length;
       } catch (error) {
         // prevent error on read css rules, go to the next rule.
+        /* eslint-disable-next-line */
         continue;
       }
 

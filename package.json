@@ -11,7 +11,7 @@
     "test:watch": "yarn test --watchAll",
     "test:coverage": "yarn test --coverage",
     "test:coverage:results": "google-chrome coverage/lcov-report/index.html",
-    "lint": "eslint .",
+    "lint": "eslint src/",
     "deploy": "yarn build && cp CNAME dist/ && gh-pages -d dist -m "
   },
   "devDependencies": {
