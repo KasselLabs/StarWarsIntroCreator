@@ -61,6 +61,9 @@ class ApplicationState {
     // next state changes
     switch (this.state.page) {
       case LOADING:
+        if (window.renderer) {
+          return;
+        }
         ViewController.setLoading();
         break;
 

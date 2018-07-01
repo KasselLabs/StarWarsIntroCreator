@@ -12,12 +12,13 @@ export const setCreateMode = (props = {}) => {
   ApplicationState.setState(CREATING, props);
 };
 
-const _loadOpening = async (key) => {
+export const loadOpening = async (key) => {
   let opening;
   try {
     opening = await fetchKey(key);
   } catch (error) {
     apiError(`We could not load the introduction "${key}"`, true);
+    return null;
   }
 
   if (!opening) {
@@ -30,7 +31,7 @@ const _loadOpening = async (key) => {
 
 export const loadAndPlay = async (key) => {
   ApplicationState.setState(LOADING);
-  const opening = await _loadOpening(key);
+  const opening = await loadOpening(key);
   if (opening) {
     ApplicationState.setState(PLAYING, { opening, key });
   }
@@ -38,7 +39,7 @@ export const loadAndPlay = async (key) => {
 
 export const loadAndEdit = async (key) => {
   ApplicationState.setState(LOADING);
-  const opening = await _loadOpening(key);
+  const opening = await loadOpening(key);
   if (opening) {
     ApplicationState.setState(EDITING, { opening, key });
   }
@@ -127,7 +128,7 @@ const _loadStatus = async (rawKey) => {
 
 export const loadDownloadPage = async (key) => {
   ApplicationState.setState(LOADING);
-  const opening = await _loadOpening(key);
+  const opening = await loadOpening(key);
   if (!opening) {
     return;
   }

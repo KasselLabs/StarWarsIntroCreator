@@ -2,6 +2,11 @@ class AudioController {
   constructor() {
     this.audio = document.querySelector('#themeAudio');
     this.isLoaded = false;
+
+    if (!this.audio) {
+      return;
+    }
+
     this.audioLoadPromise = new Promise((resolve) => {
       this.audio.oncanplaythrough = () => resolve();
     });
@@ -10,7 +15,7 @@ class AudioController {
   }
 
   loadAudio() {
-    if (!this.isLoaded) {
+    if (!this.isLoaded && this.audio) {
       this.audio.load();
       this.isLoaded = true;
     }
@@ -21,6 +26,10 @@ class AudioController {
   }
 
   play() {
+    if (!this.audio) {
+      return null;
+    }
+
     return new Promise(async (resolve, reject) => {
       // this.audio.currentTime = 92;
       // this.audio.playbackRate = 3;
@@ -40,6 +49,9 @@ class AudioController {
   }
 
   reset() {
+    if (!this.audio) {
+      return;
+    }
     this.audio.pause();
     this.audio.currentTime = 0;
   }
