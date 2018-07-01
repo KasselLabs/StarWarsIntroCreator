@@ -24,11 +24,15 @@ class ViewController {
       center: document.querySelector('#f-center'),
     };
 
+    this.starWarsAnimation = new StarWarsAnimation();
+
+    if (window.renderer) {
+      return;
+    }
+
     this.formFields.center.addEventListener('change', (e) => {
       this._setFormTextAlignment(e.target.checked);
     });
-
-    this.starWarsAnimation = new StarWarsAnimation();
 
     this.setFormValues(defaultOpening);
 
@@ -88,6 +92,10 @@ class ViewController {
     this.body.classList.add('requestInteraction');
 
     return new Promise((resolve) => {
+      if (!this.requestInteractionButton) {
+        resolve();
+        return;
+      }
       const listener = this.requestInteractionButton.addEventListener('click', () => {
         this.requestInteractionButton.removeEventListener('click', listener, true);
         resolve();
