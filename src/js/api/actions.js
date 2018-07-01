@@ -18,6 +18,7 @@ const _loadOpening = async (key) => {
     opening = await fetchKey(key);
   } catch (error) {
     apiError(`We could not load the introduction "${key}"`, true);
+    return null;
   }
 
   if (!opening) {
