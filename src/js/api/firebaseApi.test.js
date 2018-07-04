@@ -8,6 +8,8 @@ describe('firebaseApi.js', () => {
     expect(parseSpecialKeys(key1)).toBe('AKcKeYMPogupSU_r1I_g');
     const key2 = 'Episode8';
     expect(parseSpecialKeys(key2)).toBe('AL6yNfOxCGkHKBUi54xp');
+    const key3 = 'Episode4';
+    expect(parseSpecialKeys(key3)).toBe('BLGXboFRq3BUBb5y5SnE');
   });
 
   it('should return the same key', () => {
