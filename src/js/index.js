@@ -31,6 +31,10 @@ swal.setDefaults({
       'document.getElementsByTagName(\'embed\')[0].src',
       '$ is not defined',
       'Cannot redefine property: googletag',
+      'No logins found',
+      'Can\'t find variable: pktAnnotationHighlighter',
+      'window.onorientationchange is not a function. (In \'window.onorientationchange()\', \'window.onorientationchange\' is null)',
+      'script_serverip is not defined',
     ],
     ignoreUrls: [
       // Facebook blocked
