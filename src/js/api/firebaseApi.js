@@ -26,11 +26,22 @@ export const _parseFirebasekey = (key) => {
 
 export const parseSpecialKeys = (key) => {
   switch (key) {
+    case 'Episode1':
+      return 'BLGX_EN9eodO5PcgZ_m3';
+    case 'Episode2':
+      return 'BLGXba915dtDxbDRqpo5';
+    case 'Episode3':
+      return 'BLGXbPSY7YpyJu9Co6Lr';
+    case 'Episode4':
+      return 'BLGXboFRq3BUBb5y5SnE';
+    case 'Episode5':
+      return 'BLGXcO0tHZqTQdKlkj-2';
+    case 'Episode6':
+      return 'BLGXcdO_tV01cLfuQXVr';
     case 'Episode7':
       return 'AKcKeYMPogupSU_r1I_g';
     case 'Episode8':
       return 'AL6yNfOxCGkHKBUi54xp';
-    // TODO other eps
     default:
       return key;
   }
