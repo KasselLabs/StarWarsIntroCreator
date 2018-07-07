@@ -1,8 +1,8 @@
 import swal from 'sweetalert2';
+import bowser from 'bowser';
 
 import UrlHandler from './extras/UrlHandler';
 import AudioController from './AudioController';
-import { usingMSEdge } from './extras/auxiliar';
 import { documentReady, urlHashChange } from './extras/utils';
 import { loadAndPlay, loadDownloadPage, setCreateMode, loadAndEdit } from './api/actions';
 import sendGAPageView from './extras/googleanalytics';
@@ -53,7 +53,7 @@ const startApplication = () => {
 
   documentReady(() => {
     window.dispatchEvent(new Event('hashchange'));
-    if (usingMSEdge()) {
+    if (bowser.msedge) {
       swal(
         'microsoft edge',
         'This website is not optimized to work with Microsoft Edge, we recommend to use Chrome for the best experience. Sorry for the inconvenience.',
