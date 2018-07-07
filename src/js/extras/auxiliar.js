@@ -73,9 +73,3 @@ export const calculateTimeToRender = (queuePosition) => {
   }
   return time;
 };
-
-export const usingMSEdge = () => {
-  const ua = window.navigator.userAgent;
-  const foundEdge = ua.indexOf('Edge/');
-  return -1 !== foundEdge;
-};

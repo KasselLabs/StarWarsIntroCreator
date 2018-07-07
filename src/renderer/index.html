@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+    <title>SWIC Renderer</title>
+    <meta charset="utf-8"/>
+    <meta name="robots" content="noindex">
+
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
+</head>
+<body>
+
+  <div id="animationContainer">
+    <article class="starwarsAnimation">
+      <div id="backgroundSpace">
+          <img id="deathstar" src="../assets/deathstar.png"/>
+      </div>
+
+      <div class="animation">
+
+        <div class="introBackground">
+          <div id="intro" class="intro noselect">
+          </div>
+        </div>
+
+        <div class="verticalWrapper">
+            <div id="logo" class="noselect">
+              <img id="logoDefault" class="logoSub" src="../assets/logo.svg" />
+              <svg class="logoSub logoSvg" viewBox="0 0 750 500">
+                  <text letter-spacing="15px" x="50%" y="50%" text-anchor="middle" fill="none" stroke-width="8px" stroke="#ffd54e">star</text>
+                  <text letter-spacing="15px" x="50%" y="85%" text-anchor="middle" fill="none" stroke-width="8px" stroke="#ffd54e">wars</text>
+              </svg>
+          </div>
+        </div>
+
+        <div id="titles" class="noselect">
+          <div>
+            <p id="episode" class="tcenter">
+            </p>
+            <p id="title" class="tcenter">
+            </p>
+            <div id="text">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+  </div>
+  <script>
+    window.renderer = true;
+  </script>
+  <script src="./rendererPage.js"></script>
+</body>
+</html>

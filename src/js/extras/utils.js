@@ -12,6 +12,11 @@ export const urlHashChange = (handler) => {
 
 
 export const callOnFocus = (callback) => {
+  if (window.renderer) {
+    callback();
+    return;
+  }
+
   const listener = () => {
     window.removeEventListener('focus', listener, true);
     return callback();
