@@ -1,13 +1,13 @@
 import swal from 'sweetalert2';
 import bowser from 'bowser';
 
+import ApplicationState, { PLAYING, EDITING } from './ApplicationState';
 import UrlHandler from './extras/UrlHandler';
 import AudioController from './AudioController';
 import { documentReady, urlHashChange } from './extras/utils';
 import { loadAndPlay, loadDownloadPage, setCreateMode, loadAndEdit } from './api/actions';
 import sendGAPageView from './extras/googleanalytics';
 import { defaultOpening, defaultKey } from './config';
-import ApplicationState, { PLAYING, EDITING } from './ApplicationState';
 
 const startApplication = () => {
   urlHashChange(() => {
@@ -49,7 +49,6 @@ const startApplication = () => {
       key: defaultKey,
     });
   });
-
 
   documentReady(() => {
     window.dispatchEvent(new Event('hashchange'));
