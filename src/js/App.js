@@ -1,15 +1,17 @@
 import swal from 'sweetalert2';
 import bowser from 'bowser';
 
+import { sendGAPageView } from './extras/googleanalytics';
+import ApplicationState, { PLAYING, EDITING } from './ApplicationState';
 import UrlHandler from './extras/UrlHandler';
+import UserIdentifier from './extras/UserIdentifier';
 import AudioController from './AudioController';
 import { documentReady, urlHashChange } from './extras/utils';
 import { loadAndPlay, loadDownloadPage, setCreateMode, loadAndEdit } from './api/actions';
-import sendGAPageView from './extras/googleanalytics';
 import { defaultOpening, defaultKey } from './config';
-import ApplicationState, { PLAYING, EDITING } from './ApplicationState';
 
 const startApplication = () => {
+  UserIdentifier.setUser('SWIC');
   urlHashChange(() => {
     sendGAPageView();
     swal.close();
@@ -49,7 +51,6 @@ const startApplication = () => {
       key: defaultKey,
     });
   });
-
 
   documentReady(() => {
     window.dispatchEvent(new Event('hashchange'));

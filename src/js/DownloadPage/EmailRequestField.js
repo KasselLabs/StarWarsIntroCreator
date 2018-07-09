@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import swal from 'sweetalert2';
 import { requestIntroDownload } from '../api/actions';
+import UserIdentifier from '../extras/UserIdentifier';
 
 class EmailRequestField extends Component {
   handleSubmit = async (e) => {
@@ -8,6 +9,8 @@ class EmailRequestField extends Component {
     const { openingKey, finishRequestHandle } = this.props;
     const emailField = document.querySelector('#emailRequestField input');
     const email = emailField.value;
+
+    UserIdentifier.addEmail(email);
 
     let requestDownloadStatus;
 
