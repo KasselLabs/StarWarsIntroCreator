@@ -2,12 +2,31 @@ import { setGAUser } from './googleanalytics';
 
 const KEY = 'KasselLabsUser';
 
+const checkLocalStorageAvailability = () => {
+  const test = 'test';
+  try {
+    localStorage.setItem(test, test);
+    localStorage.removeItem(test);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
+const isLocalStorageAvailable = checkLocalStorageAvailability();
+
 const Storage = {
   save: (data) => {
+    if (!isLocalStorageAvailable) {
+      return;
+    }
     const json = JSON.stringify(data);
     localStorage.setItem(KEY, json);
   },
   load: () => {
+    if (!isLocalStorageAvailable) {
+      return null;
+    }
     const json = localStorage.getItem(KEY);
     return JSON.parse(json);
   },
