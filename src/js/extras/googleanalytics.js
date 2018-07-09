@@ -5,17 +5,24 @@ function gtag() {
 
 const gtagKey = 'UA-116931857-1';
 
-if ('production' === process.env.NODE_ENV) {
+const prod = 'production' === process.env.NODE_ENV;
+
+if (prod) {
   gtag('js', new Date());
   gtag('config', gtagKey);
 }
 
-const sendGAPageView = () => {
-  if ('production' === process.env.NODE_ENV) {
-    gtag('config', gtagKey, {
-      page_path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
-    });
+export const sendGAPageView = () => {
+  if (!prod) {
+    return;
   }
+
+  gtag('event', 'page_view', {
+    page_path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
+  });
 };
 
-export default sendGAPageView;
+export const setGAUser = (userId) => {
+  gtag('set', { user_id: userId });
+};
+
