@@ -1,6 +1,10 @@
 import '../styles/main.styl';
 import ViewController from '../js/ViewController';
 import { loadOpening } from '../js/api/actions';
+import AudioController from '../js/AudioController';
+
+const { audio } = AudioController;
+AudioController.audio = null;
 
 window.Raven = {
   captureBreadcrumb: () => {},
@@ -15,5 +19,9 @@ window.loadAndPlay = async (key) => {
   if (opening) {
     window.playIntro(opening);
   }
+};
+
+window.turnOnAudio = () => {
+  AudioController.audio = audio;
 };
 
