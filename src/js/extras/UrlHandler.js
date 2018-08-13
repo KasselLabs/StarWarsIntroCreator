@@ -1,6 +1,15 @@
 
 export default class UrlHandler {
+  static _checkForWrongEncoded = () => {
+    const hasWrongChar = window.location.hash.indexOf('#%21/') > -1;
+    if (hasWrongChar) {
+      const fixedHash = window.location.hash.replace('#%21/', '#!/');
+      window.location.hash = fixedHash;
+    }
+  }
+
   static getParams() {
+    this._checkForWrongEncoded();
     const params = window.location.hash.replace('#!/', '').split('/');
     return {
       key: params[0] ? params[0] : null,
