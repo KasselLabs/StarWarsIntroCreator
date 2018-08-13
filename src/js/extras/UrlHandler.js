@@ -5,6 +5,7 @@ export default class UrlHandler {
     if (hasWrongChar) {
       const fixedHash = window.location.hash.replace('#%21/', '#!/');
       window.location.hash = fixedHash;
+      window.location.reload();
     }
   }
 
