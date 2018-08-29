@@ -45,8 +45,17 @@ class StarWarsAnimation {
 
     // TEXT
     const escapedText = escapeHtml(opening.text);
-    const paragraphs = escapedText.trim().split('\n').join('</p><p>');
-    const finalHtml = `<p>${paragraphs}</p>`;
+
+    const paragraphs = escapedText
+      .trim()
+      .split('\n')
+      .join('</p><p>');
+
+    const breakLineBetweenPs = paragraphs
+      .split('<p></p>')
+      .join('<br/>');
+
+    const finalHtml = `<p>${breakLineBetweenPs}</p>`;
     const textContainer = animation.querySelector('#text');
     textContainer.innerHTML = finalHtml;
 
