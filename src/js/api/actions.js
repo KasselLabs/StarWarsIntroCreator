@@ -127,7 +127,7 @@ const _loadStatus = async (rawKey) => {
 };
 
 export const loadDownloadPage = async (key) => {
-  ApplicationState.setState(LOADING);
+  ApplicationState.setState(LOADING, { interruptAnimation: true });
   const opening = await loadOpening(key);
   if (!opening) {
     return;
