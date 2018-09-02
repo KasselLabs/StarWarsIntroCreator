@@ -57,7 +57,7 @@ const startApplication = () => {
     if (bowser.msedge) {
       swal(
         'microsoft edge',
-        'This website is not optimized to work with Microsoft Edge, we recommend to use Chrome for the best experience. Sorry for the inconvenience.',
+        'This website is not optimized to work with Microsoft Edge, we recommend to use Chrome or Firefox for the best experience. Sorry for the inconvenience.',
         'warning',
       );
     }

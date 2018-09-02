@@ -11,12 +11,10 @@ mobileFooter() {
 footer {
   font-family: $defaultFontFamily;
 
-  .credits {
+  .kasselLogo {
     position: absolute;
-    top: 1em;
-    width: 100%;
+    top: 0;
     color: $footerCreditsColor;
-    text-align: center;
     font-size: .9em;
 
     a {
@@ -24,11 +22,17 @@ footer {
     }
 
     img {
+      padding: 16px;
       height: 20px;
 
       @media mobile {
         height: 40px;
       }
+    }
+
+    @media mobile {
+      width: 100%;
+      text-align: center;
     }
   }
 

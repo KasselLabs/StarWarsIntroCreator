@@ -22,5 +22,5 @@ const usingIE = () => -1 !== getIEVersion();
 
 if (usingIE()) {
   /* eslint-disable-next-line */
-  window.alert('This website is not compatible with Internet Explorer, please use Chrome. Sorry for the inconvenience.');
+  window.alert('This website is not compatible with Internet Explorer, please use Chrome or Firefox. Sorry for the inconvenience.');
 }

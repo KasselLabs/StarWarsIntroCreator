@@ -16,6 +16,7 @@ inputStyle() {
   transition: border-color .3s ease-out;
 
   @media mobile {
+    border-width: 6px;
     border-radius: 6px;
   }
 
@@ -41,19 +42,26 @@ $marginTopFormInput = 20px;
 
 $actionButtonStyle {
   starWarsFontStyle();
+  padding: 6px 15px 15px;
   outline: 0;
-  border: 0;
+  border: 4px solid $titlesColor;
+  border-radius: 15px;
+
   background: transparent;
   text-shadow: none;
   font-size: 50px;
   cursor: pointer;
-  transition: text-shadow .5s ease-out;
+  transition: box-shadow .3s ease-out, text-shadow .3s ease-out;
 
   &:focus, &:hover {
+    box-shadow: -1px 1px 8px $greenShadow, 1px -1px 8px $greenShadow, inset -3px -2px 8px $greenShadow, inset 2px 3px 8px $greenShadow;
     text-shadow: -1px 1px 8px $greenShadow, 1px -1px 8px $greenShadow;
   }
 
   @media mobile {
+    padding: 12px 30px 30px;
+    border-width: 8px;
+    border-radius: 30px;
     font-size: 100px;
   }
 }
@@ -79,12 +87,13 @@ stroke($stroke, $color) {
 
 #configForm {
   display: flex;
-  margin-top: 1em;
+  margin-top: 16px;
   margin-bottom: 100px;
   justify-content: center;
   color: $titlesColor;
 
   @media mobile {
+    margin-top: 70px;
     margin-bottom: 160px;
   }
 

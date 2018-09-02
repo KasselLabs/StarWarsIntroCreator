@@ -7,6 +7,7 @@ import ApplicationState, { CREATING, PLAYING, EDITING, LOADING, DOWNLOAD } from 
 import { fetchKey, saveOpening, parseSpecialKeys } from './firebaseApi';
 import { fetchStatus, requestDownload } from './serverApi';
 import { apiError } from '../extras/auxiliar';
+import { checkChromeRenderBug } from '../extras/checkChromeBug';
 
 export const setCreateMode = (props = {}) => {
   ApplicationState.setState(CREATING, props);
@@ -64,6 +65,8 @@ export const _openingIsValid = (opening) => {
 export const playButtonHandler = async (opening) => {
   const lastOpening = ApplicationState.state.opening;
   const lastKey = ApplicationState.state.key;
+
+  await checkChromeRenderBug(opening.text);
 
   const isOpeningUnchanged = isEqual(lastOpening, opening);
   if (isOpeningUnchanged) {
@@ -127,7 +130,7 @@ const _loadStatus = async (rawKey) => {
 };
 
 export const loadDownloadPage = async (key) => {
-  ApplicationState.setState(LOADING);
+  ApplicationState.setState(LOADING, { interruptAnimation: true });
   const opening = await loadOpening(key);
   if (!opening) {
     return;
