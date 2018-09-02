@@ -1,6 +1,7 @@
 import { checkSWFontCompatibility } from './extras/auxiliar';
 import { appendKeyframesRule } from './extras/utils';
 import escapeHtml from './extras/escapeHtml';
+import { checkChromeBugOnContainer } from './extras/checkChromeBug';
 
 class StarWarsAnimation {
   constructor() {
@@ -21,6 +22,23 @@ class StarWarsAnimation {
 
     const cloned = this.animationCloned.cloneNode(true);
     this.animation = cloned;
+  }
+
+  prepareBodyText(text) {
+    const escapedText = escapeHtml(text);
+
+    const paragraphs = escapedText
+      .trim()
+      .split('\n')
+      .join('</p><p>');
+
+    const breakLineBetweenPs = paragraphs
+      .split('<p></p>')
+      .join('<br/>');
+
+    const finalHtml = `<p>${breakLineBetweenPs}</p>`;
+
+    return finalHtml;
   }
 
   load(opening) {
@@ -44,20 +62,10 @@ class StarWarsAnimation {
     }
 
     // TEXT
-    const escapedText = escapeHtml(opening.text);
+    const textHtml = this.prepareBodyText(opening.text);
 
-    const paragraphs = escapedText
-      .trim()
-      .split('\n')
-      .join('</p><p>');
-
-    const breakLineBetweenPs = paragraphs
-      .split('<p></p>')
-      .join('<br/>');
-
-    const finalHtml = `<p>${breakLineBetweenPs}</p>`;
     const textContainer = animation.querySelector('#text');
-    textContainer.innerHTML = finalHtml;
+    textContainer.innerHTML = textHtml;
 
     // TEXT CENTER ALIGNMENT
     textContainer.style.textAlign = opening.center ? 'center' : ''; // empty will not override the justify default rule
@@ -101,6 +109,8 @@ class StarWarsAnimation {
 
     this.animationContainer.appendChild(this.animation);
 
+    const textContainer = this.animation.querySelector('#text');
+
     // adjust animation speed
     const titlesContainer = this.animation.querySelector('#titles > div');
     if (titlesContainer.offsetHeight > DEFAULT_LENGTH) {
@@ -108,6 +118,9 @@ class StarWarsAnimation {
       const animationFinalPosition = FINAL_POSITION - (exceedSize * ANIMATION_CONSTANT);
       appendKeyframesRule('titlesAnimation', `100% { top: ${animationFinalPosition}% }`);
     }
+    setTimeout(() => {
+      checkChromeBugOnContainer(textContainer, true);
+    }, 1500);
   }
 }
 
