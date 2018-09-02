@@ -7,6 +7,29 @@ const state = {
   warningAlreadyShow: false,
 };
 
+const _alertHTML = `
+<div class="alert-box">
+  <span>This animation may have rendering issues due to a <span class="bold">Chrome</span> bug.<br/>Please try it on <span class="bold">Firefox</span> for a better experience. Sorry for the inconvenience!</span>
+  <button>x</button>
+</div>
+`;
+
+const _showTopAlert = () => {
+  const alertContainer = document.querySelector('#chrome-bug-alert');
+  alertContainer.innerHTML = _alertHTML;
+  alertContainer.classList.add('show');
+
+  const _hideAlert = () => {
+    alertContainer.classList.remove('show');
+  };
+
+  alertContainer.querySelector('button').addEventListener('click', _hideAlert);
+
+  setTimeout(() => {
+    _hideAlert();
+  }, 18000);
+};
+
 export const checkChromeBugOnContainer = (textContainer, inAnimation = true) => {
   const mayHaveError = textContainer.offsetHeight > 3000;
 
@@ -16,15 +39,13 @@ export const checkChromeBugOnContainer = (textContainer, inAnimation = true) => 
 
   state.warningAlreadyShow = true;
   if (inAnimation) {
-    Raven.captureMessage('Detected possible render issue during animation.', {
-      level: 'warning',
-    });
+    _showTopAlert();
     return Promise.resolve();
   }
 
   return swal(
     'Chrome issue',
-    `Warning, the Chrome browser has issues when rendering long texts in the animation. If you have any issue with the animation, try to use Firefox browser. This problem doesn't affect the rendered video for download.
+    `Warning, the <span class="bold">Chrome</span> browser has issues when rendering long texts in the animation. If you have any issue with the animation, try to use <span class="bold">Firefox</span> browser. This problem doesn't affect the rendered video for download.
     <br/>Sorry for the inconvenience!`,
     'warning',
   );
