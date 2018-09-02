@@ -1,0 +1,54 @@
+#animationContainerTest {
+  .starwarsAnimation {
+    display: initial;
+    visibility: hidden;
+  }
+}
+
+#chrome-bug-alert {
+  position: absolute;
+  top: -500px;
+  display: flex;
+  justify-content: center;
+  width: 100%
+  font-family: $defaultFontFamily;
+  transition: top 1s ease;
+
+  &.show {
+    top: 0;
+  }
+
+  .alert-box {
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    padding: 15px;
+    border: 2px solid $inputBorderColorHover;
+    border-radius: 6px;
+    background-color: $formBackgroundColor;
+    text-align: center;
+
+    @media mobile {
+      flex-direction: column;
+      font-size: 32px;
+    }
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+
+  button {
+    buttonStyle();
+    margin: 0;
+    margin-left: 10px;
+    padding: 3px 8px;
+
+    @media mobile {
+      margin-top: 15px;
+      width: 100px;
+      font-size: 50px;
+    }
+  }
+}
