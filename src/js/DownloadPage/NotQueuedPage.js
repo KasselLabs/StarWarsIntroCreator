@@ -37,7 +37,7 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
         If you don&apos;t receive the video that we promise, you can request a refund on PayPal.
       </p>
       <p>
-        <b>Attention!</b>
+        <b>Attention! </b>
         Before sending the download request make sure there are no typos in your text
         to grant that your video will be with the correct text.&nbsp;
         <a href={urlToEdit}>
