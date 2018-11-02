@@ -15,7 +15,6 @@
     "deploy": "yarn build && cp CNAME dist/ && gh-pages -d dist -m "
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
