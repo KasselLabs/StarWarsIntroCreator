@@ -18,3 +18,5 @@ deploy:
   fqdn: starwarsintrocreator.kassellabs.io
   on:
     branch: master
+notifications:
+  webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
