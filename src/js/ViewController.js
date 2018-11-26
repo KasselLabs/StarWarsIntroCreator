@@ -146,7 +146,7 @@ class ViewController {
   }
 
   _setFormTextAlignment(centralizedText) {
-    this.formFields.text.style.textAlign = centralizedText ? 'center' : 'initial';
+    this.formFields.text.style.textAlign = centralizedText ? 'center' : 'justify';
   }
 
   playOpening(opening) {

@@ -96,7 +96,7 @@
         position: absolute;
         top: 100%;
         width: 100%;
-        animation: titlesAnimation 73s * $timeFactor linear 13s * $timeFactor forwards;
+        animation: titlesAnimation (73s * $timeFactor) + $extraTime linear 13s * $timeFactor forwards;
 
       > p {
         margin: 1.35em 0 1.85em 0;
@@ -178,7 +178,7 @@ body.runningVideo {
   }
 
   #backgroundSpace {
-    animation: scrolldown 7s * $timeFactor 86s * $timeFactor forwards;
+    animation: scrolldown 7s * $timeFactor ((86s * $timeFactor) + $extraTime) forwards;
   }
 }
 
