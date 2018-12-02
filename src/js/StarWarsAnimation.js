@@ -72,14 +72,14 @@ class StarWarsAnimation {
 
     // LOGO
     const starwarsDefaultText = 'star\nwars';
-    const logoSvgContainer = animation.querySelector('.logoSvg');
+    const logoTextContainer = animation.querySelector('.logoText');
     const logoDefaultContainer = animation.querySelector('#logoDefault');
 
     // logo can't be empty
     const logoText = opening.logo ? opening.logo : starwarsDefaultText;
     // is default logo
     if (logoText.toLowerCase() === starwarsDefaultText) {
-      logoSvgContainer.style.display = 'none';
+      logoTextContainer.style.display = 'none';
       logoDefaultContainer.style.display = 'block';
 
       return;
@@ -89,16 +89,11 @@ class StarWarsAnimation {
     const word1 = logoTextSplit[0];
     const word2 = logoTextSplit[1] || '';
 
-    const wordContainers = logoSvgContainer.querySelectorAll('text');
+    const wordContainers = logoTextContainer.querySelectorAll('div');
     wordContainers[0].textContent = word1;
     wordContainers[1].textContent = word2;
 
-    // calculate the svg viewBox using the number of characters of the longest world in the logo.
-    const logoSize = word1.length > word2.length ? word1 : word2;
-    const viewbox = `0 0 ${logoSize.length * 200} 500`;
-    logoSvgContainer.setAttribute('viewBox', viewbox);
-
-    logoSvgContainer.style.display = 'block';
+    logoTextContainer.style.display = 'block';
     logoDefaultContainer.style.display = 'none';
   }
 
