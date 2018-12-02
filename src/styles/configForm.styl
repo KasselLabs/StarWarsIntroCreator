@@ -29,15 +29,16 @@ inputStyle() {
   }
 }
 
-fontSizeResponsive() {
-  font-size: 14px;
+fontSizeResponsive($normalSize = 18px, $mobileSize = 28px) {
+  font-size: $normalSize;
 
   @media mobile {
-    font-size: 28px;
+    font-size: $mobileSize;
   }
 }
 
 $marginTopFormInput = 20px;
+$formInputWidth = 97%;
 
 
 $actionButtonStyle {
@@ -88,7 +89,7 @@ stroke($stroke, $color) {
 #configForm {
   display: flex;
   margin-top: 16px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   justify-content: center;
   color: $titlesColor;
 
@@ -102,7 +103,7 @@ stroke($stroke, $color) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 500px;
+    width: 650px;
     font-family: $defaultFontFamily;
 
     @media mobile {
@@ -113,7 +114,7 @@ stroke($stroke, $color) {
       overflow-x: hidden;
       margin-top: $marginTopFormInput;
       margin-bottom: 0;
-      width: 97%;
+      width: $formInputWidth;
       color: $titlesColor;
       word-break: break-word;
       letter-spacing: .05em;
@@ -126,7 +127,7 @@ stroke($stroke, $color) {
       resize: none;
 
       &#f-logo {
-        width: calc(97% - 22px);
+        width: "calc(%s - 22px)" % ($formInputWidth);
         height: 92px;
         color: black;
         text-shadow: stroke(2, $titlesColor);
@@ -137,8 +138,10 @@ stroke($stroke, $color) {
         letter-spacing: initial;
 
         @media mobile {
+          height: 190px;
+          width: $formInputWidth;
+          padding: 20px 8.4px;
           font-size: 100px;
-          height: 184px;
           text-shadow: stroke(4, $titlesColor);
         }
       }
@@ -147,19 +150,19 @@ stroke($stroke, $color) {
     #playButton {
       @extend $actionButtonStyle;
       z-index: 10;
-      margin-top: 20px;
+      margin-top: 35px;
     }
 
     #playButtonSpan {
       margin-top: 20px;
-      fontSizeResponsive();
+      fontSizeResponsive(18px, 32px);
     }
 
     #downloadButton {
       @extend $actionButtonStyle;
 
       display: none;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
       font-size: 60px;
       animation: pulseDownloadButton 3s ease 0s infinite;
 
@@ -178,7 +181,13 @@ stroke($stroke, $color) {
     }
 
     #f-intro {
+      padding: 6px 79px;
+      width: 480px;
       color: $introColor;
+      @media mobile {
+        padding: 6px;
+        width: $formInputWidth;
+      }
     }
 
     #f-text {
@@ -199,6 +208,7 @@ stroke($stroke, $color) {
 
       label {
         display: inline;
+        margin-left: 6px;
         vertical-align: middle;
         cursor: pointer;
         fontSizeResponsive();
@@ -239,7 +249,7 @@ stroke($stroke, $color) {
 
         &:checked + label:after {
           position: relative;
-          top: -4px;
+          top: -7px;
           color: $titlesColor;
           content: '\25A0';
           letter-spacing: 0;
