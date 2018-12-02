@@ -181,8 +181,7 @@ class ViewController {
     this.starWarsAnimation.reset();
   }
 
-  killTimers() {
-    clearTimeout(this.showFormTimeout);
+  killTimer() {
     clearTimeout(this.resetAnimationTimeout);
   }
 
@@ -190,20 +189,17 @@ class ViewController {
     const showForm = () => {
       this.body.classList.add('showForm');
     };
+    showForm();
 
     if (interruptAnimation) {
-      showForm();
       this._resetAnimation();
       AudioController.reset();
       return;
     }
 
-    this.showFormTimeout = setTimeout(() => {
-      showForm();
-      this.resetAnimationTimeout = setTimeout(() => {
-        this._resetAnimation();
-      }, 6000);
-    }, 2000);
+    this.resetAnimationTimeout = setTimeout(() => {
+      this._resetAnimation();
+    }, 8000);
   }
 }
 
