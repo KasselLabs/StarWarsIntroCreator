@@ -40,13 +40,16 @@
 
     margin: 0 auto;
     opacity: 0;
-    animation: logoAnimation 11s * $timeFactor cubic-bezier(0.11, 0.51, 0.48, 0.88) 9s * $timeFactor;
+    animation: logoAnimation 11s * $timeFactor cubic-bezier(.11, .6, .48, .88) 9s * $timeFactor;
 
     .logoSub {
       width: 100vw;
     }
 
     .logoText {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       color: black;
       text-shadow: stroke(5, $titlesColor);
       letter-spacing: .18em;
@@ -216,14 +219,14 @@ body.runningVideo {
 
 @keyframes logoAnimation {
     0% {
-    transform: scale(2.0);
+    transform: scale(2.2);
     opacity: 1;
   }
     95% {
     opacity: 1;
   }
     100% {
-    transform: scale(.05);
+    transform: scale(.01);
     opacity: 0;
   }
 }

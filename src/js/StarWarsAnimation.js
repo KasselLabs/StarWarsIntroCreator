@@ -93,7 +93,7 @@ class StarWarsAnimation {
     wordContainers[0].textContent = word1;
     wordContainers[1].textContent = word2;
 
-    logoTextContainer.style.display = 'block';
+    logoTextContainer.style.display = 'flex';
     logoDefaultContainer.style.display = 'none';
   }
 
