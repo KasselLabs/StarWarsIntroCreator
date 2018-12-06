@@ -4,7 +4,14 @@
   justify-content: center;
   align-items: center;
   margin-top: 1em;
+  font-size: 18px;
   font-family: $defaultFontFamily;
+
+  @media mobile {
+    .pageTitle {
+      margin-top: 50px;
+    }
+  }
 
   .panel {
     display: flex;
@@ -59,8 +66,9 @@
       position: absolute;
       align-self: flex-end;
       margin-left: 39px;
-      padding: 6px;
-      line-height: 6px;
+      padding: 2px 6px 6px;
+      line-height: 24px;
+      font-size: 2em;
 
       @media mobile {
         margin: 20px;
