@@ -19,19 +19,30 @@ const VideoQueuedPage = ({ status, openingKey, ...props }) => {
       <p>
         There are <b>{queuePosition} videos</b> in front of this request to be rendered and
         may take up to<b>{timeToRender}</b> to send the video.
-        Can&apos;t wait for it? Donate at least <b>5 US Dollars</b> and
-        your video will be ready in few hours.
-        Your video will be rendered in HD Quality and MP4 file.&nbsp;
-        <br /><br />
+      </p>
+      <p>
+        Can&apos;t wait for it? Donate to support our service and your video will
+        be ready in few hours (2 hours usually).<br />
+        <ul>
+          <li>Donate at least <b>5 US Dollars</b> for the video in standard HD quality.</li>
+          <li>Donate at least <b>10 US Dollars</b> for the <b>Full HD Quality</b>.</li>
+          <li>Donate at least <b>30 US Dollars</b> for more customizable video with
+          the Death Star image replacement (Contact us via email to submit your image).
+          </li>
+        </ul>
+
+        Your video will be rendered to a MP4 file.&nbsp;
+        <br />
         <a target="_blank" rel="noopener noreferrer" href="https://youtu.be/iYKU4pNy034">
           Check a sample video how your video will look like here.
         </a>
+
       </p>
       <p>
-        Donate at least <b>10 US Dollars</b> and you will get the in <b>Full HD Quality</b>.<br />
         The donation is made via PayPal and it&apos;s safe.
-        If you don&apos;t receive the video that we promise, you can request a refund on PayPal.
+        If you don&apos;t receive the video please contact us via email so we can check it out.
       </p>
+
       <TermsOfServiceAcceptance />
       <ContactButton />
       <p>You want to receive your video faster by donating or wait in the queue?</p>

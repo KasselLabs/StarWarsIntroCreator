@@ -22,10 +22,13 @@ const RequestDownloadPage = ({
       <p>
         Great choice! You can donate how much you want but there is a minimum to receive the video.
         <ul>
-          <li>At least 5 dollars for HD video (1280x720).</li>
-          <li>At least 10 dollars for Full HD video (1920x1080)</li>
+          <li>At least <b>5 US Dollars</b> for HD video (1280x720).</li>
+          <li>At least <b>10 US Dollars</b> for Full HD video (1920x1080)</li>
+          <li>At least <b>30 US Dollars</b> for more customizable video with
+          the Death Star image replacement (Contact us via email to submit your image).
+          </li>
         </ul>
-        Click on the following PayPal button to donate:
+        <b>Click</b> on the following PayPal button to donate:
       </p>
       <iframe
         title="PayPal Donation Buttons"
@@ -37,7 +40,7 @@ const RequestDownloadPage = ({
   );
 
   const paypalEmail = donate ?
-    'Please, use the same email from your PayPal account.' :
+    'Please, use the same email from your PayPal account and if you don\'t receive our confirmation mail, please contact us.' :
     '';
 
   const youCanStillDonate = (
