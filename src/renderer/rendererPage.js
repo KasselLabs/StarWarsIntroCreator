@@ -25,3 +25,9 @@ window.turnOnAudio = () => {
   AudioController.audio = audio;
 };
 
+window.showImage = () => {
+  const animation = ViewController.starWarsAnimation;
+  animation.animationContainer.appendChild(animation.animation);
+  animation.animationContainer.querySelector('.starwarsAnimation').style.display = 'block';
+  animation.animationContainer.querySelector('#deathstar').scrollIntoView();
+};
