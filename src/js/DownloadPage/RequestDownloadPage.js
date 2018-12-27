@@ -22,7 +22,7 @@ const RequestDownloadPage = ({
       <p>
         Great choice! You can donate how much you want but there is a minimum to receive the video.
         <ul>
-          <li>At least <b>5 US Dollars</b> for HD video (1280x720).</li>
+          <li>At least <b>7 US Dollars</b> for HD video (1280x720).</li>
           <li>At least <b>10 US Dollars</b> for Full HD video (1920x1080)</li>
           <li>At least <b>30 US Dollars</b> for more customizable video with
           the Death Star image replacement (Contact us via email to submit your image).
