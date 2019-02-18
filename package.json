@@ -14,6 +14,9 @@
     "lint": "eslint src/",
     "deploy": "yarn build && cp CNAME dist/ && gh-pages -d dist -m "
   },
+  "jest": {
+    "testURL": "http://localhost/"
+  },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
