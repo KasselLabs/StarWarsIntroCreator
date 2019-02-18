@@ -96,7 +96,7 @@ class DownloadPage extends Component {
     }
   }
 
-  render() {
+  renderPageContent = () => {
     const {
       page,
       openingKey,
@@ -132,6 +132,19 @@ class DownloadPage extends Component {
           />
         );
     }
+  }
+
+  render() {
+    const { status } = this.state;
+    const canDonateToReceiveFaster = status === NOT_QUEUED || status === QUEUED;
+    const title = canDonateToReceiveFaster ? 'donate and download' : 'download';
+    return (
+      <div>
+        <h2>{title}</h2>
+        <iframe title="atat animation" src="./html/atat.html" height="180px" width="100%" />
+        {this.renderPageContent()}
+      </div>
+    );
   }
 }
 
