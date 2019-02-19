@@ -137,7 +137,7 @@ class DownloadPage extends Component {
   }
 
   render() {
-    const { status } = this.state;
+    const { status } = this.state.status;
     const canDonateToReceiveFaster = status === NOT_QUEUED || status === QUEUED;
     const title = canDonateToReceiveFaster ? 'donate and download' : 'download';
     return (
