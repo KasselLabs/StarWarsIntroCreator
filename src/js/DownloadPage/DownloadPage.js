@@ -10,6 +10,8 @@ import {
   RENDERED,
 } from './constants';
 
+import Atat from './Atat';
+
 import NotQueuedPage from './NotQueuedPage';
 import RequestDownloadPage from './RequestDownloadPage';
 import VideoQueuedPage from './VideoQueuedPage';
@@ -96,7 +98,7 @@ class DownloadPage extends Component {
     }
   }
 
-  render() {
+  renderPageContent = () => {
     const {
       page,
       openingKey,
@@ -132,6 +134,19 @@ class DownloadPage extends Component {
           />
         );
     }
+  }
+
+  render() {
+    const { status } = this.state;
+    const canDonateToReceiveFaster = status === NOT_QUEUED || status === QUEUED;
+    const title = canDonateToReceiveFaster ? 'donate and download' : 'download';
+    return (
+      <div>
+        <h2>{title}</h2>
+        <Atat />
+        {this.renderPageContent()}
+      </div>
+    );
   }
 }
 

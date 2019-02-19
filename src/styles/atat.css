@@ -1,16 +1,11 @@
-html,
-body {
-  width: 100%;
-  height: 100%;
-}
-body {
+#atat {
   overflow:hidden;
+  width: 100%;
+  height: 180px;
+  display: flex;
+  justify-content: center;
 }
 .at-at {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin: -135px 0 0 -120px;
   width: 250px;
   height: 114px;
   z-index: 95;
@@ -1355,7 +1350,6 @@ body {
 }
 
 .at-at {
-  margin-top: -100px;
   -webkit-transform: scale(0.5);
   transform: scale(0.5);
 }
