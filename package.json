@@ -15,7 +15,11 @@
     "deploy": "yarn build && cp CNAME dist/ && gh-pages -d dist -m "
   },
   "jest": {
-    "testURL": "http://localhost/"
+    "testURL": "http://localhost/",
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ]
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -28,12 +32,11 @@
     "babel-preset-preact": "^1.1.0",
     "eslint": "^4.18.2",
     "eslint-config-airbnb": "^16.1.0",
-    "eslint-config-standard-preact": "^1.1.6",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "gh-pages": "^1.1.0",
-    "jest": "^22.4.2",
+    "jest": "^22.4.4",
     "parcel-bundler": "^1.11.0",
     "stylint": "^1.5.9",
     "stylus": "^0.54.5"
