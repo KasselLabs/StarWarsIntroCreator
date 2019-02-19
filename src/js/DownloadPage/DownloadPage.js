@@ -143,7 +143,6 @@ class DownloadPage extends Component {
     return (
       <div>
         <h2>{title}</h2>
-        {/* <iframe title="atat animation" src={iframeAtat} height="180px" width="100%" /> */}
         <Atat />
         {this.renderPageContent()}
       </div>
