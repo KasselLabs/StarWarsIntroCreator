@@ -19,31 +19,68 @@ import VideoRequestSent from './VideoRequestSent';
 import RenderingPage from './RenderingPage';
 import RenderedPage from './RenderedPage';
 
+import UrlHandler from '../extras/UrlHandler';
+
 class DownloadPage extends Component {
   constructor(props) {
     super(props);
-    const { status, openingKey } = props;
+    const { status, openingKey, subpage } = props;
+
+    const subpageState = this.parseSubpage(subpage);
 
     this.state = {
       status,
       openingKey,
-      page: INITIAL_PAGE,
-      donate: false,
+      ...subpageState
     };
   }
 
+  parseSubpage = (subpage) => {
+    let page = INITIAL_PAGE;
+    let donate = false;
+
+    if (subpage === 'donate') {
+      donate = true;
+      page = REQUEST_PAGE;
+    }
+
+    if (subpage === 'request') {
+      donate = false;
+      page = REQUEST_PAGE;
+    }
+
+    return {
+      page,
+      donate
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('hashchange', this.urlChangeHandler);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('hashchange', this.urlChangeHandler);
+  }
+
+  urlChangeHandler = (event) => {
+    const { key, page, subpage } = UrlHandler.getParams();
+
+    if (key !== this.state.openingKey) {
+      window.location.reload();
+      return;
+    }
+
+    const subpageState = this.parseSubpage(subpage);
+    this.setState(subpageState);
+  }
+
   yesDonateHandle = () => {
-    this.setState({
-      page: REQUEST_PAGE,
-      donate: true,
-    });
+    UrlHandler.goToDownloadPage(this.state.openingKey, 'donate');
   };
 
   noDonateHandle = () => {
-    this.setState({
-      page: REQUEST_PAGE,
-      donate: false,
-    });
+    UrlHandler.goToDownloadPage(this.state.openingKey, 'request');
   };
 
   finishRequestHandle = (requestStatus, requestEmail) => {

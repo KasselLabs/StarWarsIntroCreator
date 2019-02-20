@@ -10,20 +10,24 @@ import { documentReady, urlHashChange } from './extras/utils';
 import { loadAndPlay, loadDownloadPage, setCreateMode, loadAndEdit } from './api/actions';
 import { defaultOpening, defaultKey } from './config';
 
+let lastPage = '';
+
 const startApplication = () => {
   UserIdentifier.setUser('SWIC');
   urlHashChange(() => {
     sendGAPageView();
     swal.close();
 
-    const { key, page } = UrlHandler.getParams();
+    const { key, page, subpage } = UrlHandler.getParams();
     if (key) {
       if (!page) {
+        lastPage = '';
         loadAndPlay(key);
         return;
       }
 
       if ('edit' === page) {
+        lastPage = page;
         if (ApplicationState.state.key === key) {
           // interrupt animation if it's playing
           const interruptAnimation = !AudioController.audio.paused;
@@ -36,7 +40,14 @@ const startApplication = () => {
       }
 
       if ('download' === page) {
-        loadDownloadPage(key);
+        const samePage = lastPage === page;
+
+        if (samePage) {
+          return;
+        }
+
+        lastPage = page;
+        loadDownloadPage(key, subpage, samePage);
         return;
       }
     }
