@@ -71,6 +71,10 @@ class DownloadPage extends Component {
       return;
     }
 
+    if(!subpage) {
+      return ;
+    }
+
     const subpageState = this.parseSubpage(subpage);
     this.setState(subpageState);
   }
@@ -84,6 +88,7 @@ class DownloadPage extends Component {
   };
 
   finishRequestHandle = (requestStatus, requestEmail) => {
+    UrlHandler.goToDownloadPage(this.state.openingKey);
     this.setState({
       page: FINAL_PAGE,
       requestStatus,

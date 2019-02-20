@@ -55,7 +55,6 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
       </p>
       <TermsOfServiceAcceptance />
       <ContactButton />
-      <p><b>You want to receive your video faster by donating or wait in the queue?</b></p>
       <DonateOrNotDonate {...props} />
     </div>
   );
