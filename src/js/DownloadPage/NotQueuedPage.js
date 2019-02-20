@@ -6,7 +6,7 @@ import ContactButton from './ContactButton';
 
 const NotQueuedPage = ({ status, openingKey, ...props }) => {
   const { queueSize } = status;
-  const timeToRender = calculateTimeToRender(queueSize);
+  const timeToRender = calculateTimeToRender(queueSize + 1);
   const urlToEdit = `#!/${openingKey}/edit`;
 
   return (
@@ -55,7 +55,7 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
       </p>
       <TermsOfServiceAcceptance />
       <ContactButton />
-      <p>You want to receive your video faster by donating or wait in the queue?</p>
+      <p><b>You want to receive your video faster by donating or wait in the queue?</b></p>
       <DonateOrNotDonate {...props} />
     </div>
   );

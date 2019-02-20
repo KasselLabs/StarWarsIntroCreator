@@ -45,7 +45,7 @@ const VideoQueuedPage = ({ status, openingKey, ...props }) => {
 
       <TermsOfServiceAcceptance />
       <ContactButton />
-      <p>You want to receive your video faster by donating or wait in the queue?</p>
+      <p><b>You want to receive your video faster by donating or wait in the queue?</b></p>
       <DonateOrNotDonate {...props} />
     </div>
   );
