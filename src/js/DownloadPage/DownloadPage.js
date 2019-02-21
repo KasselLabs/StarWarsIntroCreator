@@ -70,8 +70,8 @@ class DownloadPage extends Component {
     };
   }
 
-  urlChangeHandler = (event) => {
-    const { key, page, subpage } = UrlHandler.getParams();
+  urlChangeHandler = () => {
+    const { key, subpage } = UrlHandler.getParams();
 
     if (key !== this.state.openingKey) {
       window.location.reload();

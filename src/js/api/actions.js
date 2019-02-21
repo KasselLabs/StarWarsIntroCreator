@@ -138,7 +138,12 @@ export const loadDownloadPage = async (key, subpage) => {
 
   try {
     const downloadStatus = await _loadStatus(key);
-    ApplicationState.setState(DOWNLOAD, { opening, key, downloadStatus, subpage });
+    ApplicationState.setState(DOWNLOAD, {
+      opening,
+      key,
+      downloadStatus,
+      subpage,
+    });
   } catch (error) {
     apiError(`We could not contact our servers for the download of ID: "${key}"`, true).then((result) => {
       const closedOrClickedOut = result.dismiss === swal.DismissReason.backdrop
@@ -160,3 +165,5 @@ export const requestIntroDownload = async (rawKey, email) => {
   }
   return statusObject;
 };
+
+export const loadDownloadStatus = rawKey => _loadStatus(rawKey);

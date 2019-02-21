@@ -48,7 +48,10 @@ const RequestDownloadPage = ({
   );
 
   const paypalEmail = donate
-    ? (<p>Please, use the same email from your PayPal account and if you don't receive our confirmation mail, please contact us.</p>)
+    ? (
+      <p>Please, use the same email from your PayPal account,
+        you can add more emails to receive the video at the end.
+      </p>)
     : '';
 
   const notQueuedText = 'will be';
@@ -56,7 +59,8 @@ const RequestDownloadPage = ({
 
   const youCanStillDonate = (
     <p>
-      Your video request {isQueued ? qeuedText : notQueuedText} queued at position <b>{position}</b>.
+      Your video request {isQueued ? qeuedText : notQueuedText}
+      queued at position <b>{position}</b>.
       It may take up to <b>{timeToRender}</b> to have your video rendered.
       You can still donate to get it earlier if you want.
       <p>
@@ -66,7 +70,7 @@ const RequestDownloadPage = ({
   );
 
   return (
-    <div className="requestDownloadPage">
+    <div>
       {donate && donateScreen}
       {!donate && youCanStillDonate}
       <p>

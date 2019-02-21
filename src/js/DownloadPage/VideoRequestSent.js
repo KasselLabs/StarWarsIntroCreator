@@ -3,6 +3,7 @@ import { h, Component } from 'preact';
 import { calculateTimeToRender } from '../extras/auxiliar';
 import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
 import ContactButton from './ContactButton';
+import CheckForDonation from './CheckForDonation';
 import UrlHandler from '../extras/UrlHandler';
 
 class VideoRequestSent extends Component {
@@ -45,17 +46,31 @@ class VideoRequestSent extends Component {
   }
 
   renderDonate() {
+    const iframe = document.querySelector('#paypalDonateIframe');
+    const { openingKey } = this.props;
     return (
       <div>
+        <CheckForDonation openingKey={openingKey} />
         <p>
-          Your video will be rendered soon!
           Thank you so much for supporting us!
-          You should receive the confirmation message from us within a few minutes
+          Your video should be rendered soon when your donation is confirmed!
+        </p>
+        <p>
+          When your donation is confirmed you should receive
+          the confirmation message from us within a few minutes
           in your PayPal account email.
           Don&apos;t forget to check your spam box.
-          If you don&apos;t receive it, please contact us:&nbsp;
+          If you don&apos;t receive it, please check in your PayPal account
+          if the donation went successfully or contact us:&nbsp;
           <ContactButton customText="" />
         </p>
+        <p>If you didn&apos;t donate yet, follow the PayPal button below to make your donation:</p>
+        <iframe
+          title="PayPal Donation Buttons"
+          src={`${iframe.src}#!/${openingKey}`}
+          className={iframe.classList.toString()}
+          height="33px"
+        />
         <p>
           The link to download the video will be sent to the email:
           {this.renderEmail()}
