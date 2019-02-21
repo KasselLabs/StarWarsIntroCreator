@@ -1,8 +1,5 @@
 import { h, Component } from 'preact';
 import {
-  INITIAL_PAGE,
-  REQUEST_PAGE,
-  FINAL_PAGE,
   NOT_QUEUED,
   QUEUED,
   BUMPED,
@@ -18,8 +15,14 @@ import VideoQueuedPage from './VideoQueuedPage';
 import VideoRequestSent from './VideoRequestSent';
 import RenderingPage from './RenderingPage';
 import RenderedPage from './RenderedPage';
+import AddEmailForm from './AddEmailForm';
 
 import UrlHandler from '../extras/UrlHandler';
+
+const INITIAL_PAGE = 0;
+const REQUEST_PAGE = 1;
+const FINAL_PAGE = 2;
+const ADD_EMAIL_PAGE = 3;
 
 class DownloadPage extends Component {
   constructor(props) {
@@ -31,28 +34,8 @@ class DownloadPage extends Component {
     this.state = {
       status,
       openingKey,
-      ...subpageState
+      ...subpageState,
     };
-  }
-
-  parseSubpage = (subpage) => {
-    let page = INITIAL_PAGE;
-    let donate = false;
-
-    if (subpage === 'donate') {
-      donate = true;
-      page = REQUEST_PAGE;
-    }
-
-    if (subpage === 'request') {
-      donate = false;
-      page = REQUEST_PAGE;
-    }
-
-    return {
-      page,
-      donate
-    }
   }
 
   componentDidMount() {
@@ -63,6 +46,30 @@ class DownloadPage extends Component {
     window.removeEventListener('hashchange', this.urlChangeHandler);
   }
 
+  parseSubpage = (subpage) => {
+    let page = INITIAL_PAGE;
+    let donate = false;
+
+    if ('donate' === subpage) {
+      donate = true;
+      page = REQUEST_PAGE;
+    }
+
+    if ('request' === subpage) {
+      donate = false;
+      page = REQUEST_PAGE;
+    }
+
+    if ('add_email' === subpage) {
+      page = ADD_EMAIL_PAGE;
+    }
+
+    return {
+      page,
+      donate,
+    };
+  }
+
   urlChangeHandler = (event) => {
     const { key, page, subpage } = UrlHandler.getParams();
 
@@ -71,8 +78,8 @@ class DownloadPage extends Component {
       return;
     }
 
-    if(!subpage) {
-      return ;
+    if (!subpage) {
+      return;
     }
 
     const subpageState = this.parseSubpage(subpage);
@@ -173,6 +180,14 @@ class DownloadPage extends Component {
             requestEmail={requestEmail}
             openingKey={openingKey}
             donate={donate}
+          />
+        );
+
+      case ADD_EMAIL_PAGE:
+        return (
+          <AddEmailForm
+            openingKey={openingKey}
+            finishRequestHandle={this.finishRequestHandle}
           />
         );
     }

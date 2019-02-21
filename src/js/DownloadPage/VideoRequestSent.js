@@ -11,6 +11,11 @@ class VideoRequestSent extends Component {
     UrlHandler.goToEditPage(openingKey);
   }
 
+  handleAddEmailButton = () => {
+    const { openingKey } = this.props;
+    UrlHandler.goToDownloadPage(openingKey, 'add_email');
+  }
+
   renderEmail() {
     const { requestEmail } = this.props;
 
@@ -33,9 +38,8 @@ class VideoRequestSent extends Component {
         and may take up to {timeToRender} to send your video.
         The link to download the video will be sent to the email:
         {this.renderEmail()}
-        You can add more emails to receive the video if you want,
-        just go back and request it for another email.
         The link to download will also be available on this page when it&apos;s ready.
+        You can add more emails to receive the video if you want in the button below.
       </p>
     );
   }
@@ -71,6 +75,7 @@ class VideoRequestSent extends Component {
         <TermsOfServiceAcceptance />
         <div className="center">
           <button onClick={this.handleOkButton}>OK</button>
+          <button onClick={this.handleAddEmailButton}>Add another Email</button>
         </div>
       </div>
     );

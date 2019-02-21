@@ -1,6 +1,6 @@
 import { h } from 'preact';
 
-const DonateOrNotDonate = ({ yesDonateHandle, noDonateHandle, hideNoDonateOption = false, donate }) => (
+const DonateOrNotDonate = ({ yesDonateHandle, noDonateHandle, hideNoDonateOption = false }) => (
   <div>
     <p><b>You want to receive your video faster by donating or wait in the queue?</b></p>
     <div className="donateOrNotDonateButtons">
