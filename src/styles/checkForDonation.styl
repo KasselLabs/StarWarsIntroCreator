@@ -1,5 +1,6 @@
 $checkingBackgroundColor = #171717;
 $verifiedBackgroundColor = alpha($titlesColor, .2);
+$notFoundBackgroundColor = $errorRed;
 
 .check-for-donation {
   display: flex;
@@ -17,6 +18,7 @@ $verifiedBackgroundColor = alpha($titlesColor, .2);
 
   b {
     margin-top: 1em;
+    text-align: center;
   }
 }
 
@@ -24,7 +26,18 @@ $verifiedBackgroundColor = alpha($titlesColor, .2);
   background-color: $verifiedBackgroundColor;
 }
 
-.check-for-donation__verified {
+.check-for-donation__card--not-found {
+  .check-for-donation__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: $errorRed;
+    color: white;
+    line-height: 40px;
+  }
+}
+
+.check-for-donation__icon {
   display: inline-block;
   padding: 18px;
   font-size: 60px;

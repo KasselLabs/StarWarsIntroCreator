@@ -5,6 +5,7 @@ import { BUMPED } from './constants';
 
 const PENDING = 0;
 const CONFIRMED = 1;
+const NOT_FOUND = 2;
 
 class CheckForDonation extends Component {
   constructor() {
@@ -12,6 +13,7 @@ class CheckForDonation extends Component {
 
     this.state = {
       status: PENDING,
+      startTime: Date.now(),
     };
   }
 
@@ -30,6 +32,17 @@ class CheckForDonation extends Component {
       return;
     }
 
+    const now = Date.now();
+    const elapsed = now - this.state.startTime;
+    const oneMinute = 60000;
+
+    if (elapsed > oneMinute) {
+      this.setState({
+        status: NOT_FOUND,
+      });
+      return;
+    }
+
     setTimeout(this._fetchDownloadStatus, 3000);
   }
 
@@ -44,17 +57,25 @@ class CheckForDonation extends Component {
 
     const donationConfirmed = (
       <div className="check-for-donation__card check-for-donation__card--verified">
-        <div className="check-for-donation__verified">&#10003;</div>
+        <div className="check-for-donation__icon">&#10003;</div>
         <b>Donation confimed!</b>
+      </div>
+    );
+
+    const donationNotFound = (
+      <div className="check-for-donation__card check-for-donation__card--not-found">
+        <div className="check-for-donation__icon">X</div>
+        <b>Donation not found! <br />
+          Please, check your PayPal account or try to donate again.
+        </b>
       </div>
     );
 
     return (
       <div className="check-for-donation">
-        {status === CONFIRMED
-          ? donationConfirmed
-          : donationPending
-        }
+        {status === PENDING && donationPending}
+        {status === CONFIRMED && donationConfirmed}
+        {status === NOT_FOUND && donationNotFound}
       </div>
     );
   }
