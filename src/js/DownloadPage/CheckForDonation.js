@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 
 import { loadDownloadStatus } from '../api/actions';
-import { BUMPED } from './constants';
+import { BUMPED, RENDERING } from './constants';
 
 const PENDING = 0;
 const CONFIRMED = 1;
@@ -25,7 +25,10 @@ class CheckForDonation extends Component {
     const { openingKey } = this.props;
     const response = await loadDownloadStatus(openingKey);
 
-    if (BUMPED === response.status) {
+    const isBumped = BUMPED === response.status;
+    const isRenderingViaBump = RENDERING === response.status && response.bumped_on;
+
+    if (isBumped || isRenderingViaBump) {
       this.setState({
         status: CONFIRMED,
       });
