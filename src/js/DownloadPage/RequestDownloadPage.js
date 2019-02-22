@@ -4,6 +4,7 @@ import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
 import ContactButton from './ContactButton';
 import EmailRequestField from './EmailRequestField';
 import { calculateTimeToRender } from '../extras/auxiliar';
+import { QUEUED } from './constants';
 
 const RequestDownloadPage = ({
   donate,
@@ -12,8 +13,12 @@ const RequestDownloadPage = ({
   finishRequestHandle,
   ...props
 }) => {
-  const { queueSize } = status;
-  const timeToRender = calculateTimeToRender(queueSize);
+  const { queueSize, queuePosition } = status;
+  const isQueued = status.status === QUEUED;
+
+  const position = 1 + isQueued ? queuePosition : queueSize;
+
+  const timeToRender = calculateTimeToRender(position);
 
   const iframe = document.querySelector('#paypalDonateIframe');
 
@@ -36,17 +41,27 @@ const RequestDownloadPage = ({
         className={iframe.classList.toString()}
         height="33px"
       />
+      <p>
+        <b>Make sure to check on your PayPal account if the donation went successfully.</b>
+      </p>
     </div>
   );
 
-  const paypalEmail = donate ?
-    'Please, use the same email from your PayPal account and if you don\'t receive our confirmation mail, please contact us.' :
-    '';
+  const paypalEmail = donate
+    ? (
+      <p>Please, use the same email from your PayPal account,
+        you can add more emails to receive the video at the end.
+      </p>)
+    : '';
+
+  const notQueuedText = 'will be';
+  const qeuedText = 'is';
 
   const youCanStillDonate = (
     <p>
-      Your video request will be queued at position {queueSize + 1} of the queue.
-      It may take up to {timeToRender} to have your video rendered.
+      Your video request {isQueued ? qeuedText : notQueuedText}
+      queued at position <b>{position}</b>.
+      It may take up to <b>{timeToRender}</b> to have your video rendered.
       You can still donate to get it earlier if you want.
       <p>
         <DonateOrNotDonate {...props} hideNoDonateOption />
@@ -55,15 +70,15 @@ const RequestDownloadPage = ({
   );
 
   return (
-    <div className="requestDownloadPage">
+    <div>
       {donate && donateScreen}
       {!donate && youCanStillDonate}
       <p>
-        Fill your email below and when your video is ready
+        Now, fill your email below and when your video is ready
         you will receive a message with the link to download it.
         We promise not to send spam!&nbsp;
-        {paypalEmail}
       </p>
+      {paypalEmail}
       <TermsOfServiceAcceptance />
       <ContactButton />
       <EmailRequestField

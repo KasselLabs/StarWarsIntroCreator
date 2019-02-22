@@ -2,7 +2,7 @@ import { h } from 'preact';
 import '../../styles/atat.css';
 
 const Atat = () => (
-  <div id="atat" style={{ backgroundColor: '#050505' }}>
+  <div id="atat">
     <div className="at-at">
       <div className="at-at-content">
         <div className="at-at-body">

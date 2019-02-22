@@ -14,7 +14,8 @@ export default class UrlHandler {
     const params = window.location.hash.replace('#!/', '').split('/');
     return {
       key: params[0] ? params[0] : null,
-      page: params[1] ? params[1] : null,
+      page: params[1] ? params[1].toLowerCase() : null,
+      subpage: params[2] ? params[2].toLowerCase() : null,
     };
   }
 
@@ -33,8 +34,8 @@ export default class UrlHandler {
     window.location.hash = newHashUrl;
   }
 
-  static goToDownloadPage(key) {
-    const newHashUrl = `!/${key}/download`;
+  static goToDownloadPage(key, subpage = '') {
+    const newHashUrl = `!/${key}/download/${subpage}`;
     window.location.hash = newHashUrl;
   }
 }

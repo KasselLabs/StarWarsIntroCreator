@@ -23,7 +23,7 @@
     width: 60%;
     border: 2px solid $panelTextColor;
     border-radius: 3px;
-    background-color: $formBackgroundColor;
+    background-color: $panelBackgroundColor;
     letter-spacing: .05em;
 
     @media mobile {
@@ -67,8 +67,8 @@
       align-self: flex-end;
       margin-left: 39px;
       padding: 2px 6px 6px;
-      line-height: 24px;
       font-size: 2em;
+      line-height: 24px;
 
       @media mobile {
         margin: 20px;
@@ -82,6 +82,7 @@
     p {
       @media mobile {
         font-size: 2em;
+        line-height: 1.2em;
 
         * {
           font-size: inherit;
@@ -96,23 +97,7 @@
       font-size: 1.3em;
     }
   }
-}
 
-.donateOrNotDonateButtons {
-  display: flex;
-  justify-content: center;
-
-  @media mobile {
-    flex-direction: column;
-    align-items: center;
-
-    button {
-      flex: 1;
-    }
-  }
-}
-
-.requestDownloadPage {
   iframe {
     margin-top: 5px;
     width: 100%;
@@ -132,6 +117,20 @@
       &.isBrazil {
         height: 143px;
       }
+    }
+  }
+}
+
+.donateOrNotDonateButtons {
+  display: flex;
+  justify-content: center;
+
+  @media mobile {
+    flex-direction: column;
+    align-items: center;
+
+    button {
+      flex: 1;
     }
   }
 }

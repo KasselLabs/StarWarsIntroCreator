@@ -1,0 +1,71 @@
+$checkingBackgroundColor = #171717;
+$verifiedBackgroundColor = alpha($titlesColor, .2);
+$notFoundBackgroundColor = $errorRed;
+
+.check-for-donation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.check-for-donation__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em 2em;
+  border-radius: 10px;
+  background-color: $checkingBackgroundColor;
+
+  b {
+    margin-top: 1em;
+    text-align: center;
+  }
+}
+
+.check-for-donation__card--verified {
+  background-color: $verifiedBackgroundColor;
+}
+
+.check-for-donation__card--not-found {
+  .check-for-donation__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: $errorRed;
+    color: white;
+    line-height: 40px;
+  }
+}
+
+.check-for-donation__icon {
+  display: inline-block;
+  padding: 18px;
+  font-size: 60px;
+}
+
+.check-for-donation__spinner {
+  display: inline-block;
+  width: 56px;
+  height: 56px;
+}
+
+.check-for-donation__spinner:after {
+  display: block;
+  margin: 1px;
+  width: 46px;
+  height: 46px;
+  border: 5px solid $titlesColor;
+  border-color: $titlesColor transparent $titlesColor transparent;
+  border-radius: 50%;
+  content: ' ';
+  animation: check-spinner 1.2s linear infinite;
+}
+
+@keyframes check-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

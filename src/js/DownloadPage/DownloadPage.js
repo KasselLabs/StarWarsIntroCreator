@@ -1,8 +1,5 @@
 import { h, Component } from 'preact';
 import {
-  INITIAL_PAGE,
-  REQUEST_PAGE,
-  FINAL_PAGE,
   NOT_QUEUED,
   QUEUED,
   BUMPED,
@@ -18,35 +15,95 @@ import VideoQueuedPage from './VideoQueuedPage';
 import VideoRequestSent from './VideoRequestSent';
 import RenderingPage from './RenderingPage';
 import RenderedPage from './RenderedPage';
+import AddEmailForm from './AddEmailForm';
+
+import UrlHandler from '../extras/UrlHandler';
+
+const INITIAL_PAGE = 0;
+const REQUEST_PAGE = 1;
+const FINAL_PAGE = 2;
+const ADD_EMAIL_PAGE = 3;
 
 class DownloadPage extends Component {
   constructor(props) {
     super(props);
-    const { status, openingKey } = props;
+    const { status, openingKey, subpage } = props;
+
+    const isRendered = status.status === RENDERED;
+
+    const subpageState = isRendered ? {} : this.parseSubpage(subpage);
 
     this.state = {
       status,
       openingKey,
-      page: INITIAL_PAGE,
-      donate: false,
+      ...subpageState,
     };
   }
 
+  componentDidMount() {
+    window.addEventListener('hashchange', this.urlChangeHandler);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('hashchange', this.urlChangeHandler);
+  }
+
+  parseSubpage = (subpage) => {
+    let page = INITIAL_PAGE;
+    let donate = false;
+
+    if ('donate' === subpage) {
+      donate = true;
+      page = REQUEST_PAGE;
+    }
+
+    if ('request' === subpage) {
+      donate = false;
+      page = REQUEST_PAGE;
+    }
+
+    if ('add_email' === subpage) {
+      page = ADD_EMAIL_PAGE;
+    }
+
+    if ('donated' === subpage) {
+      donate = true;
+      page = FINAL_PAGE;
+    }
+
+    return {
+      page,
+      donate,
+    };
+  }
+
+  urlChangeHandler = () => {
+    const { key, subpage } = UrlHandler.getParams();
+
+    if (key !== this.state.openingKey) {
+      window.location.reload();
+      return;
+    }
+
+    if (!subpage) {
+      return;
+    }
+
+    const subpageState = this.parseSubpage(subpage);
+    this.setState(subpageState);
+  }
+
   yesDonateHandle = () => {
-    this.setState({
-      page: REQUEST_PAGE,
-      donate: true,
-    });
+    UrlHandler.goToDownloadPage(this.state.openingKey, 'donate');
   };
 
   noDonateHandle = () => {
-    this.setState({
-      page: REQUEST_PAGE,
-      donate: false,
-    });
+    UrlHandler.goToDownloadPage(this.state.openingKey, 'request');
   };
 
   finishRequestHandle = (requestStatus, requestEmail) => {
+    const { donate } = this.state;
+    UrlHandler.goToDownloadPage(this.state.openingKey, donate ? 'donated' : '');
     this.setState({
       page: FINAL_PAGE,
       requestStatus,
@@ -133,11 +190,19 @@ class DownloadPage extends Component {
             donate={donate}
           />
         );
+
+      case ADD_EMAIL_PAGE:
+        return (
+          <AddEmailForm
+            openingKey={openingKey}
+            finishRequestHandle={this.finishRequestHandle}
+          />
+        );
     }
   }
 
   render() {
-    const { status } = this.state;
+    const { status } = this.state.status;
     const canDonateToReceiveFaster = status === NOT_QUEUED || status === QUEUED;
     const title = canDonateToReceiveFaster ? 'donate and download' : 'download';
     return (
