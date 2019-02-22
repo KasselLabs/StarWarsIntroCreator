@@ -21,6 +21,7 @@ const getIEVersion = () => {
 const usingIE = () => -1 !== getIEVersion();
 
 if (usingIE()) {
+  window.isIE = true;
   /* eslint-disable-next-line */
   window.alert('This website is not compatible with Internet Explorer, please use Chrome or Firefox. Sorry for the inconvenience.');
 }
