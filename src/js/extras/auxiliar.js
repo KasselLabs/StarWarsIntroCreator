@@ -33,7 +33,11 @@ I want to provide the following details:
     confirmButtonText: 'CONTACT SUPPORT',
   }).then((result) => {
     if (result.value) {
-      window.open(`mailto:kassellabs+starwars@googlegroups.com?Subject=SWIC%20Error&Body=${bodyMessage}`);
+      if (Raven.lastEventId()) {
+        Raven.showReportDialog();
+      } else { // send email as fallback when no error reported on sentry.
+        window.open(`mailto:kassellabs+starwars@googlegroups.com?Subject=SWIC%20Error&Body=${bodyMessage}`);
+      }
     }
     if (result.dismiss === swal.DismissReason.cancel && reloadPage) {
       window.location.reload();
