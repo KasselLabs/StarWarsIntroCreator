@@ -20,10 +20,16 @@ class VideoRequestSent extends Component {
   renderEmail() {
     const { requestEmail } = this.props;
 
+    if (!requestEmail) {
+      return null;
+    }
+
     return (
-      <p className="email">
-        {requestEmail}
-      </p>
+      <span>The link to download the video will be sent to the email:
+        <p className="email">
+          {requestEmail}
+        </p>
+      </span>
     );
   }
 
@@ -37,7 +43,6 @@ class VideoRequestSent extends Component {
         Your video request has been queued!
         Your current position on the queue is <b>{queuePosition}</b>,
         and may take up to {timeToRender} to send your video.
-        The link to download the video will be sent to the email:
         {this.renderEmail()}
         The link to download will also be available on this page when it&apos;s ready.
         You can add more emails to receive the video if you want in the button below.
@@ -72,7 +77,6 @@ class VideoRequestSent extends Component {
           height="33px"
         />
         <p>
-          The link to download the video will be sent to the email:
           {this.renderEmail()}
           You can add more emails to receive the video if you want,
           just go back and request it for another email.

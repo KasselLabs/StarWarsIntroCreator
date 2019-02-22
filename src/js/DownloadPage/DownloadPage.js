@@ -29,7 +29,9 @@ class DownloadPage extends Component {
     super(props);
     const { status, openingKey, subpage } = props;
 
-    const subpageState = this.parseSubpage(subpage);
+    const isRendered = status.status === RENDERED;
+
+    const subpageState = isRendered ? {} : this.parseSubpage(subpage);
 
     this.state = {
       status,
@@ -64,6 +66,11 @@ class DownloadPage extends Component {
       page = ADD_EMAIL_PAGE;
     }
 
+    if ('donated' === subpage) {
+      donate = true;
+      page = FINAL_PAGE;
+    }
+
     return {
       page,
       donate,
@@ -95,7 +102,8 @@ class DownloadPage extends Component {
   };
 
   finishRequestHandle = (requestStatus, requestEmail) => {
-    UrlHandler.goToDownloadPage(this.state.openingKey);
+    const { donate } = this.state;
+    UrlHandler.goToDownloadPage(this.state.openingKey, donate ? 'donated' : '');
     this.setState({
       page: FINAL_PAGE,
       requestStatus,
