@@ -70,7 +70,6 @@
     top: auto;
     bottom: 0;
     left: 50%;
-    overflow: hidden;
     margin: 0 0 0 (- $titles-width / 2);
     width: $titles-width;
     height: 50em;
@@ -249,7 +248,12 @@ body.runningVideo {
   0% {
       transform: translateY(0);
   }
+  65% {
+      transform: translateY(-2200px);
+      filter: sepia(1);
+  }
   100% {
       transform: translateY(-2200px);
+      filter: sepia(0);
   }
 }
