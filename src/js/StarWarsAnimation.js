@@ -52,7 +52,7 @@ class StarWarsAnimation {
     animation.querySelector('#intro').innerHTML = introHtml;
 
     // EPISODE
-    animation.querySelector('#episode').textContent = opening.episode;
+    animation.querySelector('#episode').innerHTML = opening.episode.replace(/ {2}/g, '<br/>');
 
     // EPISODE TITLE
     const titleContainer = animation.querySelector('#title');
