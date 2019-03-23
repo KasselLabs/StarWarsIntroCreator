@@ -43,8 +43,8 @@ const VideoQueuedPage = ({ status, openingKey, ...props }) => {
         If you don&apos;t receive the video please contact us via email so we can check it out.
       </p>
 
-      <TermsOfServiceAcceptance />
       <ContactButton />
+      <TermsOfServiceAcceptance />
       <DonateOrNotDonate {...props} />
     </div>
   );
