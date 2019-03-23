@@ -1,9 +1,14 @@
 import { h } from 'preact';
 
-const ContactButton = ({ customText = 'If you have any questions, please contact us via email:' }) => {
+const ContactButton = ({ customText = 'If you have any questions, please check our FAQ or contact us through the link:' }) => {
   const link = (
-    <a className="contactButton" href="mailto:kassellabs+starwars@gmail.com" rel="noopener noreferrer" target="_blank">
-      kassellabs@gmail.com
+    <a
+      className="contactButton"
+      href="https://help.kassellabs.io/starwars/"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      FAQ and Contact
     </a>);
 
   if (customText) {

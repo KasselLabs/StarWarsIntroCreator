@@ -34,11 +34,11 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
           </li>
         </ul>
 
-        Your video will be rendered to a MP4 file.&nbsp;
+        {/* Your video will be rendered to a MP4 file.&nbsp;
         <br />
         <a target="_blank" rel="noopener noreferrer" href="https://youtu.be/iYKU4pNy034">
           Check a sample video how your video will look like here.
-        </a>
+        </a> */}
 
       </p>
       <p>
@@ -53,8 +53,8 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
           Click here to go back and check your text.
         </a>
       </p>
-      <TermsOfServiceAcceptance />
       <ContactButton />
+      <TermsOfServiceAcceptance />
       <DonateOrNotDonate {...props} />
     </div>
   );
