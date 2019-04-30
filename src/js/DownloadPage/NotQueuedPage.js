@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React, { Component } from 'react';
 import DonateOrNotDonate from './DonateOrNotDonate';
 import { calculateTimeToRender } from '../extras/auxiliar';
 import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';

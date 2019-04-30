@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React from 'react';
 import DonateOrNotDonate from './DonateOrNotDonate';
 import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
 import ContactButton from './ContactButton';
@@ -20,7 +20,7 @@ const RequestDownloadPage = ({
 
   const timeToRender = calculateTimeToRender(position);
 
-  const iframe = document.querySelector('#paypalDonateIframe');
+  const iframePaypalButtons = document.querySelector('#paypalDonateIframe');
 
   const donateScreen = (
     <div>
@@ -37,8 +37,8 @@ const RequestDownloadPage = ({
       </p>
       <iframe
         title="PayPal Donation Buttons"
-        src={`${iframe.src}#!/${openingKey}`}
-        className={iframe.classList.toString()}
+        src={`${iframePaypalButtons.src}#!/${openingKey}`}
+        className={iframePaypalButtons.classList.toString()}
         height="33px"
       />
       <p>

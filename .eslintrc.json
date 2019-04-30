@@ -10,10 +10,19 @@
       "no-use-before-define": ["error", { "functions": false }],
       "no-param-reassign": 0,
       "react/jsx-filename-extension": 0,
-      "react/prop-types": 0,
-      "jsx-quotes": ["error", "prefer-double"]
+      "react/require-default-props": 0,
+      "react/forbid-prop-types": 0,
+      "import/prefer-default-export": 0,
+      "jsx-quotes": ["error", "prefer-double"],
+      "react/no-unused-state": 0,
+      "jsx-a11y/anchor-is-valid": [ "error", {
+        "components": [ "Link" ],
+        "specialLink": [ "to", "hrefLeft", "hrefRight" ],
+        "aspects": [ "noHref", "invalidHref", "preferButton" ]
+      }],
+      "jsx-a11y/no-autofocus": 0
     },
-    "extends": ["airbnb", "standard-preact"],
+    "extends": ["airbnb", "plugin:react/recommended"],
     "globals": {
       "describe": true,
       "it": true,

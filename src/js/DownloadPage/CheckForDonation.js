@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import React, { Component } from 'react';
 
 import { loadDownloadStatus } from '../api/actions';
 import { BUMPED, RENDERING } from './constants';

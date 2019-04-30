@@ -30,13 +30,11 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "babel-preset-preact": "^1.1.0",
-    "eslint": "^4.18.2",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-config-standard-preact": "^1.1.6",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
     "gh-pages": "^1.1.0",
     "jest": "^22.4.4",
     "parcel-bundler": "^1.11.0",
@@ -45,9 +43,12 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-preset-react": "^6.24.1",
     "bowser": "^1.9.4",
     "lodash.isequal": "^4.5.0",
-    "preact": "^8.2.7",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-stripe-elements": "^3.0.0",
     "sweetalert2": "^7.15.1"
   }
 }

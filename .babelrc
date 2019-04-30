@@ -5,7 +5,7 @@
         "browsers": ["last 2 versions", "ie 11"]
       }
     }],
-    "preact"
+    "react"
   ],
   "plugins": [
     "transform-object-rest-spread",
@@ -16,6 +16,6 @@
       "moduleName": "babel-runtime"
     }],
     "transform-class-properties",
-    ["transform-react-jsx", { "pragma":"h" }]
+    "transform-react-jsx"
   ]
 }
