@@ -1,5 +1,5 @@
-import { setGAUser } from './googleanalytics';
 import uniq from 'lodash.uniq';
+import { setGAUser } from './googleanalytics';
 
 const KEY = 'KasselLabsUser';
 
@@ -94,7 +94,7 @@ export default class UserIdentifier {
       return;
     }
 
-    if(window.fcWidget) {
+    if (window.fcWidget) {
       window.fcWidget.user.setProperties({
         email,
       });
