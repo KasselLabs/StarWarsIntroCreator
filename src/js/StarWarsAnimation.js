@@ -111,7 +111,6 @@ class StarWarsAnimation {
     if (titlesContainer.offsetHeight > DEFAULT_LENGTH) {
       const exceedSize = titlesContainer.offsetHeight - DEFAULT_LENGTH;
       const animationFinalPosition = FINAL_POSITION - (exceedSize * ANIMATION_CONSTANT);
-      appendKeyframesRule('titlesAnimation', `100% { top: ${animationFinalPosition}% }`);
     }
     setTimeout(() => {
       checkChromeBugOnContainer(textContainer, true);
