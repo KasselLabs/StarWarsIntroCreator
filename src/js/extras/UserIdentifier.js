@@ -1,3 +1,4 @@
+import uniq from 'lodash.uniq';
 import { setGAUser } from './googleanalytics';
 
 const KEY = 'KasselLabsUser';
@@ -87,16 +88,31 @@ export default class UserIdentifier {
     setGAUser(email);
   }
 
+  static _setUserFreshchat(user) {
+    const email = user.lastEmail;
+    if (!email) {
+      return;
+    }
+
+    if (window.fcWidget) {
+      window.fcWidget.user.setProperties({
+        email,
+      });
+    }
+  }
+
   static setUser(appName) {
     const user = this._loadUser(appName);
     this._setUserRaven(user);
     this._setUserGtag(user);
+    this._setUserFreshchat(user);
   }
 
   static addEmail(email) {
     const user = this._loadUser();
     user.lastEmail = email;
     user.emails.push(email);
+    user.emails = uniq(user.emails);
     Storage.save(user);
   }
 }
