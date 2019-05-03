@@ -1,4 +1,5 @@
 import { setGAUser } from './googleanalytics';
+import uniq from 'lodash.uniq';
 
 const KEY = 'KasselLabsUser';
 
@@ -97,6 +98,7 @@ export default class UserIdentifier {
     const user = this._loadUser();
     user.lastEmail = email;
     user.emails.push(email);
+    user.emails = uniq(user.emails);
     Storage.save(user);
   }
 }
