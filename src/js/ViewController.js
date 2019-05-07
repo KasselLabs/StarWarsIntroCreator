@@ -69,23 +69,20 @@ class ViewController {
 
     // bitcoin and ether button
     document.querySelector('#btcether').addEventListener('click', bitcoinEther);
+    this.body.classList.add('runningVideo');
+    this.starWarsAnimation.play();
   }
 
   setLoading() {
-    this.body.classList.add('loading');
   }
 
   unsetLoading() {
-    this.body.classList.remove('loading');
   }
 
   setRunningVideo() {
-    this.body.classList.add('runningVideo');
   }
 
   unsetRunningVideo() {
-    this.body.classList.remove('runningVideo');
-    this.body.classList.remove('showForm');
   }
 
   requestWindowInteraction() {
