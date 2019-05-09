@@ -5,9 +5,9 @@
   "author": "Kassel Labs <contact@kassellabs.io>",
   "license": "MIT",
   "scripts": {
-    "clear": "rm -rf dist .cache",
+    "clear": "rm -rf dist .cache public",
     "build": "yarn clear && parcel build ./src/index.html",
-    "build-gitlab": "yarn build --public-url /StarWarsIntroCreator-STAGE",
+    "build-gitlab": "yarn build -d public --public-url /StarWarsIntroCreator-STAGE",
     "start": "parcel ./src/index.html -p 8080 --no-hmr",
     "test": "jest",
     "test:watch": "yarn test --watchAll",
