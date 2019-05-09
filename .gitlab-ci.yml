@@ -5,7 +5,7 @@ cache:
     - node_modules/
 
 pages:
-  stage: deploy
+  stage: build
   script:
     - npm install
     - npm run build-gitlab
