@@ -41,6 +41,8 @@ const RequestDownloadPage = ({
         className={iframePaypalButtons.classList.toString()}
         height="33px"
       />
+
+  <iframe id="stripeDonateIframe" title="Stripe Payment Form" src="http://localhost:3000/" />
       <p>
         <b>Make sure to check on your PayPal account if the donation went successfully.</b>
       </p>
