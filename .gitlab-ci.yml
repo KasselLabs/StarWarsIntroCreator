@@ -5,9 +5,9 @@ cache:
     - node_modules/
 
 pages:
+  stage: deploy
   script:
     - npm install
-    - npm run test:coverage
     - npm run build-gitlab
   artifacts:
     paths:
