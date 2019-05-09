@@ -9,6 +9,7 @@ pages:
   script:
     - npm install
     - npm run build-gitlab
+    - cp gitlab-robots.txt public/robots.txt
   artifacts:
     paths:
       - public
