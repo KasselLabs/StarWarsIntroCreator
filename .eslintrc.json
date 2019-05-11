@@ -1,6 +1,7 @@
 {
     "parser": "babel-eslint",
     "rules": {
+      "react/jsx-one-expression-per-line": 0,
       "import/no-extraneous-dependencies": 0,
       "class-methods-use-this": 0,
       "import/extensions": 0,
