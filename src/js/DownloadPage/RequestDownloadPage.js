@@ -42,7 +42,7 @@ const RequestDownloadPage = ({
         height="33px"
       />
 
-  <iframe id="stripeDonateIframe" title="Stripe Payment Form" src="http://localhost:3000/" />
+      <iframe id="stripeDonateIframe" title="Stripe Payment Form" src="https://payment.kassellabs.io/" />
       <p>
         <b>Make sure to check on your PayPal account if the donation went successfully.</b>
       </p>
@@ -53,7 +53,8 @@ const RequestDownloadPage = ({
     ? (
       <p>Please, use the same email from your PayPal account,
         you can add more emails to receive the video at the end.
-      </p>)
+      </p>
+    )
     : '';
 
   const notQueuedText = 'will be';
