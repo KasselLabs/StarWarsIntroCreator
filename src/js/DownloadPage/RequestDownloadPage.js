@@ -42,7 +42,7 @@ const RequestDownloadPage = ({
         height="33px"
       />
 
-      <iframe id="stripeDonateIframe" title="Stripe Payment Form" src="https://payment.kassellabs.io/" />
+      <iframe id="stripeDonateIframe" title="Stripe Payment Form" src="https://payment.kassellabs.io/" allowpaymentrequest="true" />
       <p>
         <b>Make sure to check on your PayPal account if the donation went successfully.</b>
       </p>
