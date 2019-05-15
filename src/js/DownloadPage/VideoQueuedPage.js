@@ -39,7 +39,7 @@ const VideoQueuedPage = ({ status, openingKey, ...props }) => {
 
       </p>
       <p>
-        The donation is made via PayPal and it&apos;s safe.
+        You can donate via Credit Card or PayPal.
         If you don&apos;t receive the video please contact us via email so we can check it out.
       </p>
 

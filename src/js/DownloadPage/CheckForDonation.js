@@ -69,7 +69,7 @@ class CheckForDonation extends Component {
       <div className="check-for-donation__card check-for-donation__card--not-found">
         <div className="check-for-donation__icon">X</div>
         <b>Donation not found! <br />
-          Please, check your PayPal account or try to donate again.
+          Please, check if your payment was made successfully or try to donate again.
         </b>
       </div>
     );
