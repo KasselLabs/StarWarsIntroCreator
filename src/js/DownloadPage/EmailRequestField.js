@@ -32,6 +32,8 @@ class EmailRequestField extends Component {
     if (requestDownloadStatus) {
       finishRequestHandle(requestDownloadStatus, email);
     }
+
+    window.fcWidget.user.setEmail(email);
   }
 
   render() {

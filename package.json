@@ -50,6 +50,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "lodash.uniq": "^4.5.0",
     "sweetalert2": "^7.15.1"
   }
 }
