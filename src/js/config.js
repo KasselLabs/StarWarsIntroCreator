@@ -19,6 +19,7 @@ export const defaultFirebase = firebases.B;
 export const defaultFirebasePrefix = 'B';
 
 export const serverApi = process.env.SERVER_API;
+export const paymentPageUrl = process.env.PAYMENT_PAGE_URL;
 
 if (!defaultFirebase) {
   throw new Error('Firebase URL can\'t be empty');

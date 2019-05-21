@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React, { Component } from 'react';
 import DonateOrNotDonate from './DonateOrNotDonate';
 import { calculateTimeToRender } from '../extras/auxiliar';
 import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
@@ -42,7 +42,7 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
 
       </p>
       <p>
-        The donation is made via PayPal and it&apos;s safe.
+        You can donate via Credit Card or PayPal.
         If you don&apos;t receive the video please contact us via email so we can check it out.
       </p>
       <p>

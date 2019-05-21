@@ -14,12 +14,13 @@
   }
 
   .panel {
+    z-index: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 50px;
     padding: 10px 50px 35px;
-    max-width: 600px;
+    max-width: 800px;
     width: 60%;
     border: 2px solid $panelTextColor;
     border-radius: 3px;
@@ -50,6 +51,10 @@
 
     button {
       buttonStyle();
+
+      &.active {
+        background-color: $inputBorderColor;
+      }
     }
 
     p.email {
@@ -164,5 +169,19 @@
         font-size: 2.4em;
       }
     }
+  }
+}
+
+#stripeDonateIframe {
+  height: 460px;
+}
+
+.compose-iframe {
+  position: relative;
+
+  .center {
+    position: absolute;
+    z-index: -10;
+    width: 100%;
   }
 }

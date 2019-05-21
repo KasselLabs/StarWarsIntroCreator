@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React from 'react';
 import ContactButton from './ContactButton';
 import EmailRequestField from './EmailRequestField';
 

@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React from 'react';
 
 const ContactButton = ({ customText = 'If you have any questions, please check our FAQ or contact us through the link:' }) => {
   const link = (
