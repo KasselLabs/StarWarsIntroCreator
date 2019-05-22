@@ -38,6 +38,10 @@
         width: 50%;
         transform: scale(2);
       }
+
+      iframe.stripe {
+        margin: 30% 25%;
+      }
     }
 
     h2 {
@@ -104,8 +108,11 @@
   }
 
   iframe {
-    margin-top: 5px;
     width: 100%;
+  }
+
+  iframe.paypal {
+    margin-top: 5px;
 
     &.isBrazil {
       height: 123px;
@@ -113,7 +120,7 @@
   }
 
   @media mobile {
-    iframe {
+    iframe.paypal {
       margin: 10% 25%;
       width: 50%;
       transform: scale(2);
