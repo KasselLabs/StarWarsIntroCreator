@@ -63,6 +63,7 @@ class PaymentModule extends Component {
                 <Loader text="Loading payment form..." />
               </div>
               <iframe
+                className="stripe"
                 id="stripeDonateIframe"
                 title="Stripe Payment Form"
                 src={`${paymentPageUrl}?app=star-wars&code=${openingKey}`}
