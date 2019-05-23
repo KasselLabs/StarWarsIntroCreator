@@ -6,15 +6,14 @@
   "license": "MIT",
   "scripts": {
     "clear": "rm -rf dist .cache public",
-    "build": "yarn clear && parcel build ./src/index.html",
+    "build": "yarn clear && parcel build ./src/index.html && cp .nojekyll dist",
     "build-gitlab": "yarn build -d public --public-url /starwarsintrocreator-stage",
     "start": "parcel ./src/index.html -p 8080 --no-hmr",
     "test": "jest",
     "test:watch": "yarn test --watchAll",
     "test:coverage": "yarn test --coverage",
     "test:coverage:results": "google-chrome coverage/lcov-report/index.html",
-    "lint": "eslint src/",
-    "deploy": "yarn build && cp CNAME dist/ && gh-pages -d dist -m "
+    "lint": "eslint src/"
   },
   "jest": {
     "testURL": "http://localhost/",
