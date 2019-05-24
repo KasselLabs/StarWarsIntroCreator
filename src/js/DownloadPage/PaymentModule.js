@@ -66,7 +66,7 @@ class PaymentModule extends Component {
                 className="stripe"
                 id="stripeDonateIframe"
                 title="Stripe Payment Form"
-                src={`${paymentPageUrl}?app=star-wars&code=${openingKey}`}
+                src={`${paymentPageUrl}?embed=true&app=star-wars&code=${openingKey}`}
                 allowpaymentrequest="true"
               />
             </div>
