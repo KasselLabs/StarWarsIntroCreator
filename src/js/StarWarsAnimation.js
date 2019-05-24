@@ -52,11 +52,11 @@ class StarWarsAnimation {
     animation.querySelector('#intro').innerHTML = introHtml;
 
     // EPISODE
-    animation.querySelector('#episode').textContent = opening.episode;
+    // animation.querySelector('#episode').textContent = opening.episode;
 
     // EPISODE TITLE
     const titleContainer = animation.querySelector('#title');
-    titleContainer.textContent = opening.title;
+    // titleContainer.textContent = opening.title;
     if (checkSWFontCompatibility(opening.title)) {
       titleContainer.classList.add('SWFont');
     }
@@ -65,7 +65,7 @@ class StarWarsAnimation {
     const textHtml = this.prepareBodyText(opening.text);
 
     const textContainer = animation.querySelector('#text');
-    textContainer.innerHTML = textHtml;
+    // textContainer.innerHTML = textHtml;
 
     // TEXT CENTER ALIGNMENT
     textContainer.style.textAlign = opening.center ? 'center' : ''; // empty will not override the justify default rule
