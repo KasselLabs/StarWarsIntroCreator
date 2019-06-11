@@ -15,7 +15,7 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
         You can now request a download of your creation as a video,
         which you can play anywhere, put it in a slideshow or
         edit it in a movie editor, for instance.
-        The video will be rendered on our servers and it&apos;s ready,
+        The video will be rendered on our servers and when it&apos;s ready,
         it will be sent to your email.
         We want to provide the video for free, but we have costs with the servers.
       </p>
