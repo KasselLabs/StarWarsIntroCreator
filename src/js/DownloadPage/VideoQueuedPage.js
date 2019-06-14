@@ -22,7 +22,7 @@ const VideoQueuedPage = ({ status, openingKey, ...props }) => {
       </p>
       <p>
         Can&apos;t wait for it? Donate to support our service and your video will
-        be ready in few hours (2 hours usually).<br />
+        be ready in a few hours (2 hours usually).<br />
         <ul>
           <li>Donate at least <b>7 US Dollars</b> for the video in standard HD quality.</li>
           <li>Donate at least <b>10 US Dollars</b> for the <b>Full HD Quality</b>.</li>
