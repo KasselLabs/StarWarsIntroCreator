@@ -49,7 +49,7 @@ const RequestDownloadPage = ({
   const youCanStillDonate = (
     <Fragment>
       <p>
-        Your video request {isQueued ? qeuedText : notQueuedText}
+        Your video request {isQueued ? qeuedText : notQueuedText}{' '}
         queued at position <b>{position}</b>.
         It may take up to <b>{timeToRender}</b> to have your video rendered.
         You can still donate to get it earlier if you want.

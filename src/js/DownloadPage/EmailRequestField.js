@@ -33,7 +33,7 @@ class EmailRequestField extends Component {
       finishRequestHandle(requestDownloadStatus, email);
     }
 
-    window.fcWidget.user.setEmail(email);
+    // window.fcWidget.user.setEmail(email);
   }
 
   render() {
@@ -56,4 +56,3 @@ class EmailRequestField extends Component {
 }
 
 export default EmailRequestField;
-
