@@ -9,7 +9,8 @@ const ContactButton = ({ customText = 'If you have any questions, please check o
       target="_blank"
     >
       FAQ and Contact
-    </a>);
+    </a>
+  );
 
   if (customText) {
     return (
