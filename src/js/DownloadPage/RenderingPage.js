@@ -5,9 +5,9 @@ import EmailRequestField from './EmailRequestField';
 import { RENDERING } from './constants';
 
 const RenderingPage = ({ statusType, openingKey, finishRequestHandle }) => {
-  const text = RENDERING === statusType ?
-    'Your video being rendered right now! You will receive your video by email in less than two hours.' :
-    'Your donation has been verified, your video will be rendered soon. You will receive your video by email in a few hours. '; // TODO show ETA here
+  const text = RENDERING === statusType
+    ? 'Your video is being rendered right now! You will receive your video by email in less than two hours.'
+    : 'Your donation has been verified, your video will be rendered soon. You will receive your video by email in a few hours. '; // TODO show ETA here
   return (
     <div>
       <p>
