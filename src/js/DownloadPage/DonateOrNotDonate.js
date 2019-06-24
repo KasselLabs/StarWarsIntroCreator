@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React from 'react';
 
 const DonateOrNotDonate = ({ yesDonateHandle, noDonateHandle, hideNoDonateOption = false }) => (
   <div>

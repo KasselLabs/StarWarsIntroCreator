@@ -29,6 +29,7 @@
     <link rel="shortcut icon" href="./assets/favicon.png">
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
     <script src="./js/extras/detectIE.js"></script>
+    <script src="https://wchat.freshchat.com/js/widget.js"></script>
 </head>
 <body class="loading">
 
@@ -172,19 +173,19 @@
   <footer>
     <div class="socialButtons">
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="hosted_button_id" value="2V3MRULHZ5P68">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="Y77M6YUQCP9AS" />
         <input type="hidden" name="custom" value="">
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-        <img alt="" border="0" src="https://www.paypalobjects.com/pt_BR/i/scr/pixel.gif" width="1" height="1">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
       </form>
 
       <form id="paypalDonateBRL" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="hosted_button_id" value="5S2AJZZM7WXNN">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="ZKAFEGEGSHF96" />
         <input type="hidden" name="custom" value="">
-        <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - A maneira fácil e segura de enviar pagamentos online!">
-        <img alt="" border="0" src="https://www.paypalobjects.com/pt_BR/i/scr/pixel.gif" width="1" height="1">
+        <input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Faça doações com o botão do PayPal" />
+        <img alt="" border="0" src="https://www.paypal.com/pt_BR/i/scr/pixel.gif" width="1" height="1" />
       </form>
 
       <div id="btcether" class="footerText">
@@ -201,17 +202,37 @@
 
     <div class="rightFooter">
       <a id="anotherServiceLink" href="https://westworldintrocreator.kassellabs.io/" target="_blank"><img src="./assets/wic.jpg" alt="Westworld Intro Creator" width="120" /></a>
-      <a id="anotherServiceLink" href="https://brorlandi.github.io/StrangerThingsIntroCreator/" target="_blank"><img src="./assets/stic.jpg" alt="Stranger Things Intro Creator" width="120" /></a>
+      <a id="anotherServiceLink" href="https://StrangerThingsIntroCreator.kassellabs.io/" target="_blank"><img src="./assets/stic.jpg" alt="Stranger Things Intro Creator" width="120" /></a>
 
-      <a href="https://goo.gl/forms/ecnYmOB146Ln78h02" target="_blank">
-        Share your Story with us
+      <a
+        href="https://help.kassellabs.io/starwars/"
+        rel="noopener noreferrer"
+        target="_blank"
+        >
+        FAQ and Support
       </a>
 
-      <a id="termsOfServiceButton" href="https://kassellabs.github.io/TermsOfService/StarWarsIntroCreator.html">
+      <a
+        href="https://help.kassellabs.io/starwars/#termsOfService"
+        rel="noopener noreferrer"
+        target="_blank"
+        >
         Terms of Service
       </a>
 
-      <a href="mailto:kassellabs+starwars@googlegroups.com" rel="noopener noreferrer" target="_blank">
+      <a
+        href="https://help.kassellabs.io/privacy/"
+        rel="noopener noreferrer"
+        target="_blank"
+        >
+        Privacy Policy
+      </a>
+
+      <a
+        href="mailto:StarWars@kassellabs.io"
+        rel="noopener noreferrer"
+        target="_blank"
+        >
         Contact us
       </a>
 
@@ -226,11 +247,10 @@
         <img src="./assets/KasselLabsLogo.png" alt="Kassel Labs" height="20" />
       </a>
     </div>
-    <iframe style="display:none;" id="paypalDonateIframe" title="PayPal Donation Buttons" src="./html/donateButtons.html" />
+    <iframe style="display:none;" class="paypal" id="paypalDonateIframe" title="PayPal Donation Buttons" src="./html/donateButtons.html" />
   </footer>
 
   <div id="chrome-bug-alert"></div>
-
 <script src="https://cdn.ravenjs.com/3.25.0/raven.min.js" crossorigin="anonymous"></script>
 <script src="./js/index.js"></script>
 </body>

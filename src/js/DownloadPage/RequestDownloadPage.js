@@ -1,10 +1,13 @@
-import { h } from 'preact';
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import DonateOrNotDonate from './DonateOrNotDonate';
 import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
 import ContactButton from './ContactButton';
 import EmailRequestField from './EmailRequestField';
+import PaymentModule from './PaymentModule';
 import { calculateTimeToRender } from '../extras/auxiliar';
 import { QUEUED } from './constants';
+
 
 const RequestDownloadPage = ({
   donate,
@@ -20,65 +23,52 @@ const RequestDownloadPage = ({
 
   const timeToRender = calculateTimeToRender(position);
 
-  const iframe = document.querySelector('#paypalDonateIframe');
-
   const donateScreen = (
     <div>
       <p>
-        Great choice! You can donate how much you want but there is a minimum to receive the video.
+        Great choice! You can donate how much you want but there
+        is a minimum to receive the video.
         <ul>
           <li>At least <b>7 US Dollars</b> for HD video (1280x720).</li>
           <li>At least <b>10 US Dollars</b> for Full HD video (1920x1080)</li>
           <li>At least <b>30 US Dollars</b> for more customizable video with
-          the Death Star image replacement (Contact us via email to submit your image).
+              the Death Star image replacement (Contact us via email to submit your image).
           </li>
         </ul>
-        <b>Click</b> on the following PayPal button to donate:
       </p>
-      <iframe
-        title="PayPal Donation Buttons"
-        src={`${iframe.src}#!/${openingKey}`}
-        className={iframe.classList.toString()}
-        height="33px"
+      <p>Select your payment option:</p>
+      <PaymentModule
+        openingKey={openingKey}
       />
-      <p>
-        <b>Make sure to check on your PayPal account if the donation went successfully.</b>
-      </p>
     </div>
   );
-
-  const paypalEmail = donate
-    ? (
-      <p>Please, use the same email from your PayPal account,
-        you can add more emails to receive the video at the end.
-      </p>)
-    : '';
 
   const notQueuedText = 'will be';
   const qeuedText = 'is';
 
   const youCanStillDonate = (
-    <p>
-      Your video request {isQueued ? qeuedText : notQueuedText}
-      queued at position <b>{position}</b>.
-      It may take up to <b>{timeToRender}</b> to have your video rendered.
-      You can still donate to get it earlier if you want.
+    <Fragment>
       <p>
-        <DonateOrNotDonate {...props} hideNoDonateOption />
+        Your video request {isQueued ? qeuedText : notQueuedText}
+        queued at position <b>{position}</b>.
+        It may take up to <b>{timeToRender}</b> to have your video rendered.
+        You can still donate to get it earlier if you want.
+        <p>
+          <DonateOrNotDonate {...props} hideNoDonateOption />
+        </p>
       </p>
-    </p>
+      <p>
+        Fill your email below and when your video is ready
+        you will receive a message with the link to download it.
+        We promise not to send spam!
+      </p>
+    </Fragment>
   );
 
   return (
     <div>
       {donate && donateScreen}
       {!donate && youCanStillDonate}
-      <p>
-        Now, fill your email below and when your video is ready
-        you will receive a message with the link to download it.
-        We promise not to send spam!&nbsp;
-      </p>
-      {paypalEmail}
       <TermsOfServiceAcceptance />
       <ContactButton />
       <EmailRequestField
@@ -87,6 +77,13 @@ const RequestDownloadPage = ({
       />
     </div>
   );
+};
+
+RequestDownloadPage.propTypes = {
+  donate: PropTypes.bool,
+  status: PropTypes.object,
+  openingKey: PropTypes.string,
+  finishRequestHandle: PropTypes.func,
 };
 
 export default RequestDownloadPage;

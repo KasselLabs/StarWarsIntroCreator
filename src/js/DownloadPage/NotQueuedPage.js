@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React, { Component } from 'react';
 import DonateOrNotDonate from './DonateOrNotDonate';
 import { calculateTimeToRender } from '../extras/auxiliar';
 import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
@@ -34,15 +34,15 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
           </li>
         </ul>
 
-        Your video will be rendered to a MP4 file.&nbsp;
+        {/* Your video will be rendered to a MP4 file.&nbsp;
         <br />
         <a target="_blank" rel="noopener noreferrer" href="https://youtu.be/iYKU4pNy034">
           Check a sample video how your video will look like here.
-        </a>
+        </a> */}
 
       </p>
       <p>
-        The donation is made via PayPal and it&apos;s safe.
+        You can donate via Credit Card or PayPal.
         If you don&apos;t receive the video please contact us via email so we can check it out.
       </p>
       <p>
@@ -53,8 +53,8 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
           Click here to go back and check your text.
         </a>
       </p>
-      <TermsOfServiceAcceptance />
       <ContactButton />
+      <TermsOfServiceAcceptance />
       <DonateOrNotDonate {...props} />
     </div>
   );
