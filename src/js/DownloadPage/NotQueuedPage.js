@@ -15,7 +15,7 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
         You can now request a download of your creation as a video,
         which you can play anywhere, put it in a slideshow or
         edit it in a movie editor, for instance.
-        The video will be rendered on our servers and it&apos;s ready,
+        The video will be rendered on our servers and when it&apos;s ready,
         it will be sent to your email.
         We want to provide the video for free, but we have costs with the servers.
       </p>
@@ -25,7 +25,7 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
       </p>
       <p>
         Can&apos;t wait for it? Donate to support our service and your video will
-        be ready in few hours (2 hours usually).<br />
+        be ready in a few hours (2 hours usually).<br />
         <ul>
           <li>Donate at least <b>7 US Dollars</b> for the video in standard HD quality.</li>
           <li>Donate at least <b>10 US Dollars</b> for the <b>Full HD Quality</b>.</li>
