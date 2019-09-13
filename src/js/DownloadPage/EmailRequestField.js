@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import React, { Component } from 'react';
 import swal from 'sweetalert2';
 import { requestIntroDownload } from '../api/actions';
 import UserIdentifier from '../extras/UserIdentifier';
@@ -32,6 +32,8 @@ class EmailRequestField extends Component {
     if (requestDownloadStatus) {
       finishRequestHandle(requestDownloadStatus, email);
     }
+
+    // window.fcWidget.user.setEmail(email);
   }
 
   render() {
@@ -54,4 +56,3 @@ class EmailRequestField extends Component {
 }
 
 export default EmailRequestField;
-

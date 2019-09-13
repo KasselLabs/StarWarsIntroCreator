@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React, { Component } from 'react';
 import DonateOrNotDonate from './DonateOrNotDonate';
 import { calculateTimeToRender } from '../extras/auxiliar';
 import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
@@ -15,7 +15,7 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
         You can now request a download of your creation as a video,
         which you can play anywhere, put it in a slideshow or
         edit it in a movie editor, for instance.
-        The video will be rendered on our servers and it&apos;s ready,
+        The video will be rendered on our servers and when it&apos;s ready,
         it will be sent to your email.
         We want to provide the video for free, but we have costs with the servers.
       </p>
@@ -25,7 +25,7 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
       </p>
       <p>
         Can&apos;t wait for it? Donate to support our service and your video will
-        be ready in few hours (2 hours usually).<br />
+        be ready in a few hours (2 hours usually).<br />
         <ul>
           <li>Donate at least <b>7 US Dollars</b> for the video in standard HD quality.</li>
           <li>Donate at least <b>10 US Dollars</b> for the <b>Full HD Quality</b>.</li>
@@ -34,15 +34,15 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
           </li>
         </ul>
 
-        Your video will be rendered to a MP4 file.&nbsp;
+        {/* Your video will be rendered to a MP4 file.&nbsp;
         <br />
         <a target="_blank" rel="noopener noreferrer" href="https://youtu.be/iYKU4pNy034">
           Check a sample video how your video will look like here.
-        </a>
+        </a> */}
 
       </p>
       <p>
-        The donation is made via PayPal and it&apos;s safe.
+        You can donate via Credit Card or PayPal.
         If you don&apos;t receive the video please contact us via email so we can check it out.
       </p>
       <p>
@@ -53,8 +53,8 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
           Click here to go back and check your text.
         </a>
       </p>
-      <TermsOfServiceAcceptance />
       <ContactButton />
+      <TermsOfServiceAcceptance />
       <DonateOrNotDonate {...props} />
     </div>
   );

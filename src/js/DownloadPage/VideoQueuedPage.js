@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React from 'react';
 import DonateOrNotDonate from './DonateOrNotDonate';
 import { calculateTimeToRender } from '../extras/auxiliar';
 import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
@@ -22,7 +22,7 @@ const VideoQueuedPage = ({ status, openingKey, ...props }) => {
       </p>
       <p>
         Can&apos;t wait for it? Donate to support our service and your video will
-        be ready in few hours (2 hours usually).<br />
+        be ready in a few hours (2 hours usually).<br />
         <ul>
           <li>Donate at least <b>7 US Dollars</b> for the video in standard HD quality.</li>
           <li>Donate at least <b>10 US Dollars</b> for the <b>Full HD Quality</b>.</li>
@@ -39,12 +39,12 @@ const VideoQueuedPage = ({ status, openingKey, ...props }) => {
 
       </p>
       <p>
-        The donation is made via PayPal and it&apos;s safe.
+        You can donate via Credit Card or PayPal.
         If you don&apos;t receive the video please contact us via email so we can check it out.
       </p>
 
-      <TermsOfServiceAcceptance />
       <ContactButton />
+      <TermsOfServiceAcceptance />
       <DonateOrNotDonate {...props} />
     </div>
   );

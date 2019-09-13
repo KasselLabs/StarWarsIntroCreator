@@ -3,7 +3,13 @@ import isEqual from 'lodash.isequal';
 
 import UrlHandler from '../extras/UrlHandler';
 import ViewController from '../ViewController';
-import ApplicationState, { CREATING, PLAYING, EDITING, LOADING, DOWNLOAD } from '../ApplicationState';
+import ApplicationState, {
+  CREATING,
+  PLAYING,
+  EDITING,
+  LOADING,
+  DOWNLOAD,
+} from '../ApplicationState';
 import { fetchKey, saveOpening, parseSpecialKeys } from './firebaseApi';
 import { fetchStatus, requestDownload } from './serverApi';
 import { apiError } from '../extras/auxiliar';
@@ -103,7 +109,7 @@ export const downloadButtonHandler = async (opening) => {
   if (!isEqual(lastOpening, opening)) {
     swal({
       title: 'Text was modified',
-      text: 'You have changed some of the text fields. You need to play the your new intro to save and request a download. Do you want to restore your intro or play the new one?',
+      text: 'You have changed some of the text fields. You need to play the new intro to save and request a download. Do you want to restore your intro text or play the new one?',
       showCancelButton: true,
       cancelButtonText: 'PLAY IT',
       confirmButtonText: 'RESTORE MY INTRO',

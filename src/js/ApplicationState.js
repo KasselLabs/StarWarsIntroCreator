@@ -2,6 +2,7 @@ import ViewController from './ViewController';
 import AudioController from './AudioController';
 import UrlHandler from './extras/UrlHandler';
 import { setPaypalKey } from './extras/paypal';
+import { loadChat, destroyChat } from './extras/freshchat';
 
 export const CREATING = 'CREATING';
 export const LOADING = 'LOADING';
@@ -69,7 +70,7 @@ class ApplicationState {
 
       case PLAYING:
         setPaypalKey(key);
-
+        destroyChat();
         try {
           await ViewController.playOpening(opening);
         } catch (error) {
@@ -85,17 +86,20 @@ class ApplicationState {
         break;
 
       case EDITING:
+        loadChat();
         setPaypalKey(key);
         ViewController.setFormValues(opening);
         ViewController.showDownloadButton();
         break;
 
       case DOWNLOAD:
+        loadChat();
         setPaypalKey(key);
         ViewController.setDownloadPage();
         break;
 
       default:
+        loadChat();
         ViewController.unsetLoading();
     }
   }
