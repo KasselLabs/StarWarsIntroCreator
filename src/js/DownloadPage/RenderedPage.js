@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React from 'react';
 import bowser from 'bowser';
 
 import ContactButton from './ContactButton';

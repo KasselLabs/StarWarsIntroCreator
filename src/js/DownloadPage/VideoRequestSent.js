@@ -1,4 +1,5 @@
-import { h, Component } from 'preact';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { calculateTimeToRender } from '../extras/auxiliar';
 import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
@@ -16,6 +17,11 @@ class VideoRequestSent extends Component {
     const { openingKey } = this.props;
     UrlHandler.goToDownloadPage(openingKey, 'add_email');
   }
+
+  donateButton = () => {
+    const { openingKey } = this.props;
+    UrlHandler.goToDownloadPage(openingKey, 'donate');
+  };
 
   renderEmail() {
     const { requestEmail } = this.props;
@@ -51,7 +57,6 @@ class VideoRequestSent extends Component {
   }
 
   renderDonate() {
-    const iframe = document.querySelector('#paypalDonateIframe');
     const { openingKey } = this.props;
     return (
       <div>
@@ -63,23 +68,19 @@ class VideoRequestSent extends Component {
         <p>
           When your donation is confirmed you should receive
           the confirmation message from us within a few minutes
-          in your PayPal account email.
+          in your email.
           Don&apos;t forget to check your spam box.
-          If you don&apos;t receive it, please check in your PayPal account
+          If you don&apos;t receive it, please check
           if the donation went successfully or contact us:&nbsp;
           <ContactButton customText="" />
         </p>
-        <p>If you didn&apos;t donate yet, follow the PayPal button below to make your donation:</p>
-        <iframe
-          title="PayPal Donation Buttons"
-          src={`${iframe.src}#!/${openingKey}`}
-          className={iframe.classList.toString()}
-          height="33px"
-        />
+        <p>If you didn&apos;t donate yet, click on the button below to make your donation:</p>
+        <div className="center">
+          <button type="button" onClick={this.donateButton}>Donate</button>
+        </div>
         <p>
           {this.renderEmail()}
-          You can add more emails to receive the video if you want,
-          just go back and request it for another email.
+          You can add more emails to receive the video if you want.
           The link to download will also be available on this page when it&apos;s ready.
         </p>
       </div>
@@ -93,12 +94,19 @@ class VideoRequestSent extends Component {
         {donate ? this.renderDonate() : this.renderDidNotDonate() }
         <TermsOfServiceAcceptance />
         <div className="center">
-          <button onClick={this.handleOkButton}>OK</button>
-          <button onClick={this.handleAddEmailButton}>Add another Email</button>
+          <button type="button" onClick={this.handleOkButton}>OK</button>
+          <button type="button" onClick={this.handleAddEmailButton}>Add another Email</button>
         </div>
       </div>
     );
   }
 }
+
+VideoRequestSent.propTypes = {
+  openingKey: PropTypes.string,
+  requestStatus: PropTypes.object,
+  requestEmail: PropTypes.string,
+  donate: PropTypes.bool,
+};
 
 export default VideoRequestSent;

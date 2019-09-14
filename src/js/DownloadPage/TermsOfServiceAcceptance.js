@@ -1,10 +1,10 @@
-import { h } from 'preact';
+import React from 'react';
 
 const TermsOfServiceAcceptance = () => (
   <p className="termsOfServiceAcceptance">
     By using this website you are agreeing to our&nbsp;
     <a
-      href="https://kassellabs.github.io/TermsOfService/StarWarsIntroCreator.html"
+      href="https://help.kassellabs.io/starwars/#termsOfService"
       target="_blank"
       rel="noopener noreferrer"
     >
