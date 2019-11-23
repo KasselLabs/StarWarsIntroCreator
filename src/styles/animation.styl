@@ -160,16 +160,7 @@
     filter: brightness(0.5);
 
     #deathstar {
-      position: absolute;
-      right: 100px;
-      bottom: 1150px;
-      width: 655px;
-
-      &.centerCustom { // not used, but can be for customizations
-        right: 0;
-        left: 0;
-        margin: auto;
-      }
+      display: none;
     }
   }
 
@@ -182,10 +173,6 @@ body.runningVideo {
 
   .starwarsAnimation {
     display: initial;
-  }
-
-  #backgroundSpace {
-    animation: scrolldown 7s * $timeFactor ((86s * $timeFactor) + $extraTime) forwards;
   }
 }
 
