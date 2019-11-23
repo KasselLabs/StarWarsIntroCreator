@@ -14,7 +14,6 @@
       justify-content: center;
       width: 95vw;
       height: 100%;
-      background-color: black;
       opacity: 0;
       animation: introBackgroundAnimation 9s * $timeFactor;
 
@@ -156,7 +155,9 @@
     left: 0;
     width: 100%;
     height: 4100px;
-    background: url('../assets/bg-stars.png') repeat;
+    background: url('../assets/road.jpg');
+    background-size: contain;
+    filter: brightness(0.5);
 
     #deathstar {
       position: absolute;
