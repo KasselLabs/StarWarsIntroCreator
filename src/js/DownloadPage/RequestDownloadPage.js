@@ -74,7 +74,6 @@ const RequestDownloadPage = ({
       <EmailRequestField
         openingKey={openingKey}
         finishRequestHandle={finishRequestHandle}
-        donate={donate}
       />
     </div>
   );

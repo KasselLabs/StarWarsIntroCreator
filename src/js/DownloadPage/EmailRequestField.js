@@ -7,7 +7,7 @@ import UserIdentifier from '../extras/UserIdentifier';
 class EmailRequestField extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { openingKey, finishRequestHandle, donate } = this.props;
+    const { openingKey, finishRequestHandle } = this.props;
     const emailField = document.querySelector('#emailRequestField input');
     const email = emailField.value;
 
@@ -32,10 +32,6 @@ class EmailRequestField extends Component {
 
     if (requestDownloadStatus) {
       finishRequestHandle(requestDownloadStatus, email);
-
-      if (donate) {
-        window.fbq('track', 'Purchase', { content_ids: 'star-wars-intro' });
-      }
     }
 
     // window.fcWidget.user.setEmail(email);
@@ -61,14 +57,9 @@ class EmailRequestField extends Component {
 }
 
 EmailRequestField.propTypes = {
-  donate: PropTypes.bool,
   buttonlabel: PropTypes.string,
   openingKey: PropTypes.string,
   finishRequestHandle: PropTypes.func,
-};
-
-EmailRequestField.defaultProps = {
-  donate: false,
 };
 
 export default EmailRequestField;
