@@ -50,6 +50,8 @@ class ViewController {
       e.preventDefault();
       const opening = this.getFormValues();
       downloadButtonHandler(opening);
+
+      window.fbq('track', 'ViewContent');
     });
 
     // paypal show Doar if is brazilian
