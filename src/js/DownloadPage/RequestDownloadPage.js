@@ -22,6 +22,7 @@ const RequestDownloadPage = ({
   const position = 1 + isQueued ? queuePosition : queueSize;
 
   const timeToRender = calculateTimeToRender(position);
+  const urlToEdit = `#!/${openingKey}/edit`;
 
   const donateScreen = (
     <div>
@@ -69,6 +70,16 @@ const RequestDownloadPage = ({
     <div>
       {donate && donateScreen}
       {!donate && youCanStillDonate}
+
+      <p>
+        <b>Attention! </b>
+        Before sending the download request make sure there are no typos in your text
+        to grant that your video will be with the correct text.&nbsp;
+        <a href={urlToEdit}>
+          Click here to go back and check your text.
+        </a>
+      </p>
+
       <TermsOfServiceAcceptance />
       <ContactButton />
       <EmailRequestField
