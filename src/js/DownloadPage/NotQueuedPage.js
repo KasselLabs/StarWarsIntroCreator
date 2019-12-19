@@ -34,11 +34,6 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
           </li>
         </ul>
 
-        {/* Your video will be rendered to a MP4 file.&nbsp;
-        <br />
-        <a target="_blank" rel="noopener noreferrer" href="https://youtu.be/iYKU4pNy034">
-          Check a sample video how your video will look like here.
-        </a> */}
 
       </p>
       <p>
@@ -46,13 +41,12 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
         If you don&apos;t receive the video please contact us via email so we can check it out.
       </p>
       <p>
-        <b>Attention! </b>
-        Before sending the download request make sure there are no typos in your text
-        to grant that your video will be with the correct text.&nbsp;
-        <a href={urlToEdit}>
-          Click here to go back and check your text.
+        Your video will be rendered to a MP4 file.&nbsp;
+        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=lYnLLF2QyM4">
+          Check a sample video how your video will look like here.
         </a>
       </p>
+
       <ContactButton />
       <TermsOfServiceAcceptance />
       <DonateOrNotDonate {...props} />
