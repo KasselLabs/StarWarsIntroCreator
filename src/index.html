@@ -46,6 +46,7 @@
     <!-- End Facebook Pixel Code -->
 </head>
 <body class="loading">
+  <div id="google_translate_element"></div>
 
   <!-- Keep preview for OG meta tags -->
   <a style="display: none;" href="./assets/preview.png"></a>
@@ -266,7 +267,16 @@
   </footer>
 
   <div id="chrome-bug-alert"></div>
-<script src="https://cdn.ravenjs.com/3.25.0/raven.min.js" crossorigin="anonymous"></script>
-<script src="./js/index.js"></script>
+  <script src="https://cdn.ravenjs.com/3.25.0/raven.min.js" crossorigin="anonymous"></script>
+  <script src="./js/index.js"></script>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+            {pageLanguage: 'en'},
+            'google_translate_element'
+        );
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
