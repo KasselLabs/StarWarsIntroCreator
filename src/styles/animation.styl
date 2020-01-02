@@ -67,7 +67,6 @@
     top: auto;
     bottom: 0;
     left: 50%;
-    overflow: hidden;
     margin: 0 0 0 (- $titles-width / 2);
     width: $titles-width;
     height: 50em;
@@ -164,12 +163,15 @@
       right: 100px;
       bottom: 1150px;
       width: 655px;
+    }
 
-      &.centerCustom { // not used, but can be for customizations
-        right: 0;
-        left: 0;
-        margin: auto;
-      }
+    #pop {
+      position: absolute;
+      right: 20px;
+      bottom: 1518px;
+      width: 301px;
+      animation: slide-in 2s * $timeFactor ((93s * $timeFactor) + $extraTime) forwards;
+      transform: translate(-90%, 80%);
     }
   }
 
@@ -247,5 +249,14 @@ body.runningVideo {
   }
   100% {
       transform: translateY(-2200px);
+  }
+}
+
+@keyframes slide-in {
+  0% {
+      transform: translate(-90%, 80%);
+  }
+  100% {
+      transform: translate(0, 0);
   }
 }
