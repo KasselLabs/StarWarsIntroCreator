@@ -1,13 +1,13 @@
 export const defaultOpening = {
   center: false,
-  episode: 'Episode VIII',
+  episode: 'Episode IX',
   intro: 'A long time ago in a galaxy far,\nfar away....',
   logo: 'STaR\nwaRS',
-  text: "The FIRST ORDER reigns. Having decimated the peaceful Republic, Supreme Leader Snoke now deploys his merciless legions to seize military control of the galaxy.\nOnly General Leia Organa's band of RESISTANCE fighters stand against the rising tyranny, certain that Jedi Master Luke Skywalker will return and restore a spark of hope to the fight.\nBut the Resistance has been exposed. As the First Order speeds toward the rebel base, the brave heroes mount a desperate escape....",
-  title: 'THE LAST JEDI',
+  text: 'The dead speak! The galaxy has heard a mysterious broadcast, a threat of REVENGE in the sinister voice of the late EMPEROR PALPATINE.\nGENERAL LEIA ORGANA dispatches secret agents to gather intelligence, while REY, the last hope of the Jedi, trains for battle against the diabolical FIRST ORDER.\nMeanwhile, Supreme Leader KYLO REN rages in search of the phantom Emperor, determined to destroy any threat to his power....',
+  title: 'THE RISE OF SKYWALKER',
 };
 
-export const defaultKey = 'Episode8';
+export const defaultKey = 'Episode9';
 
 export const firebases = {
   initial: process.env.FIREBASE_INITIAL,
