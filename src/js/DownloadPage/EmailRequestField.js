@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import swal from 'sweetalert2';
 import { requestIntroDownload } from '../api/actions';
 import UserIdentifier from '../extras/UserIdentifier';
@@ -54,5 +55,11 @@ class EmailRequestField extends Component {
     );
   }
 }
+
+EmailRequestField.propTypes = {
+  buttonlabel: PropTypes.string,
+  openingKey: PropTypes.string,
+  finishRequestHandle: PropTypes.func,
+};
 
 export default EmailRequestField;

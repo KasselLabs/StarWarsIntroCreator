@@ -29,6 +29,7 @@ class CheckForDonation extends Component {
     const isRenderingViaBump = RENDERING === response.status && response.bumped_on;
 
     if (isBumped || isRenderingViaBump) {
+      window.fbq('track', 'Purchase', { content_ids: 'star-wars-intro' });
       this.setState({
         status: CONFIRMED,
       });

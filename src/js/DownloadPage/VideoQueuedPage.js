@@ -33,7 +33,7 @@ const VideoQueuedPage = ({ status, openingKey, ...props }) => {
 
         Your video will be rendered to a MP4 file.&nbsp;
         <br />
-        <a target="_blank" rel="noopener noreferrer" href="https://youtu.be/iYKU4pNy034">
+        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=lYnLLF2QyM4">
           Check a sample video how your video will look like here.
         </a>
 

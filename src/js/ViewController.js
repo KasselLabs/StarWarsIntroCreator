@@ -50,6 +50,8 @@ class ViewController {
       e.preventDefault();
       const opening = this.getFormValues();
       downloadButtonHandler(opening);
+
+      window.fbq('track', 'ViewContent', { content_ids: 'star-wars-intro' });
     });
 
     // paypal show Doar if is brazilian
