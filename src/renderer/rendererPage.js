@@ -15,7 +15,11 @@ const setCSSVariable = (variableName, value) => {
   document.documentElement.style.setProperty(variableName, value);
 };
 
-window.playIntro = (opening) => {
+window.playIntro = (opening, timeFactor) => {
+  if (timeFactor) {
+    setCSSVariable('--time-factor', timeFactor);
+  }
+
   ViewController.playOpening(opening);
 };
 
