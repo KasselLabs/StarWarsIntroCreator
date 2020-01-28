@@ -42,6 +42,8 @@ export const parseSpecialKeys = (key) => {
       return 'AKcKeYMPogupSU_r1I_g';
     case 'Episode8':
       return 'AL6yNfOxCGkHKBUi54xp';
+    case 'Episode9':
+      return 'BLxrIAXMvgGZYAgomHcN';
     default:
       return key;
   }

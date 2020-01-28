@@ -12,24 +12,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       background-color: black;
       opacity: 0;
-      animation: introBackgroundAnimation 9s * $timeFactor;
+      animation: introBackgroundAnimation var(--intro-background-duration);
 
       .intro {
-        padding: 0 100px;
+        padding-right: 5%;
+        padding-left: 5%;
         color: $introColor;
         font-weight: 400;
-        font-size: 500%;
+        font-size: 4.5vw;
         opacity: 0;
         transform: scaleX(1.1);
-        animation: introTextAnimation 6s * $timeFactor ease-out 1s * $timeFactor;
-
-        @media $HD{
-          font-size: 350%; // TODO: try to use vw unit
-        }
+        animation: introTextAnimation var(--intro-text-duration) ease-out var(--intro-text-delay);
       }
   }
 
@@ -40,7 +37,7 @@
 
     margin: 0 auto;
     opacity: 0;
-    animation: logoAnimation 11s * $timeFactor cubic-bezier(.11, .6, .48, .88) 9s * $timeFactor;
+    animation: logoAnimation var(--intro-logo-duration) cubic-bezier(.11, .6, .48, .88) var(--intro-logo-delay);
 
     .logoSub {
       width: 100vw;
@@ -107,7 +104,7 @@
         position: absolute;
         top: 100%;
         width: 100%;
-        animation: titlesAnimation (73s * $timeFactor) + $extraTime linear 13s * $timeFactor forwards;
+        animation: titlesAnimation var(--intro-crawl-duration) linear var(--intro-crawl-delay) forwards;
 
       > p {
         margin: 1.35em 0 1.85em 0;
@@ -167,7 +164,6 @@
       right: 100px;
       bottom: 1150px;
       width: 655px;
-      height: 663px;
 
       &.centerCustom { // not used, but can be for customizations
         right: 0;
@@ -202,7 +198,7 @@ body.runningVideo {
   }
 
   #backgroundSpace {
-    animation: scrolldown 7s * $timeFactor ((86s * $timeFactor) + $extraTime) forwards;
+    animation: scrolldown var(--intro-ending-duration) var(--intro-ending-delay) forwards;
   }
 }
 

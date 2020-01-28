@@ -30,8 +30,8 @@ $defaultFontFamily = Helvetica, Arial, sans-serif;
 $HD = '(max-height: 720px)';
 
 // variables
-$timeFactor = 10;
-$extraTime = (0 * $timeFactor);
+$timeFactor = 1.0;
+$extraTime = 0s;
 $introColor = #4bd5ee;
 $titlesColor = #ffd54e;
 
@@ -46,6 +46,23 @@ $panelTextColor = #d0ad3e;
 $warningYellow = $panelTextColor;
 
 mobile = 'only screen and (max-device-width : 500px)';
+
+:root {
+  --time-factor: $timeFactor;
+  --extra-time: $extraTime;
+  --intro-background-duration: calc(9s * var(--time-factor));
+  --intro-text-duration: calc(6s * var(--time-factor));
+  --intro-text-delay: calc(1s * var(--time-factor));
+
+  --intro-logo-duration: calc(11s * var(--time-factor));
+  --intro-logo-delay: calc(9s * var(--time-factor));
+
+  --intro-crawl-duration: calc((73s + var(--extra-time)) * var(--time-factor));
+  --intro-crawl-delay: calc(13s * var(--time-factor));
+
+  --intro-ending-duration: calc(7s * var(--time-factor));
+  --intro-ending-delay: calc((86s + var(--extra-time)) * var(--time-factor));
+}
 
 html,
 body {
