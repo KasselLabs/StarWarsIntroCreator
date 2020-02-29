@@ -37,6 +37,7 @@ window.previewIntro = async ({ key = 'BLz2gfYtRmFeXOjF6FH1', timeFactor = 1, sec
     setCSSVariable('--intro-crawl-delay', '0s');
     setCSSVariable('--intro-ending-duration', '0s');
     setCSSVariable('--intro-ending-delay', '0s');
+    setCSSVariable('--logo-appear-delay', '0s');
   }
 
   const opening = await loadOpening(key);

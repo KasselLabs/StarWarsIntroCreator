@@ -67,7 +67,6 @@
     top: auto;
     bottom: 0;
     left: 50%;
-    overflow: hidden;
     margin: 0 0 0 (- $titles-width / 2);
     width: $titles-width;
     height: 50em;
@@ -165,6 +164,16 @@
       bottom: 1150px;
       width: 655px;
 
+      &.appear {
+        opacity: 0;
+        animation: appear var(--logo-appear-duration) var(--logo-appear-delay) forwards;
+      }
+
+      &.disappear {
+        opacity: 1;
+        animation: disappear var(--logo-appear-duration) var(--logo-appear-delay) forwards;
+      }
+
       &.centerCustom { // not used, but can be for customizations
         right: 0;
         left: 0;
@@ -247,5 +256,23 @@ body.runningVideo {
   }
   100% {
       transform: translateY(-2200px);
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

@@ -30,7 +30,7 @@ $defaultFontFamily = Helvetica, Arial, sans-serif;
 $HD = '(max-height: 720px)';
 
 // variables
-$timeFactor = 1.0;
+$timeFactor = 20.0;
 $extraTime = 0s;
 $introColor = #4bd5ee;
 $titlesColor = #ffd54e;
@@ -60,8 +60,11 @@ mobile = 'only screen and (max-device-width : 500px)';
   --intro-crawl-duration: calc((73s + var(--extra-time)) * var(--time-factor));
   --intro-crawl-delay: calc(13s * var(--time-factor));
 
-  --intro-ending-duration: calc(7s * var(--time-factor));
+  --intro-ending-duration: calc(4s * var(--time-factor));
   --intro-ending-delay: calc((86s + var(--extra-time)) * var(--time-factor));
+
+  --logo-appear-duration: calc(3s * var(--time-factor));
+  --logo-appear-delay: calc((90s + var(--extra-time)) * var(--time-factor));
 }
 
 html,
