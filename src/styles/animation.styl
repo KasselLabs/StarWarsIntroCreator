@@ -67,13 +67,12 @@
     top: auto;
     bottom: 0;
     left: 50%;
-    overflow: hidden;
     margin: 0 0 0 (- $titles-width / 2);
     width: $titles-width;
     height: 50em;
     text-align: justify;
     word-wrap: break-word;
-    font-size: 350%;
+    font-size: 1.5rem;
     transform-origin: 50% 100%;
     transform: perspective(300px) rotateX(25deg);
 
@@ -145,7 +144,7 @@
       line-height: 1.4em;
 
       p {
-        margin: 1em 0;
+        margin: 0.5em 0;
       }
     }
   }
@@ -157,7 +156,6 @@
     left: 0;
     width: 100%;
     height: 4100px;
-    background: url('../assets/bg-stars.png') repeat;
 
     #deathstar {
       position: absolute;
@@ -236,7 +234,7 @@ body.runningVideo {
     opacity: 1;
   }
   100% {
-    top: 20%;
+    top: -140%;
     opacity: 0;
   }
 }
@@ -248,4 +246,40 @@ body.runningVideo {
   100% {
       transform: translateY(-2200px);
   }
+}
+
+.credit-section {
+  display: flex;
+  justify-content: center;
+}
+
+.credit-section > div {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+  width: 40%;
+  font-size: 1rem;
+  white-space: nowrap;
+  font-weight: normal;
+}
+
+.credit-section > div:last-child {
+  padding-left: 10px;
+  padding-right: 0;
+  justify-content: flex-start;
+  font-weight: bold;
+}
+
+.credit-header > div {
+  font-size: 1.4rem;
+  font-weight: normal;
+}
+
+.credit-header > div:last-child {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+div + p + * + p {
+  margin-top: 95px !important;
 }
