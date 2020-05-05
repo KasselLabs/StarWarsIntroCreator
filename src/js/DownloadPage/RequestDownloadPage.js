@@ -37,6 +37,16 @@ const RequestDownloadPage = ({
           </li>
         </ul>
       </p>
+
+      <p>
+        <b>Attention! </b>
+        Before sending the download request make sure there are no typos in your text
+        to grant that your video will be with the correct text.&nbsp;
+        <a href={urlToEdit}>
+          Click here to go back and check your text.
+        </a>
+      </p>
+
       <p>Select your payment option:</p>
       <PaymentModule
         openingKey={openingKey}
@@ -70,15 +80,6 @@ const RequestDownloadPage = ({
     <div>
       {donate && donateScreen}
       {!donate && youCanStillDonate}
-
-      <p>
-        <b>Attention! </b>
-        Before sending the download request make sure there are no typos in your text
-        to grant that your video will be with the correct text.&nbsp;
-        <a href={urlToEdit}>
-          Click here to go back and check your text.
-        </a>
-      </p>
 
       <TermsOfServiceAcceptance />
       <ContactButton />
