@@ -13,10 +13,11 @@ export const firebases = {
   initial: process.env.FIREBASE_INITIAL,
   A: process.env.FIREBASE_A,
   B: process.env.FIREBASE_B,
+  C: process.env.FIREBASE_C,
 };
 
-export const defaultFirebase = firebases.B;
-export const defaultFirebasePrefix = 'B';
+export const defaultFirebase = firebases.C;
+export const defaultFirebasePrefix = 'C';
 
 export const serverApi = process.env.SERVER_API;
 export const paymentPageUrl = process.env.PAYMENT_PAGE_URL;
