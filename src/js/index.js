@@ -36,6 +36,7 @@ swal.setDefaults({
       'Can\'t find variable: pktAnnotationHighlighter',
       'window.onorientationchange is not a function. (In \'window.onorientationchange()\', \'window.onorientationchange\' is null)',
       'script_serverip is not defined',
+      'ResizeObserver loop limit exceeded',
     ],
     ignoreUrls: [
       // Facebook blocked
@@ -61,4 +62,3 @@ swal.setDefaults({
     startApplication();
   });
 }());
-
