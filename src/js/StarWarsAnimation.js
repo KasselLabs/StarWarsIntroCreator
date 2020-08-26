@@ -75,8 +75,7 @@ class StarWarsAnimation {
     const logoTextContainer = animation.querySelector('.logoText');
     const logoDefaultContainer = animation.querySelector('#logoDefault');
 
-    // logo can't be empty
-    const logoText = opening.logo ? opening.logo : starwarsDefaultText;
+    const logoText = opening.logo;
     // is default logo
     if (logoText.toLowerCase() === starwarsDefaultText) {
       logoTextContainer.style.display = 'none';
