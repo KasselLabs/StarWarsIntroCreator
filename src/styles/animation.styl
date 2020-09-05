@@ -12,6 +12,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
       width: 100vw;
       height: 100vh;
       background-color: black;
@@ -23,11 +24,17 @@
         padding-left: 5%;
         color: $introColor;
         font-weight: 400;
-        font-size: 4.5vw;
+        font-size: 3.8em;
         opacity: 0;
         transform: scaleX(1.1);
         animation: introTextAnimation var(--intro-text-duration) ease-out var(--intro-text-delay);
-      }
+        }
+        img {
+            margin-top: 131px;
+        opacity: 0;
+        animation: introTextAnimation var(--intro-text-duration) ease-out var(--intro-text-delay);
+    }
+
   }
 
   #logo {
@@ -37,6 +44,7 @@
 
     margin: 0 auto;
     opacity: 0;
+    transform: scale(2.2);
     animation: logoAnimation var(--intro-logo-duration) cubic-bezier(.11, .6, .48, .88) var(--intro-logo-delay);
 
     .logoSub {
@@ -61,19 +69,19 @@
 
   // titles animation
   #titles {
-    $titles-width = 14.65em;
+    $titles-width = 22.65em;
 
     position: absolute;
     top: auto;
     bottom: 0;
     left: 50%;
-    overflow: hidden;
     margin: 0 0 0 (- $titles-width / 2);
     width: $titles-width;
+    overflow: hidden;
     height: 50em;
     text-align: justify;
     word-wrap: break-word;
-    font-size: 350%;
+    font-size: 235%;
     transform-origin: 50% 100%;
     transform: perspective(300px) rotateX(25deg);
 
@@ -143,9 +151,38 @@
     #text {
       // line-height: 1.5em; // old version
       line-height: 1.4em;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      padding-bottom: 5000px;
+
+      .section-title {
+        font-size: 1.2em;
+        padding-bottom: 32px;
+      }
+
+      .section-body {
+        display: flex;
+        font-size: 0.8em;
+        padding-bottom: 3em;
+
+        > div {
+          flex-grow: 1;
+          max-width: 33%;
+          padding-bottom: 18px;
+          line-height: 25.5px;
+
+          > div {
+            padding-bottom: 25px;
+          }
+        }
+      }
 
       p {
         margin: 1em 0;
+        display: flex;
+        white-space: nowrap;
+        justify-content: center;
       }
     }
   }
@@ -162,8 +199,8 @@
     #deathstar {
       position: absolute;
       right: 100px;
-      bottom: 1150px;
-      width: 655px;
+      bottom: 1190px;
+      width: 1800px;
 
       &.centerCustom { // not used, but can be for customizations
         right: 0;

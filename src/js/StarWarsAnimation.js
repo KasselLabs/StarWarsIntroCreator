@@ -25,18 +25,25 @@ class StarWarsAnimation {
   }
 
   prepareBodyText(text) {
-    const escapedText = escapeHtml(text);
+    const escapedText = text.map((x) => {
+      let mainHTML = x.partitionedStars.map(t => `
+        <div>
+          ${t.join('</div><div>')}
+        </div>`).join('</div><div>');
+      mainHTML = `<div>${mainHTML}</div>`;
 
-    const paragraphs = escapedText
-      .trim()
-      .split('\n')
-      .join('</p><p>');
+      return `
+      <div class="section">
+        <div class="section-title">NEW STAR - ${x.title}</div>
+        <div class="section-body">
+          ${mainHTML}
+        </div>
+      </div>
+      `;
+    }).join('');
 
-    const breakLineBetweenPs = paragraphs
-      .split('<p></p>')
-      .join('<br/>');
-
-    const finalHtml = `<p>${breakLineBetweenPs}</p>`;
+    const finalHtml = `<div class="sections">${escapedText}</div>`;
+    // console.log(finalHtml);
 
     return finalHtml;
   }
