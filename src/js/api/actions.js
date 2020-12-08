@@ -53,13 +53,13 @@ export const loadAndEdit = async (key) => {
 };
 
 export const _openingIsValid = (opening) => {
-  const introLines = opening.intro.split('\n');
+  const introLines = opening.intro.trim().split('\n');
   if (introLines.length > 2) {
     swal('ops...', "The blue introduction text can't have more than 2 lines. Please, make your text in 2 lines. ;)", 'warning');
     return false;
   }
 
-  const logoLines = opening.logo.split('\n');
+  const logoLines = opening.logo.trim().split('\n');
   if (logoLines.length > 2) {
     swal('ops...', "The Star Wars logo text can't have more than 2 lines. Please, make your text in 2 lines. ;)", 'warning');
     return false;
