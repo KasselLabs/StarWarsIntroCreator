@@ -8,8 +8,6 @@ import {
   RENDERED,
 } from './constants';
 
-import Atat from './Atat';
-
 import NotQueuedPage from './NotQueuedPage';
 import RequestDownloadPage from './RequestDownloadPage';
 import VideoQueuedPage from './VideoQueuedPage';
@@ -209,7 +207,6 @@ class DownloadPage extends Component {
     return (
       <div>
         <h2>{title}</h2>
-        <Atat />
         {this.renderPageContent()}
       </div>
     );

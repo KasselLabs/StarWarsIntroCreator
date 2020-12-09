@@ -3,6 +3,7 @@ import DonateOrNotDonate from './DonateOrNotDonate';
 import { calculateTimeToRender } from '../extras/auxiliar';
 import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
 import ContactButton from './ContactButton';
+import Atat from './Atat';
 
 const VideoQueuedPage = ({ status, openingKey, ...props }) => {
   const { queuePosition } = status;
@@ -10,6 +11,7 @@ const VideoQueuedPage = ({ status, openingKey, ...props }) => {
 
   return (
     <div>
+      <Atat />
       <p>
         This video is already in the queue to be rendered.
         This page will be updated when the video is ready.

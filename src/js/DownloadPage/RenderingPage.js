@@ -1,6 +1,7 @@
 import React from 'react';
 import ContactButton from './ContactButton';
 import EmailRequestField from './EmailRequestField';
+import Atat from './Atat';
 
 import { RENDERING } from './constants';
 
@@ -10,6 +11,7 @@ const RenderingPage = ({ statusType, openingKey, finishRequestHandle }) => {
     : 'Your donation has been verified, your video will be rendered soon. You will receive your video by email in a few hours. '; // TODO show ETA here
   return (
     <div>
+      <Atat />
       <p>
         {text}
         This page will be updated when the video is ready.

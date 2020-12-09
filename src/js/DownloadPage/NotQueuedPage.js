@@ -3,6 +3,7 @@ import DonateOrNotDonate from './DonateOrNotDonate';
 import { calculateTimeToRender } from '../extras/auxiliar';
 import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
 import ContactButton from './ContactButton';
+import Atat from './Atat';
 
 const NotQueuedPage = ({ status, openingKey, ...props }) => {
   const { queueSize } = status;
@@ -11,6 +12,7 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
 
   return (
     <div>
+      <Atat />
       <p>
         You can now request a download of your creation as a video,
         which you can play anywhere, put it in a slideshow or

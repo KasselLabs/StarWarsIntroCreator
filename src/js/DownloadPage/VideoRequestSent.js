@@ -6,6 +6,7 @@ import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
 import ContactButton from './ContactButton';
 import CheckForDonation from './CheckForDonation';
 import UrlHandler from '../extras/UrlHandler';
+import Atat from './Atat';
 
 class VideoRequestSent extends Component {
   handleOkButton = () => {
@@ -46,6 +47,7 @@ class VideoRequestSent extends Component {
 
     return (
       <p>
+        <Atat />
         Your video request has been queued!
         Your current position on the queue is <b>{queuePosition}</b>,
         and may take up to {timeToRender} to send your video.
