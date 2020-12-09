@@ -7,7 +7,7 @@ import EmailRequestField from './EmailRequestField';
 import PaymentModule from './PaymentModule';
 import { calculateTimeToRender } from '../extras/auxiliar';
 import { QUEUED } from './constants';
-
+import Atat from './Atat';
 
 const RequestDownloadPage = ({
   donate,
@@ -47,7 +47,6 @@ const RequestDownloadPage = ({
         </a>
       </p>
 
-      <p>Select your payment option:</p>
       <PaymentModule
         openingKey={openingKey}
       />
@@ -59,6 +58,7 @@ const RequestDownloadPage = ({
 
   const youCanStillDonate = (
     <Fragment>
+      <Atat />
       <p>
         Your video request {isQueued ? qeuedText : notQueuedText}{' '}
         queued at position <b>{position}</b>.

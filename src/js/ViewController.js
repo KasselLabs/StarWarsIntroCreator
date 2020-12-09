@@ -57,9 +57,7 @@ class ViewController {
     // paypal show Doar if is brazilian
     if (isFromBrazil()) {
       const paypalButtons = document.querySelector('#paypalDonateBRL');
-      const iframe = document.querySelector('#paypalDonateIframe');
       paypalButtons.classList.add('show');
-      iframe.classList.add('isBrazil');
     }
 
     // close download page button
