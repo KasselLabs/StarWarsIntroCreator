@@ -47,7 +47,6 @@ const RequestDownloadPage = ({
         </a>
       </p>
 
-      <p>Select your payment option:</p>
       <PaymentModule
         openingKey={openingKey}
       />

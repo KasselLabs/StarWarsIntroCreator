@@ -55,10 +55,6 @@
 
     button {
       buttonStyle();
-
-      &.active {
-        background-color: $inputBorderColor;
-      }
     }
 
     p.email {
@@ -107,30 +103,6 @@
     }
   }
 
-  iframe {
-    width: 100%;
-  }
-
-  iframe.paypal {
-    margin-top: 5px;
-
-    &.isBrazil {
-      height: 123px;
-    }
-  }
-
-  @media mobile {
-    iframe.paypal {
-      margin: 10% 25%;
-      width: 50%;
-      transform: scale(2);
-      height: 56px;
-
-      &.isBrazil {
-        height: 143px;
-      }
-    }
-  }
 }
 
 .donateOrNotDonateButtons {
@@ -180,10 +152,11 @@
 }
 
 #stripeDonateIframe {
-  height: 460px;
+  height: 505px;
+  width: 100%;
 }
 
-.compose-iframe {
+.payment-container {
   position: relative;
 
   .center {
