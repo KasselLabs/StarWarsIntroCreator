@@ -37,6 +37,8 @@ footer {
   }
 
   .socialButtons {
+    display: flex;
+    flex-direction: column;
     mobileFooter();
 
     position: fixed;
@@ -54,6 +56,12 @@ footer {
 
     > #donateFooterButton {
       buttonStyle();
+      margin-bottom: 10px;
+
+      @media mobile {
+        width: auto;
+        font-size: 1.5em;
+      }
     }
   }
 
@@ -90,8 +98,6 @@ footer {
 
     .socialButtons {
       position: initial;
-      display: flex;
-      flex-direction: column;
       align-items: center;
       margin-bottom: 30px;
     }
