@@ -44,10 +44,6 @@ footer {
     left: 1em;
     z-index: 10;
 
-    form {
-      margin-bottom: 5px;
-    }
-
     div {
       margin-bottom: .33em;
 
@@ -56,19 +52,8 @@ footer {
       }
     }
 
-    #btcether {
-      display: flex;
-      font-weight: bold;
-      line-height: 25px;
-
-      span {
-        margin-left: 5px;
-      }
-
-      &:hover {
-        text-decoration: underline;
-        cursor: pointer;
-      }
+    > #donateFooterButton {
+      buttonStyle();
     }
   }
 

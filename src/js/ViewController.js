@@ -1,12 +1,12 @@
-import { defaultOpening } from './config';
-import { callOnFocus, isFromBrazil } from './extras/utils';
+import swal from 'sweetalert2';
+import { defaultOpening, defaultKey } from './config';
+import { callOnFocus } from './extras/utils';
 import AudioController from './AudioController';
 import ApplicationState from './ApplicationState';
 import UrlHandler from './extras/UrlHandler';
 import { playButtonHandler, downloadButtonHandler } from './api/actions';
 import StarWarsAnimation from './StarWarsAnimation';
 import { mountDownloadPage, unmountDownloadPage } from './mountDownloadPage';
-import bitcoinEther from './extras/bitcoinEther';
 
 class ViewController {
   constructor() {
@@ -54,12 +54,6 @@ class ViewController {
       window.fbq('track', 'ViewContent', { content_ids: 'star-wars-intro' });
     });
 
-    // paypal show Doar if is brazilian
-    if (isFromBrazil()) {
-      const paypalButtons = document.querySelector('#paypalDonateBRL');
-      paypalButtons.classList.add('show');
-    }
-
     // close download page button
     document.querySelector('#closeButton')
       .addEventListener('click', (e) => {
@@ -67,8 +61,22 @@ class ViewController {
         UrlHandler.goToEditPage(ApplicationState.state.key);
       });
 
-    // bitcoin and ether button
-    document.querySelector('#btcether').addEventListener('click', bitcoinEther);
+    document.querySelector('#donateFooterButton').addEventListener('click', (e) => {
+      e.preventDefault();
+      const openingKey = ApplicationState.state.key;
+      const isDefaultKey = openingKey === defaultKey;
+      if (isDefaultKey) {
+        swal({
+          title: 'donate',
+          html: `<p>You can donate to support us and receive your creation rendered as a video.</p>
+          <p>But first, you need to create your own content, edit the fields, and click on the PLAY button to make it.</p>
+          <p>Then you can request your Download or click on this button to donate for it.</p>`,
+        });
+        return;
+      }
+
+      UrlHandler.goToDownloadPage(openingKey, 'donate');
+    });
   }
 
   setLoading() {
