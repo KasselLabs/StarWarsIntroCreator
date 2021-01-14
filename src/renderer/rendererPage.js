@@ -52,3 +52,25 @@ window.previewIntro = async ({ key = 'BLz2gfYtRmFeXOjF6FH1', timeFactor = 1, sec
 window.turnOnAudio = () => {
   AudioController.audio = audio;
 };
+
+window.addEventListener('keydown', (e) => {
+  const TAB_CODE = 9;
+  const SHIFT_CODE = 16;
+  const CTRL_CODE = 17;
+  const ALT_CODE = 18;
+
+  switch (e.keyCode) {
+    case TAB_CODE:
+      previewIntro({ section: 'ending' });
+      break;
+    case SHIFT_CODE:
+      previewIntro({ section: 'logo' });
+      break;
+    case CTRL_CODE:
+      previewIntro({});
+      break;
+    case ALT_CODE:
+      previewIntro({ timeFactor: 0.1 });
+      break;
+  }
+});
