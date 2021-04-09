@@ -6,12 +6,12 @@
   "license": "MIT",
   "scripts": {
     "clear": "rm -rf dist .cache public",
-    "build": "yarn clear && parcel build ./src/index.html && cp .nojekyll dist",
-    "build-gitlab": "yarn build -d public --public-url /starwarsintrocreator-stage",
+    "build": "npm run clear && parcel build ./src/index.html && cp .nojekyll dist",
+    "build-gitlab": "npm run build -d public --public-url /starwarsintrocreator-stage",
     "start": "parcel ./src/index.html -p 8080 --no-hmr",
     "test": "jest",
-    "test:watch": "yarn test --watchAll",
-    "test:coverage": "yarn test --coverage",
+    "test:watch": "npm run test --watchAll",
+    "test:coverage": "npm run test --coverage",
     "test:coverage:results": "google-chrome coverage/lcov-report/index.html",
     "lint": "eslint src/"
   },
@@ -39,6 +39,7 @@
     "gh-pages": "^1.1.0",
     "jest": "^22.4.4",
     "parcel-bundler": "^1.12.3",
+    "parcel-plugin-static-files-copy": "^2.6.0",
     "stylint": "^1.5.9",
     "stylus": "^0.54.5"
   },
@@ -51,5 +52,9 @@
     "react-dom": "^16.8.6",
     "lodash.uniq": "^4.5.0",
     "sweetalert2": "^7.15.1"
-  }
+  },
+  "staticFiles": {
+    "staticPath": "static",
+    "watcherGlob": "**/*"
+}
 }
