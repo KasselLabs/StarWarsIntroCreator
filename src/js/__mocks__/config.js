@@ -13,4 +13,6 @@ export const firebases = {
   B: 'https://firebaseB',
 };
 
-export const defaultFirebase = firebases.B;
+window.firebases = firebases;
+
+export const defaultFirebasePrefix = 'B';
