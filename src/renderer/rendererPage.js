@@ -7,9 +7,11 @@ import AudioController from '../js/AudioController';
 const { audio } = AudioController;
 AudioController.audio = null;
 
-window.Raven = {
-  captureBreadcrumb: () => {},
-};
+Raven.config(process.env.RAVEN, {
+  ignoreErrors: [],
+  ignoreUrls: [],
+  release: '0e4fdef81448dcfa0e16ecc4433ff3997aa53572-render',
+}).install();
 
 const setCSSVariable = (variableName, value) => {
   document.documentElement.style.setProperty(variableName, value);
