@@ -4,6 +4,9 @@
   "description": "Star Wars Intro Creator by Kassel Labs",
   "author": "Kassel Labs <contact@kassellabs.io>",
   "license": "MIT",
+  "engines": {
+    "node": "10"
+  },
   "scripts": {
     "clear": "rm -rf dist .cache public",
     "build": "npm run clear && parcel build ./src/index.html && cp .nojekyll dist",
