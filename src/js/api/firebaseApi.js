@@ -1,11 +1,11 @@
-import { firebases, defaultFirebase, defaultFirebasePrefix } from '../config';
+import { defaultFirebasePrefix } from '../config';
 import Http from './Http';
 
 const SERVER_TIMESTAMP = { '.sv': 'timestamp' };
 
 export const _parseFirebasekey = (key) => {
   const result = {
-    baseURL: defaultFirebase,
+    baseURL: window.firebases[defaultFirebasePrefix],
   };
 
   // is creating a new opening
@@ -13,7 +13,7 @@ export const _parseFirebasekey = (key) => {
     return result;
   }
 
-  const { initial, ...alternatives } = firebases;
+  const { initial, ...alternatives } = window.firebases;
 
   const prefix = key[0];
   const alternativeDb = alternatives[prefix];
@@ -103,7 +103,7 @@ export const fetchKey = async (initialKey) => {
 
 
 export const saveOpening = async (opening) => {
-  const http = Http(defaultFirebase);
+  const http = Http(window.firebases[defaultFirebasePrefix]);
 
   opening.created = SERVER_TIMESTAMP;
 

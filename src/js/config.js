@@ -9,20 +9,21 @@ export const defaultOpening = {
 
 export const defaultKey = 'Episode9';
 
-export const firebases = {
+const firebases = {
   initial: process.env.FIREBASE_INITIAL,
   A: process.env.FIREBASE_A,
   B: process.env.FIREBASE_B,
   C: process.env.FIREBASE_C,
 };
 
-export const defaultFirebase = firebases.C;
+window.firebases = firebases;
+
 export const defaultFirebasePrefix = 'C';
 
 export const serverApi = process.env.SERVER_API;
 export const paymentPageUrl = process.env.PAYMENT_PAGE_URL;
 
-if (!defaultFirebase) {
+if (!window.firebases[defaultFirebasePrefix]) {
   throw new Error('Firebase URL can\'t be empty');
 }
 
