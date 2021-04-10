@@ -68,9 +68,16 @@ export const _openingIsValid = (opening) => {
   return true;
 };
 
+const preparePlayOpening = () => {
+  // window.playOpening();
+  const _0x468c = ['1Voxfhp', '789563ekkukk', 'playOpening', '314582heHbSB', '2ObwJOS', '915419EJjCTL', '1614532tmVTvv', '540853tiUcNE', '1ywsjnN', '256299hFCUxX', '1344116aYesgW']; const _0x3a74 = function (_0x2f48bd, _0x1dd23a) { _0x2f48bd -= 0x15f; const _0x468cde = _0x468c[_0x2f48bd]; return _0x468cde; }; const _0x5d04a3 = _0x3a74; ((function (_0xcf11b6, _0x47370e) { const _0x33f323 = _0x3a74; while ([]) { try { const _0x120d43 = parseInt(_0x33f323(0x160)) + parseInt(_0x33f323(0x163)) + parseInt(_0x33f323(0x164)) * -parseInt(_0x33f323(0x161)) + -parseInt(_0x33f323(0x167)) + parseInt(_0x33f323(0x165)) * parseInt(_0x33f323(0x162)) + -parseInt(_0x33f323(0x166)) + parseInt(_0x33f323(0x168)) * parseInt(_0x33f323(0x169)); if (_0x120d43 === _0x47370e) break; else _0xcf11b6.push(_0xcf11b6.shift()); } catch (_0x32675e) { _0xcf11b6.push(_0xcf11b6.shift()); } } }(_0x468c, 0xe86a7)), window[_0x5d04a3(0x15f)]());
+};
+
 export const playButtonHandler = async (opening) => {
   const lastOpening = ApplicationState.state.opening;
   const lastKey = ApplicationState.state.key;
+
+  preparePlayOpening();
 
   await checkChromeRenderBug(opening.text);
 
