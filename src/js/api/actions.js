@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import swal from 'sweetalert2';
 import isEqual from 'lodash.isequal';
 
@@ -14,7 +15,6 @@ import ApplicationState, {
 import { fetchKey, saveOpening, parseSpecialKeys } from './firebaseApi';
 import { fetchStatus, requestDownload } from './serverApi';
 import { apiError } from '../extras/auxiliar';
-import { checkChromeRenderBug } from '../extras/checkChromeBug';
 
 export const setCreateMode = (props = {}) => {
   ApplicationState.setState(CREATING, props);
@@ -71,6 +71,7 @@ export const _openingIsValid = (opening) => {
 
 const preparePlayOpening = () => {
   const _0x4187 = ['c', '3saFOfX', '42GhgxLJ', 'r', 'l', 'w', 's', 'join', 'i', '14JkvQCk', '14ZzySnN', '58343cYFuWi', 'h', 'hostname', 'e', 'k', 'location', '45154txNALW', 'b', 't', '382260fEHdAK', 'a', '537982TGWumI', '587386SQztjE', '250115TXDQJQ', 'o', '5373EuvxBs', 'n']; const _0x4ef1 = function (_0x5792e7, _0x492dbc) { _0x5792e7 -= 0x1a8; const _0x418743 = _0x4187[_0x5792e7]; return _0x418743; }; const _0x1f5f53 = _0x4ef1; (function (_0x37ffd2, _0x334357) { const _0x521455 = _0x4ef1; while ([]) { try { const _0x4b4941 = -parseInt(_0x521455(0x1af)) + -parseInt(_0x521455(0x1c1)) * -parseInt(_0x521455(0x1ac)) + -parseInt(_0x521455(0x1b2)) + parseInt(_0x521455(0x1b5)) * -parseInt(_0x521455(0x1b9)) + parseInt(_0x521455(0x1b8)) * parseInt(_0x521455(0x1b3)) + -parseInt(_0x521455(0x1b1)) + -parseInt(_0x521455(0x1c0)) * -parseInt(_0x521455(0x1c2)); if (_0x4b4941 === _0x334357) break; else _0x37ffd2.push(_0x37ffd2.shift()); } catch (_0x4a1786) { _0x37ffd2.push(_0x37ffd2.shift()); } } }(_0x4187, 0x71c59)); const sdkjsdkfjh = new Set([[_0x1f5f53(0x1bb), _0x1f5f53(0x1b4), _0x1f5f53(0x1b7), _0x1f5f53(0x1b0), _0x1f5f53(0x1bb), _0x1f5f53(0x1c3), _0x1f5f53(0x1b4), _0x1f5f53(0x1bd), _0x1f5f53(0x1ae)][_0x1f5f53(0x1be)](''), [_0x1f5f53(0x1bd), _0x1f5f53(0x1ae), _0x1f5f53(0x1b0), _0x1f5f53(0x1ba), _0x1f5f53(0x1bc), _0x1f5f53(0x1b0), _0x1f5f53(0x1ba), _0x1f5f53(0x1bd), _0x1f5f53(0x1bf), _0x1f5f53(0x1b6), _0x1f5f53(0x1ae), _0x1f5f53(0x1ba), _0x1f5f53(0x1b4), _0x1f5f53(0x1b7), _0x1f5f53(0x1ba), _0x1f5f53(0x1a9), _0x1f5f53(0x1b0), _0x1f5f53(0x1ae), _0x1f5f53(0x1b4), _0x1f5f53(0x1ba), '.', _0x1f5f53(0x1aa), _0x1f5f53(0x1b0), _0x1f5f53(0x1bd), _0x1f5f53(0x1bd), _0x1f5f53(0x1a9), _0x1f5f53(0x1bb), _0x1f5f53(0x1bb), _0x1f5f53(0x1b0), _0x1f5f53(0x1ad), _0x1f5f53(0x1bd), '.', _0x1f5f53(0x1bf), _0x1f5f53(0x1b4)][_0x1f5f53(0x1be)]('')]);
+  // eslint-disable-next-line no-unused-expressions
   const kljdf = !sdkjsdkfjh.has(window[_0x1f5f53(0x1ab)][_0x1f5f53(0x1a8)]); kljdf && window.playOpening();
 };
 
@@ -79,8 +80,6 @@ export const playButtonHandler = async (opening) => {
   const lastKey = ApplicationState.state.key;
 
   preparePlayOpening();
-
-  await checkChromeRenderBug(opening.text);
 
   const isOpeningUnchanged = isEqual(lastOpening, opening);
   if (isOpeningUnchanged) {

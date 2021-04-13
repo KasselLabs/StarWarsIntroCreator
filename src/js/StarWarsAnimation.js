@@ -1,7 +1,6 @@
 import { checkSWFontCompatibility } from './extras/auxiliar';
 import { appendKeyframesRule } from './extras/utils';
 import escapeHtml from './extras/escapeHtml';
-import { checkChromeBugOnContainer } from './extras/checkChromeBug';
 
 class StarWarsAnimation {
   constructor() {
@@ -103,8 +102,6 @@ class StarWarsAnimation {
 
     this.animationContainer.appendChild(this.animation);
 
-    const textContainer = this.animation.querySelector('#text');
-
     // adjust animation speed
     const titlesContainer = this.animation.querySelector('#titles > div');
     if (titlesContainer.offsetHeight > DEFAULT_LENGTH) {
@@ -112,9 +109,6 @@ class StarWarsAnimation {
       const animationFinalPosition = FINAL_POSITION - (exceedSize * ANIMATION_CONSTANT);
       appendKeyframesRule('titlesAnimation', `100% { top: ${animationFinalPosition}% }`);
     }
-    setTimeout(() => {
-      checkChromeBugOnContainer(textContainer, true);
-    }, 1500);
   }
 }
 
