@@ -7,7 +7,12 @@ import UrlHandler from './extras/UrlHandler';
 import UserIdentifier from './extras/UserIdentifier';
 import AudioController from './AudioController';
 import { documentReady, urlHashChange } from './extras/utils';
-import { loadAndPlay, loadDownloadPage, setCreateMode, loadAndEdit } from './api/actions';
+import {
+  loadAndPlay,
+  loadDownloadPage,
+  setCreateMode,
+  loadAndEdit,
+} from './api/actions';
 import { defaultOpening, defaultKey } from './config';
 
 let lastPage = '';

@@ -6,6 +6,7 @@ import '../styles/main.styl';
 
 import './extras/facebooksdk';
 import './extras/googleanalytics';
+import './extras/donateFlowTest';
 
 import startApplication from './App';
 
