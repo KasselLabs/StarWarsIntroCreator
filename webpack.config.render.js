@@ -1,14 +1,13 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     port: 8080,
   },
-  entry: { index: path.resolve(__dirname, 'src', 'js', 'index.js') },
+  entry: { index: path.resolve(__dirname, 'src', 'renderer', 'rendererPage.js') },
   module: {
     rules: [
       {
@@ -37,7 +36,6 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[hash].js',
   },
   plugins: [
     new webpack.EnvironmentPlugin([
@@ -52,12 +50,8 @@ module.exports = {
       'FACEBOOK_PIXEL',
     ]),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'index.html'),
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: 'static' },
-      ],
+      template: path.resolve(__dirname, 'src', 'renderer', 'index.html'),
+      filename: 'renderer.html',
     }),
   ],
 };

@@ -5,13 +5,13 @@
   "author": "Kassel Labs <contact@kassellabs.io>",
   "license": "MIT",
   "engines": {
-    "node": "10"
+    "node": "14"
   },
   "scripts": {
     "clear": "rm -rf dist .cache public",
-    "build": "npm run clear && parcel build ./src/index.html && cp .nojekyll dist",
-    "build-gitlab": "npm run build -d public --public-url /starwarsintrocreator-stage",
+    "build": "npm run clear && webpack --mode production && webpack --mode production -c webpack.config.render.js --output-path dist-rendering && cp .nojekyll dist && cp dist-rendering/* dist/",
     "start": "webpack serve --mode development",
+    "start-render": "webpack serve --mode development -c webpack.config.render.js",
     "test": "jest",
     "test:watch": "npm run test --watchAll",
     "test:coverage": "npm run test --coverage",
@@ -32,6 +32,7 @@
     "@babel/preset-react": "^7.13.13",
     "babel-loader": "^8.2.2",
     "babel-polyfill": "^6.26.0",
+    "copy-webpack-plugin": "^8.1.1",
     "css-loader": "^5.2.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
@@ -58,10 +59,10 @@
     "axios": "^0.18.0",
     "bowser": "^1.9.4",
     "lodash.isequal": "^4.5.0",
+    "lodash.uniq": "^4.5.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "lodash.uniq": "^4.5.0",
     "sweetalert2": "^7.15.1"
   },
   "staticFiles": {
