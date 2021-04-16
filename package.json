@@ -11,7 +11,7 @@
     "clear": "rm -rf dist .cache public",
     "build": "npm run clear && parcel build ./src/index.html && cp .nojekyll dist",
     "build-gitlab": "npm run build -d public --public-url /starwarsintrocreator-stage",
-    "start": "parcel ./src/index.html -p 8080 --no-hmr",
+    "start": "webpack serve --mode development",
     "test": "jest",
     "test:watch": "npm run test --watchAll",
     "test:coverage": "npm run test --coverage",
@@ -26,25 +26,33 @@
     ]
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.2",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
+    "@babel/core": "^7.13.15",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-react": "^7.13.13",
+    "babel-loader": "^8.2.2",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
+    "css-loader": "^5.2.1",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
+    "file-loader": "^6.2.0",
     "gh-pages": "^1.1.0",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.1",
     "jest": "^22.4.4",
     "parcel-bundler": "^1.12.3",
     "parcel-plugin-static-files-copy": "^2.6.0",
+    "raw-loader": "^4.0.2",
+    "style-loader": "^2.0.0",
     "stylint": "^1.5.9",
-    "stylus": "^0.54.5"
+    "stylus": "^0.54.5",
+    "stylus-loader": "^5.0.0",
+    "webpack": "^5.33.2",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -59,5 +67,5 @@
   "staticFiles": {
     "staticPath": "static",
     "watcherGlob": "**/*"
-}
+  }
 }
