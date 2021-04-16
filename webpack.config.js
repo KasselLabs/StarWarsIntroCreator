@@ -1,7 +1,7 @@
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   devServer: {
@@ -13,8 +13,7 @@ module.exports = {
     rules: [
       {
         test: /\.(png|jpe?g|svg|ttf|woff2?|mp3|ogg)$/,
-        use: 'file-loader',
-        dependency: { not: ['url'] },
+        type: 'asset/resource',
       },
       {
         test: /\.css$/,
@@ -40,17 +39,7 @@ module.exports = {
     filename: '[hash].js',
   },
   plugins: [
-    new webpack.EnvironmentPlugin([
-      'RAVEN',
-      'FIREBASE_INITIAL',
-      'FIREBASE_A',
-      'FIREBASE_B',
-      'FIREBASE_C',
-      'FIREBASE_D',
-      'SERVER_API',
-      'PAYMENT_PAGE_URL',
-      'FACEBOOK_PIXEL',
-    ]),
+    new Dotenv(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'),
     }),
