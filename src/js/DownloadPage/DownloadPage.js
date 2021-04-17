@@ -18,7 +18,9 @@ import VideoRequestSent from './VideoRequestSent';
 import RenderingPage from './RenderingPage';
 import RenderedPage from './RenderedPage';
 import AddEmailForm from './AddEmailForm';
+import { requestIntroDownload } from '../api/actions';
 
+import { registerPaymentEventsHandler, unregisterPaymentEventsHandler } from './paymentEventsHandler';
 import UrlHandler from '../extras/UrlHandler';
 
 const INITIAL_PAGE = 0;
@@ -44,10 +46,12 @@ class DownloadPage extends Component {
 
   componentDidMount() {
     window.addEventListener('hashchange', this.urlChangeHandler);
+    registerPaymentEventsHandler(this.paymentSuccessCallback);
   }
 
   componentWillUnmount() {
     window.removeEventListener('hashchange', this.urlChangeHandler);
+    unregisterPaymentEventsHandler();
   }
 
   parseSubpage = (subpage) => {
@@ -77,6 +81,21 @@ class DownloadPage extends Component {
       page,
       donate,
     };
+  }
+
+  paymentSuccessCallback = async (payment) => {
+    const { email } = payment;
+
+    const requestStatus = await requestIntroDownload(this.state.openingKey, email);
+    this.setState({
+      page: FINAL_PAGE,
+      donate: true,
+      requestStatus,
+      requestEmail: email,
+      paymentData: payment,
+    });
+
+    UrlHandler.goToDownloadPage(this.state.openingKey, 'donated');
   }
 
   urlChangeHandler = () => {
