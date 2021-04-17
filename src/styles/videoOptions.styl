@@ -1,0 +1,51 @@
+#downloadPage {
+$buttonHighlightColor = $panelTextColor;
+$borderDefaultColor = darken($panelTextColor, 40);
+$borderFocusColor = darken($panelTextColor, 20);
+$backgroundSelectedColor = #1a1400;
+
+.video-options {
+  display: flex;
+  justify-content: center;
+
+  > button.option {
+    width: 230px;
+    margin: 0;
+    padding: 16px;
+    border-width: 4px !important;
+    border-radius: 18px !important;
+    border-color: $borderDefaultColor !important;
+    box-shadow: none !important;
+
+    &:focus {
+      border-color: $borderFocusColor !important;
+    }
+
+    &:hover {
+      background-color: $backgroundSelectedColor !important;
+    }
+
+    &:not(:last-child) {
+      margin-right: 14px;
+    }
+
+    &.-selected {
+      border-color: $buttonHighlightColor !important;
+      background-color: $backgroundSelectedColor !important;
+    }
+  }
+
+  > button.option  > .title {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  > button.option  > .deathstar-icon {
+    max-width: 80px;
+    margin: 0 auto 10px;
+    display: block;
+  }
+}
+
+}
