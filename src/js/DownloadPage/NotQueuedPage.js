@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import DonateOrNotDonate from './DonateOrNotDonate';
 import { calculateTimeToRender } from '../extras/auxiliar';
 import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
@@ -8,7 +8,6 @@ import Atat from './Atat';
 const NotQueuedPage = ({ status, openingKey, ...props }) => {
   const { queueSize } = status;
   const timeToRender = calculateTimeToRender(queueSize + 1);
-  const urlToEdit = `#!/${openingKey}/edit`;
 
   return (
     <div>

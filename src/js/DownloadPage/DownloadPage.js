@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import swal from 'sweetalert2';
 
 import {
   NOT_QUEUED,
@@ -9,6 +10,8 @@ import {
 } from './constants';
 
 import NotQueuedPage from './NotQueuedPage';
+import NotQueuedPageNew from './newFlow/NotQueuedPageNew';
+import VideoRequestSentNew from './newFlow/VideoRequestSentNew';
 import RequestDownloadPage from './RequestDownloadPage';
 import VideoQueuedPage from './VideoQueuedPage';
 import VideoRequestSent from './VideoRequestSent';
@@ -93,16 +96,33 @@ class DownloadPage extends Component {
   }
 
   yesDonateHandle = () => {
-    UrlHandler.goToDownloadPage(this.state.openingKey, 'donate');
+    const { paymentFlowAB } = window;
+    const { page, openingKey } = this.state;
+
+    if ('new' === paymentFlowAB) {
+      if (page === INITIAL_PAGE) {
+        swal({
+          title: 'donate',
+          html: '<p>Fill the payment form above to make your payment first.</p>',
+        });
+        return;
+      }
+
+      this.setState({ page: INITIAL_PAGE });
+      UrlHandler.goToDownloadPage(openingKey);
+      return;
+    }
+    UrlHandler.goToDownloadPage(openingKey, 'donate');
   };
 
   noDonateHandle = () => {
-    UrlHandler.goToDownloadPage(this.state.openingKey, 'request');
+    const { openingKey } = this.state;
+    UrlHandler.goToDownloadPage(openingKey, 'request');
   };
 
   finishRequestHandle = (requestStatus, requestEmail) => {
-    const { donate } = this.state;
-    UrlHandler.goToDownloadPage(this.state.openingKey, donate ? 'donated' : '');
+    const { donate, openingKey } = this.state;
+    UrlHandler.goToDownloadPage(openingKey, donate ? 'donated' : '');
     this.setState({
       page: FINAL_PAGE,
       requestStatus,
@@ -113,9 +133,21 @@ class DownloadPage extends Component {
   renderInitialPage() {
     const { status, openingKey } = this.state;
     const statusType = status.status;
+    const { paymentFlowAB } = window;
+
     switch (statusType) {
       default:
       case NOT_QUEUED:
+        if ('new' === paymentFlowAB) {
+          return (
+            <NotQueuedPageNew
+              status={status}
+              openingKey={openingKey}
+              yesDonateHandle={this.yesDonateHandle}
+              noDonateHandle={this.noDonateHandle}
+            />
+          );
+        }
         return (
           <NotQueuedPage
             status={status}
@@ -162,7 +194,9 @@ class DownloadPage extends Component {
       status,
       requestStatus,
       requestEmail,
+      paymentData,
     } = this.state;
+    const { paymentFlowAB } = window;
 
     switch (page) {
       default:
@@ -181,6 +215,18 @@ class DownloadPage extends Component {
         );
 
       case FINAL_PAGE:
+        if ('new' === paymentFlowAB) {
+          return (
+            <VideoRequestSentNew
+              requestStatus={requestStatus}
+              requestEmail={requestEmail}
+              openingKey={openingKey}
+              donate={donate}
+              paymentData={paymentData}
+            />
+          );
+        }
+
         return (
           <VideoRequestSent
             requestStatus={requestStatus}
