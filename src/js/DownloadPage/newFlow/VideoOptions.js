@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { Fragment, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -19,6 +19,8 @@ const VideoOptions = ({ updatePaymentAmount }) => {
   });
 
   return (
+  <Fragment>
+    <p>Choose your video option:</p>
     <div className="video-options">
       <button
         type="button"
@@ -27,8 +29,9 @@ const VideoOptions = ({ updatePaymentAmount }) => {
         onClick={() => selectOption('hd')}
       >
         <span className="title">HD video</span>
-        <span className="title">MP4 File</span>
-        <span className="description">Donate at least $7</span>
+        <span className="description">1280 x 720</span>
+        <span className="description">MP4 File</span>
+        <span className="description">Donate at least <b>$7</b></span>
       </button>
       <button
         type="button"
@@ -37,8 +40,9 @@ const VideoOptions = ({ updatePaymentAmount }) => {
         onClick={() => selectOption('fhd')}
       >
         <span className="title">Full HD video</span>
-        <span className="title">MP4 File</span>
-        <span className="description">Donate at least $10</span>
+        <span className="description">1920 x 1080</span>
+        <span className="description">MP4 File</span>
+        <span className="description">Donate at least <b>$10</b></span>
       </button>
       <button
         type="button"
@@ -48,9 +52,10 @@ const VideoOptions = ({ updatePaymentAmount }) => {
       >
         <img className="deathstar-icon" src={DeathStar} alt="Death Star" />
         <span className="title">Full HD<br />+ Custom Image</span>
-        <span className="description">Donate at least $30</span>
+        <span className="description">Donate at least <b>$30</b></span>
       </button>
     </div>
+  </Fragment>
   );
 };
 

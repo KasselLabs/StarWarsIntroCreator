@@ -8,7 +8,7 @@ import PaymentModule from '../PaymentModule';
 const NotQueuedPage = ({ status, openingKey, ...props }) => {
   const { queueSize } = status;
   const timeToRender = calculateTimeToRender(queueSize + 1);
-  // TODO improve check sample text
+
   return (
     <div>
       <p>
@@ -26,8 +26,9 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
       </p>
       <PaymentModule openingKey={openingKey} />
       <p>
+        Do you want to see a sample video?{` `}
         <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=lYnLLF2QyM4">
-          Check a sample video how your video will look like here.
+          Take a look at this one on YouTube.
         </a>
       </p>
 
@@ -35,6 +36,8 @@ const NotQueuedPage = ({ status, openingKey, ...props }) => {
         customText="Need any help? Please check our"
         endText="page"
       />
+      Before sending the download request make sure there are no typos in your text
+      to grant that your video will be with the correct text.
       <TermsOfServiceAcceptance />
       <DonateOrNotDonateNew {...props} />
     </div>

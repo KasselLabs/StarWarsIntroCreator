@@ -12,6 +12,7 @@ import {
 import NotQueuedPage from './NotQueuedPage';
 import NotQueuedPageNew from './newFlow/NotQueuedPageNew';
 import VideoRequestSentNew from './newFlow/VideoRequestSentNew';
+import RequestDownloadPageNew from './newFlow/RequestDownloadPageNew';
 import RequestDownloadPage from './RequestDownloadPage';
 import VideoQueuedPage from './VideoQueuedPage';
 import VideoRequestSent from './VideoRequestSent';
@@ -223,6 +224,18 @@ class DownloadPage extends Component {
         return this.renderInitialPage();
 
       case REQUEST_PAGE:
+        if ('new' === paymentFlowAB) {
+          return (
+            <RequestDownloadPageNew
+              donate={donate}
+              status={status}
+              openingKey={openingKey}
+              yesDonateHandle={this.yesDonateHandle}
+              finishRequestHandle={this.finishRequestHandle}
+            />
+          );
+        }
+
         return (
           <RequestDownloadPage
             donate={donate}
