@@ -83,6 +83,8 @@ class VideoRequestSent extends Component {
           Thank you so much for supporting us!
           Your video should be rendered soon!
         </p>
+        <p>{this.renderEmail()}</p>
+
         {isPaypal
         && (
           <p>
@@ -115,7 +117,6 @@ class VideoRequestSent extends Component {
         </p>
 
         <p>
-          {this.renderEmail()}
           You can add more emails to receive the video if you want.
           The link to download will also be available on this page when it&apos;s ready.
         </p>
