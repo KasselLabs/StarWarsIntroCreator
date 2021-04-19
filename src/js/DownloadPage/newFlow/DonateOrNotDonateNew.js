@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 const DonateOrNotDonate = ({
   question = 'Did you complete the payment or prefer to wait in queue?',
    yesText = "Yes, confirm payment!",
+   noText = "No, I'll wait in the queue!",
    yesDonateHandle,
    noDonateHandle,
    hideNoDonateOption = false
@@ -15,7 +16,7 @@ const DonateOrNotDonate = ({
       {!hideNoDonateOption
         && (
         <button type="button" onClick={noDonateHandle}>
-          No, I'll wait in the queue!
+          {noText}
         </button>
         )
       }
@@ -29,6 +30,7 @@ DonateOrNotDonate.propTypes = {
   hideNoDonateOption: PropTypes.bool,
   question: PropTypes.string,
   yesText: PropTypes.string,
+  noText: PropTypes.string,
 };
 
 export default DonateOrNotDonate;

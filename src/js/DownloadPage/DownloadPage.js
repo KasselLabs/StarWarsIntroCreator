@@ -15,6 +15,7 @@ import VideoRequestSentNew from './newFlow/VideoRequestSentNew';
 import RequestDownloadPageNew from './newFlow/RequestDownloadPageNew';
 import RequestDownloadPage from './RequestDownloadPage';
 import VideoQueuedPage from './VideoQueuedPage';
+import VideoQueuedPageNew from './newFlow/VideoQueuedPageNew';
 import VideoRequestSent from './VideoRequestSent';
 import RenderingPage from './RenderingPage';
 import RenderedPage from './RenderedPage';
@@ -178,6 +179,17 @@ class DownloadPage extends Component {
         );
 
       case QUEUED:
+        if ('new' === paymentFlowAB) {
+          return (
+            <VideoQueuedPageNew
+              status={status}
+              openingKey={openingKey}
+              yesDonateHandle={this.yesDonateHandle}
+              noDonateHandle={this.noDonateHandle}
+            />
+          );
+        }
+
         return (
           <VideoQueuedPage
             status={status}
