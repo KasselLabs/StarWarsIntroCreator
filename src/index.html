@@ -30,20 +30,6 @@
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
     <script src="./js/extras/detectIE.js"></script>
     <!-- <script src="https://wchat.freshchat.com/js/widget.js"></script> -->
-    <!-- Facebook Pixel Code -->
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', process.env.FACEBOOK_PIXEL);
-      fbq('track', 'PageView');
-    </script>
-    <!-- End Facebook Pixel Code -->
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -56,10 +42,6 @@
 
   <!-- Keep preview for OG meta tags -->
   <a style="display: none;" href="./assets/preview.png"></a>
-
-  <!-- Facebook -->
-  <div id="fb-root"></div>
-
 
   <!-- Configuration Form -->
   <div id="configForm">
@@ -196,7 +178,8 @@
 
       <button id="donateFooterButton">DONATE</button>
 
-      <div class="fb-like" data-href="https://www.facebook.com/StarWarsIntroCreator/" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+      <div class="fb-like" data-href="https://www.facebook.com/KasselLabs" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>
+      <div class="fb-share-button" data-href="http://starwarsintrocreator.kassellabs.io/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fstarwarsintrocreator.kassellabs.io%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
       <div>
           <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out the Star Wars Intro Creator!" data-hashtags="StarWars">Tweet</a>
           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
@@ -255,5 +238,9 @@
 
 <script src="https://cdn.ravenjs.com/3.25.0/raven.min.js" crossorigin="anonymous"></script>
 <script src="./js/index.js"></script>
+
+  <!-- Facebook -->
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0&appId=4079763512114809&autoLogAppEvents=1" nonce="tkGlsfVv"></script>
 </body>
 </html>

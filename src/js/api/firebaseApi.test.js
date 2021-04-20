@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import { _parseFirebasekey, parseSpecialKeys, _generateUrlWithKey } from './firebaseApi';
 
 jest.mock('../config');

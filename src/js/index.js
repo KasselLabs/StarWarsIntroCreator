@@ -1,11 +1,12 @@
-import swal from 'sweetalert2';
 import 'babel-polyfill';
+import swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
 import '../styles/main.styl';
 
-import './extras/facebooksdk';
+import './extras/facebookpixel';
 import './extras/googleanalytics';
+import './extras/donateFlowTest';
 
 import startApplication from './App';
 
