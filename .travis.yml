@@ -7,14 +7,6 @@ cache:
 script:
   - npm run test:coverage
   - npm run build
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  local_dir: dist
-  keep-history: true
-  fqdn: starwarsintrocreator.kassellabs.io
-  on:
-    branch: master
+
 notifications:
   webhooks: https://fathomless-fjord-24024.herokuapp.com/notify

@@ -65,9 +65,20 @@ footer {
       }
     }
 
-    .fb-like {
-      margin-left: -7px;
-      margin-bottom: 0;
+    .social-pages {
+      margin-bottom: 10px;
+      > a {
+        margin-right: 10px;
+        fill: $titlesColor;
+
+        &:hover {
+          fill: lighten($titlesColor, 30);
+        }
+      }
+
+      svg {
+        width: 40px;
+      }
     }
   }
 
