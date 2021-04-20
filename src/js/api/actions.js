@@ -14,6 +14,7 @@ import ApplicationState, {
 } from '../ApplicationState';
 import { fetchKey, saveOpening, parseSpecialKeys } from './firebaseApi';
 import { fetchStatus, requestDownload } from './serverApi';
+import { trackPlayedIntro } from './tracking'
 import { apiError } from '../extras/auxiliar';
 
 export const setCreateMode = (props = {}) => {
@@ -102,6 +103,8 @@ export const playButtonHandler = async (opening) => {
   let key;
   try {
     key = await saveOpening(opening);
+
+    trackPlayedIntro()
   } catch (error) {
     apiError('There was an error creating your intro.');
     return;

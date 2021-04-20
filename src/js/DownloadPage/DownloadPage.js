@@ -21,6 +21,7 @@ import RenderingPage from './RenderingPage';
 import RenderedPage from './RenderedPage';
 import AddEmailForm from './AddEmailForm';
 import { requestIntroDownload } from '../api/actions';
+import { trackOpenedDownloadModal } from '../api/tracking';
 
 import { registerPaymentEventsHandler, unregisterPaymentEventsHandler } from './paymentEventsHandler';
 import UrlHandler from '../extras/UrlHandler';
@@ -49,6 +50,7 @@ class DownloadPage extends Component {
   componentDidMount() {
     window.addEventListener('hashchange', this.urlChangeHandler);
     registerPaymentEventsHandler(this.paymentSuccessCallback);
+    trackOpenedDownloadModal();
   }
 
   componentWillUnmount() {

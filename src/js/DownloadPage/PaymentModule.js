@@ -1,4 +1,5 @@
 import React, { Fragment, useCallback, useRef } from 'react';
+import { trackAddToCart } from '../api/tracking';
 import PropTypes from 'prop-types';
 import { paymentPageUrl } from '../config';
 import Loader from './Loader';
@@ -11,6 +12,8 @@ const PaymentModule = ({ openingKey }) => {
 
   const updatePaymentAmount = useCallback((amount) => {
     iframeRef.current.contentWindow.postMessage({ action: 'setAmount', payload: amount }, '*');
+
+    trackAddToCart(amount);
   }, [iframeRef.current]);
 
   return (

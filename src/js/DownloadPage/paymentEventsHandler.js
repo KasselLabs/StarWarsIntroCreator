@@ -1,3 +1,5 @@
+import { trackPurchase } from '../api/tracking';
+
 const callbacks = {
   success: null,
 };
@@ -7,7 +9,6 @@ const paymentEventsHandler = (event) => {
   // if (!event.origin.match(/http:\/\/localhost:3000$/)) return;
 
   const { data } = event;
-
   if (data.type !== 'payment') {
     return;
   }
@@ -17,11 +18,7 @@ const paymentEventsHandler = (event) => {
       callbacks.success(data.payload);
     }
 
-    window.fbq('track', 'Purchase', {
-      content_ids: ['star-wars-intro'], // TODO track different products
-      currency: 'USD',
-      value: data.payload.finalAmount,
-    });
+    trackPurchase(data.payload.finalAmount);
   }
 };
 
