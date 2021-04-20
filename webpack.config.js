@@ -39,7 +39,9 @@ module.exports = {
     filename: '[hash].js',
   },
   plugins: [
-    new Dotenv(),
+    new Dotenv({
+      systemvars: true,
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'index.html'),
     }),

@@ -37,7 +37,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
-    new Dotenv(),
+    new Dotenv({
+      systemvars: true,
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src', 'renderer', 'index.html'),
       filename: 'renderer.html',
