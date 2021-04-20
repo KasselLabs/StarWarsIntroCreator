@@ -49,7 +49,7 @@ export const appendKeyframesRule = (keyframeName, ruleToAppend) => {
     }
 
     // loop in all css rules
-    if (!!styleSheet.href && -1 === styleSheet.href.indexOf('necolas')) {
+    if (-1 !== styleSheet.href?.indexOf('necolas')) {
       try {
         /* eslint-disable-next-line */
         let tryToReadRules = styleSheet.cssRules.length;
