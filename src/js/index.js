@@ -5,7 +5,6 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import '../styles/main.styl';
 
 import './extras/facebookpixel';
-import './extras/facebooksdk';
 import './extras/googleanalytics';
 import './extras/donateFlowTest';
 
