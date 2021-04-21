@@ -9,13 +9,19 @@ $backgroundSelectedColor = #1a1400;
   justify-content: center;
 
   > button.option {
-    width: 230px;
+    max-width: 230px;
+    width: 100%;
     margin: 0;
     padding: 16px;
     border-width: 4px !important;
     border-radius: 18px !important;
     border-color: $borderDefaultColor !important;
     box-shadow: none !important;
+
+
+    @media mobile {
+      max-width: unset;
+    }
 
     &:focus {
       border-color: $borderFocusColor !important;
