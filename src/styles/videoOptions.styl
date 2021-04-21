@@ -18,6 +18,11 @@ $backgroundSelectedColor = #1a1400;
     border-color: $borderDefaultColor !important;
     box-shadow: none !important;
 
+
+    @media mobile {
+      max-width: unset;
+    }
+
     &:focus {
       border-color: $borderFocusColor !important;
     }
