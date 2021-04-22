@@ -45,6 +45,7 @@ swal.setDefaults({
       // Chrome extensions
       /extensions\//i,
       /^chrome:\/\//i,
+      /googletagmanager.com/i,
     ],
     shouldSendCallback: (data) => {
       // if ('https://connect.facebook.net/en_US/sdk.js' === data.culprit) {
