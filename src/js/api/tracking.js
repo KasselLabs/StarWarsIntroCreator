@@ -39,7 +39,7 @@ export const trackAddToCart = (value) => {
   window.dataLayer.push({
     'event': 'add_to_cart',
     'ecommerce': {
-        'revenue': value,
+        'value': value,
         'items': [{
           'item_id': videoType,
           'price': value,
@@ -56,16 +56,18 @@ export const trackAddToCart = (value) => {
   });
 }
 
-export const trackPurchase = (value) => {
+export const trackPurchase = (value, currency) => {
   const videoType = _getVideoTypeByValue(value)
 
   window.dataLayer.push({
     'event': 'purchase',
     'ecommerce': {
-        'revenue': value,
+        'value': value,
+        'currency': currency,
         'items': [{
           'item_id': videoType,
           'price': value,
+          'currency': currency,
           'quantity': 1
         }]
     }
@@ -73,7 +75,7 @@ export const trackPurchase = (value) => {
 
   window.fbq('track', 'Purchase', {
     content_ids: [videoType],
-    currency: 'USD',
+    currency: currency,
     content_type: 'product',
     value,
   });
