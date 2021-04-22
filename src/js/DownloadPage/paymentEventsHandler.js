@@ -18,7 +18,7 @@ const paymentEventsHandler = (event) => {
       callbacks.success(data.payload);
     }
 
-    trackPurchase(data.payload.finalAmount);
+    trackPurchase(data.payload.finalAmount, data.payload.currency);
   }
 };
 
