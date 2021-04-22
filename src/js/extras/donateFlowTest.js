@@ -1,10 +1,16 @@
 
 const KEY = 'donateFlowTest';
 
-const B_FLOW_PERCENTAGE = 25;
+const B_FLOW_PERCENTAGE = 50;
 
 (async () => {
-  const abTestFlow = localStorage.getItem(KEY);
+  let abTestFlow;
+
+  try {
+    abTestFlow = localStorage.getItem(KEY);
+  } catch (error) {
+    console.log('LocalStorage not available to read');
+  }
 
   if (abTestFlow) {
     window.paymentFlowAB = abTestFlow;
@@ -18,6 +24,9 @@ const B_FLOW_PERCENTAGE = 25;
   }
 
   window.paymentFlowAB = setAbFlow;
-
-  localStorage.setItem(KEY, setAbFlow);
+  try {
+    localStorage.setItem(KEY, setAbFlow);
+  } catch (error) {
+    console.log('LocalStorage not available to write');
+  }
 })();
