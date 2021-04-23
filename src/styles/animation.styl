@@ -40,7 +40,7 @@
 
     margin: 0 auto;
     opacity: 0;
-    transform: scale(2.2);
+    // transform: scale(2.2); // TODO check if still show bug on firefox
     animation: logoAnimation var(--intro-logo-duration) cubic-bezier(.11, .6, .48, .88) var(--intro-logo-delay);
 
     .logoSub {
@@ -82,7 +82,7 @@
     transform: perspective(300px) rotateX(25deg);
 
     @media mobile {
-      bottom: -5%;
+      bottom: 33%;
       left: 52.5%;
     }
 
@@ -186,11 +186,13 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
+    transition: opacity 0.5s ease;
 
     @media mobile {
       padding: 20px;
       flex-direction: column;
     }
+
     > .playing-button {
       @extend $actionButtonStyle;
       font-size: 30px;
