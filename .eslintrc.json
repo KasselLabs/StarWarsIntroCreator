@@ -1,41 +1,22 @@
 {
-    "parser": "babel-eslint",
-    "rules": {
-      "react/jsx-one-expression-per-line": 0,
-      "import/no-extraneous-dependencies": 0,
-      "class-methods-use-this": 0,
-      "import/extensions": 0,
-      "import/no-unresolved": 0,
-      "yoda": ["error", "always", { "onlyEquality": true }],
-      "no-underscore-dangle": 0,
-      "no-use-before-define": ["error", { "functions": false }],
-      "react/jsx-filename-extension": 0,
-      "react/require-default-props": 0,
-      "react/forbid-prop-types": 0,
-      "import/prefer-default-export": 0,
-      "jsx-a11y/anchor-is-valid": [ "error", {
-        "components": [ "Link" ],
-        "specialLink": [ "to", "hrefLeft", "hrefRight" ],
-        "aspects": [ "noHref", "invalidHref", "preferButton" ]
-      }],
-      "jsx-a11y/no-autofocus": 0
+    "env": {
+        "browser": true,
+        "es2021": true
     },
-    "extends": ["airbnb", "plugin:react/recommended"],
-    "globals": {
-      "describe": true,
-      "it": true,
-      "expect": true,
-      "window": true,
-      "document": true,
-      "navigator": true,
-      "fetch": true,
-      "FormData": true,
-      "localStorage": true,
-      "beforeAll": true,
-      "beforeEach": true,
-      "jest": true,
-      "afterEach": true,
-      "Raven": true,
-      "Event": true
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
     }
-  }
+}
