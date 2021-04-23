@@ -4,8 +4,29 @@ import escapeHtml from './extras/escapeHtml';
 import ApplicationState from './ApplicationState';
 import UrlHandler from './extras/UrlHandler';
 
-const isFirefox = () => {
-  return Boolean(navigator.userAgent.match(/Firefox/g))
+const getUserAgent = () => {
+  return navigator.userAgent || navigator.vendor || window.opera
+}
+
+function isAndroidOrIos() {
+  const userAgent = getUserAgent()
+
+  if (/android/i.test(userAgent)) {
+    return true
+  }
+
+  // iOS detection from: http://stackoverflow.com/a/9039885/177710
+  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    return true
+  }
+
+  return false
+}
+
+const isFirefoxDesktop = () => {
+  const userAgent = getUserAgent()
+
+  return Boolean(userAgent.match(/Firefox/g)) && !isAndroidOrIos()
 }
 
 class StarWarsAnimation {
@@ -96,8 +117,8 @@ class StarWarsAnimation {
     const logoDefaultContainer = animation.querySelector('#logoDefault');
 
     const logoContainer = animation.querySelector('#logo');
-    if (isFirefox()) {
-      logoContainer.classList.add('-firefox');
+    if (isFirefoxDesktop()) {
+      logoContainer.classList.add('-firefox-desktop');
     }
 
     const logoText = opening.logo;
