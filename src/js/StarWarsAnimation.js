@@ -1,6 +1,8 @@
 import { checkSWFontCompatibility } from './extras/auxiliar';
 import { appendKeyframesRule } from './extras/utils';
 import escapeHtml from './extras/escapeHtml';
+import ApplicationState from './ApplicationState';
+import UrlHandler from './extras/UrlHandler';
 
 class StarWarsAnimation {
   constructor() {
@@ -68,6 +70,21 @@ class StarWarsAnimation {
 
     // TEXT CENTER ALIGNMENT
     textContainer.style.textAlign = opening.center ? 'center' : ''; // empty will not override the justify default rule
+
+    // PLAYING BUTTONS
+    const downloadButton = animation.querySelector('#playing-download-button');
+    if (downloadButton) {
+      downloadButton.onclick = () => {
+        UrlHandler.goToDownloadPage(ApplicationState.state.key)
+      }
+    }
+    const editButton = animation.querySelector('#playing-edit-button')
+    if (editButton) {
+      editButton.onclick = () => {
+        this.reset()
+        UrlHandler.goToEditPage(ApplicationState.state.key);
+      }
+    }
 
     // LOGO
     const starwarsDefaultText = 'star\nwars';

@@ -177,6 +177,47 @@
     }
   }
 
+  .playing-buttons {
+    position: fixed;
+    bottom: 0;
+    background-color: $panelBackgroundColor;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+    @media mobile {
+      padding: 20px;
+      flex-direction: column;
+    }
+    > .playing-button {
+      @extend $actionButtonStyle;
+      font-size: 30px;
+      border-width: 2px;
+
+      &:not(:last-child) {
+        margin-right: 10px;
+
+        @media mobile {
+          margin-right: 0;
+          margin-bottom: 20px;
+        }
+      }
+
+      &:focus, &:hover {
+        box-shadow: -1px 1px 4px $greenShadow, 1px -1px 4px $greenShadow, inset -3px -2px 4px $greenShadow, inset 2px 3px 4px $greenShadow;
+        text-shadow: -1px 1px 4px $greenShadow, 1px -1px 4px $greenShadow;
+      }
+
+      @media mobile {
+        padding: 12px 30px 30px;
+        border-width: 8px;
+        border-radius: 30px;
+        font-size: 100px;
+      }
+    }
+  }
 }
 
 
