@@ -3,31 +3,7 @@ import { appendKeyframesRule } from './extras/utils';
 import escapeHtml from './extras/escapeHtml';
 import ApplicationState from './ApplicationState';
 import UrlHandler from './extras/UrlHandler';
-
-const getUserAgent = () => {
-  return navigator.userAgent || navigator.vendor || window.opera
-}
-
-function isAndroidOrIos() {
-  const userAgent = getUserAgent()
-
-  if (/android/i.test(userAgent)) {
-    return true
-  }
-
-  // iOS detection from: http://stackoverflow.com/a/9039885/177710
-  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-    return true
-  }
-
-  return false
-}
-
-const isFirefoxDesktop = () => {
-  const userAgent = getUserAgent()
-
-  return Boolean(userAgent.match(/Firefox/g)) && !isAndroidOrIos()
-}
+import isFirefoxDesktop from './extras/isFirefoxDesktop';
 
 class StarWarsAnimation {
   constructor() {
@@ -100,15 +76,15 @@ class StarWarsAnimation {
     const downloadButton = animation.querySelector('#playing-download-button');
     if (downloadButton) {
       downloadButton.onclick = () => {
-        UrlHandler.goToDownloadPage(ApplicationState.state.key)
-      }
+        UrlHandler.goToDownloadPage(ApplicationState.state.key);
+      };
     }
-    const editButton = animation.querySelector('#playing-edit-button')
+    const editButton = animation.querySelector('#playing-edit-button');
     if (editButton) {
       editButton.onclick = () => {
-        this.reset()
+        this.reset();
         UrlHandler.goToEditPage(ApplicationState.state.key);
-      }
+      };
     }
 
     // LOGO
