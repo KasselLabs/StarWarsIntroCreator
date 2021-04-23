@@ -40,8 +40,11 @@
 
     margin: 0 auto;
     opacity: 0;
-    // transform: scale(2.2); // TODO check if still show bug on firefox
     animation: logoAnimation var(--intro-logo-duration) cubic-bezier(.11, .6, .48, .88) var(--intro-logo-delay);
+
+    &.-firefox-desktop {
+      transform: scale(2.2);
+    }
 
     .logoSub {
       width: 100vw;
