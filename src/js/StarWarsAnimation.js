@@ -3,6 +3,7 @@ import { appendKeyframesRule } from './extras/utils';
 import escapeHtml from './extras/escapeHtml';
 import ApplicationState from './ApplicationState';
 import UrlHandler from './extras/UrlHandler';
+import isFirefoxDesktop from './extras/isFirefoxDesktop';
 
 class StarWarsAnimation {
   constructor() {
@@ -75,21 +76,26 @@ class StarWarsAnimation {
     const downloadButton = animation.querySelector('#playing-download-button');
     if (downloadButton) {
       downloadButton.onclick = () => {
-        UrlHandler.goToDownloadPage(ApplicationState.state.key)
-      }
+        UrlHandler.goToDownloadPage(ApplicationState.state.key);
+      };
     }
-    const editButton = animation.querySelector('#playing-edit-button')
+    const editButton = animation.querySelector('#playing-edit-button');
     if (editButton) {
       editButton.onclick = () => {
-        this.reset()
+        this.reset();
         UrlHandler.goToEditPage(ApplicationState.state.key);
-      }
+      };
     }
 
     // LOGO
     const starwarsDefaultText = 'star\nwars';
     const logoTextContainer = animation.querySelector('.logoText');
     const logoDefaultContainer = animation.querySelector('#logoDefault');
+
+    const logoContainer = animation.querySelector('#logo');
+    if (isFirefoxDesktop()) {
+      logoContainer.classList.add('-firefox-desktop');
+    }
 
     const logoText = opening.logo;
     // is default logo
