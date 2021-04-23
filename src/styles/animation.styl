@@ -186,11 +186,13 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
+    transition: opacity 0.5s ease;
 
     @media mobile {
       padding: 20px;
       flex-direction: column;
     }
+
     > .playing-button {
       @extend $actionButtonStyle;
       font-size: 30px;
