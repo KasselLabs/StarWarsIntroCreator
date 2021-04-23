@@ -4,6 +4,10 @@ import escapeHtml from './extras/escapeHtml';
 import ApplicationState from './ApplicationState';
 import UrlHandler from './extras/UrlHandler';
 
+const isFirefox = () => {
+  return Boolean(navigator.userAgent.match(/Firefox/g))
+}
+
 class StarWarsAnimation {
   constructor() {
     this.animationContainer = document.querySelector('#animationContainer');
@@ -90,6 +94,11 @@ class StarWarsAnimation {
     const starwarsDefaultText = 'star\nwars';
     const logoTextContainer = animation.querySelector('.logoText');
     const logoDefaultContainer = animation.querySelector('#logoDefault');
+
+    const logoContainer = animation.querySelector('#logo');
+    if (isFirefox()) {
+      logoContainer.classList.add('-firefox');
+    }
 
     const logoText = opening.logo;
     // is default logo
