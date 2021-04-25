@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import DeathStar from '../../../assets/favicon.png';
+import HelpButton from './HelpButton';
 
 const amounts = {
   hd: 7,
@@ -56,6 +57,10 @@ const VideoOptions = ({ updatePaymentAmount }) => {
             { '-selected': selectedOption === 'custom' })}
           onClick={() => selectOption('custom')}
         >
+          <HelpButton>
+            A more customizable video with the Death Star image replacement.
+            Contact us via email to submit your image.
+          </HelpButton>
           <img className="deathstar-icon" src={DeathStar} alt="Death Star" />
           <span className="title">
             Full HD
