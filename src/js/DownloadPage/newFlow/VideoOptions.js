@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import DeathStar from '../../../assets/favicon.png';
+import HelpButton from './HelpButton';
 
 const amounts = {
   hd: 7,
@@ -19,43 +20,60 @@ const VideoOptions = ({ updatePaymentAmount }) => {
   });
 
   return (
-  <Fragment>
-    <p>Choose your video option:</p>
-    <div className="video-options">
-      <button
-        type="button"
-        className={classnames('option',
-          { '-selected': 'hd' === selectedOption })}
-        onClick={() => selectOption('hd')}
-      >
-        <span className="title">HD video</span>
-        <span className="description">1280 x 720</span>
-        <span className="description">MP4 File</span>
-        <span className="description">Donate at least <b>$7</b></span>
-      </button>
-      <button
-        type="button"
-        className={classnames('option',
-          { '-selected': 'fhd' === selectedOption })}
-        onClick={() => selectOption('fhd')}
-      >
-        <span className="title">Full HD video</span>
-        <span className="description">1920 x 1080</span>
-        <span className="description">MP4 File</span>
-        <span className="description">Donate at least <b>$10</b></span>
-      </button>
-      <button
-        type="button"
-        className={classnames('option',
-          { '-selected': 'custom' === selectedOption })}
-        onClick={() => selectOption('custom')}
-      >
-        <img className="deathstar-icon" src={DeathStar} alt="Death Star" />
-        <span className="title">Full HD<br />+ Custom Image</span>
-        <span className="description">Donate at least <b>$30</b></span>
-      </button>
-    </div>
-  </Fragment>
+    <>
+      <p>Choose your video option:</p>
+      <div className="video-options">
+        <button
+          type="button"
+          className={classnames('option',
+            { '-selected': selectedOption === 'hd' })}
+          onClick={() => selectOption('hd')}
+        >
+          <span className="title">HD video</span>
+          <span className="description">1280 x 720</span>
+          <span className="description">MP4 File</span>
+          <span className="description">
+            Donate at least
+            <b>$7</b>
+          </span>
+        </button>
+        <button
+          type="button"
+          className={classnames('option',
+            { '-selected': selectedOption === 'fhd' })}
+          onClick={() => selectOption('fhd')}
+        >
+          <span className="title">Full HD video</span>
+          <span className="description">1920 x 1080</span>
+          <span className="description">MP4 File</span>
+          <span className="description">
+            Donate at least
+            <b>$10</b>
+          </span>
+        </button>
+        <button
+          type="button"
+          className={classnames('option',
+            { '-selected': selectedOption === 'custom' })}
+          onClick={() => selectOption('custom')}
+        >
+          <HelpButton>
+            A more customizable video with the Death Star image replacement.
+            Contact us via email to submit your image.
+          </HelpButton>
+          <img className="deathstar-icon" src={DeathStar} alt="Death Star" />
+          <span className="title">
+            Full HD
+            <br />
+            + Custom Image
+          </span>
+          <span className="description">
+            Donate at least
+            <b>$30</b>
+          </span>
+        </button>
+      </div>
+    </>
   );
 };
 
