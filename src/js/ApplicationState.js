@@ -1,7 +1,6 @@
 import ViewController from './ViewController';
 import AudioController from './AudioController';
 import UrlHandler from './extras/UrlHandler';
-import { loadChat, destroyChat } from './extras/freshchat';
 
 export const CREATING = 'CREATING';
 export const LOADING = 'LOADING';
@@ -68,11 +67,10 @@ class ApplicationState {
         break;
 
       case PLAYING:
-        destroyChat();
         try {
           await ViewController.playOpening(opening);
         } catch (error) {
-          const isAudioPlayError = 'AutoPlayError' === error.message;
+          const isAudioPlayError = error.message === 'AutoPlayError';
           if (!isAudioPlayError) {
             throw error;
           }
@@ -84,18 +82,15 @@ class ApplicationState {
         break;
 
       case EDITING:
-        loadChat();
         ViewController.setFormValues(opening);
         ViewController.showDownloadButton();
         break;
 
       case DOWNLOAD:
-        loadChat();
         ViewController.setDownloadPage();
         break;
 
       default:
-        loadChat();
         ViewController.unsetLoading();
     }
   }
