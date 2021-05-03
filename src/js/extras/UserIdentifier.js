@@ -1,5 +1,6 @@
 import uniq from 'lodash.uniq';
 import { setGAUser } from './googleanalytics';
+import { setUserEmail } from './tawkToChat';
 
 const KEY = 'KasselLabsUser';
 
@@ -88,24 +89,20 @@ export default class UserIdentifier {
     setGAUser(email);
   }
 
-  static _setUserFreshchat(user) {
+  static _setUserTawkTo(user) {
     const email = user.lastEmail;
     if (!email) {
       return;
     }
 
-    if (window.fcWidget) {
-      window.fcWidget.user.setProperties({
-        email,
-      });
-    }
+    setUserEmail(email);
   }
 
   static setUser(appName) {
     const user = this._loadUser(appName);
     this._setUserRaven(user);
     this._setUserGtag(user);
-    this._setUserFreshchat(user);
+    this._setUserTawkTo(user);
   }
 
   static addEmail(email) {
