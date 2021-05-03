@@ -60,6 +60,7 @@ const VideoOptions = ({ updatePaymentAmount }) => {
           <HelpButton>
             A more customizable video with the Death Star image replacement.
             Contact us via email to submit your image.
+            This take usually less than one business day to be delivered.
           </HelpButton>
           <img className="deathstar-icon" src={DeathStar} alt="Death Star" />
           <span className="title">
