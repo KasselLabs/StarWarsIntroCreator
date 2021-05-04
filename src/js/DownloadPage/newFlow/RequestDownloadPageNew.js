@@ -8,6 +8,7 @@ import PaymentModule from '../PaymentModule';
 import { calculateTimeToRender } from '../../extras/auxiliar';
 import { QUEUED } from '../constants';
 import Atat from '../Atat';
+import SocialButtons from '../SocialButtons';
 
 const RequestDownloadPage = ({
   donate,
@@ -31,9 +32,19 @@ const RequestDownloadPage = ({
     <div>
       <Atat />
       <p>
-        Your video request {isQueued ? qeuedText : notQueuedText}{' '}
-        queued at position <b>{position}</b>.
-        It may take up to <b>{timeToRender}</b> to have your video rendered.
+        Your video request
+        {' '}
+        {isQueued ? qeuedText : notQueuedText}
+        {' '}
+        queued at position
+        {' '}
+        <b>{position}</b>
+        .
+        It may take up to
+        {' '}
+        <b>{timeToRender}</b>
+        {' '}
+        to have your video rendered.
         Free videos will be rendered in the HD quality (1280x720).
         <p>
           <DonateOrNotDonate question="You can still donate to get it earlier if you want." yesText="Go back to donate" {...props} hideNoDonateOption />
@@ -50,6 +61,9 @@ const RequestDownloadPage = ({
       <EmailRequestField
         openingKey={openingKey}
         finishRequestHandle={finishRequestHandle}
+      />
+      <SocialButtons
+        text="Also check out our social media below to get our latest updates"
       />
     </div>
   );
