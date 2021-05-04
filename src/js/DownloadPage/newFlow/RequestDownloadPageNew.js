@@ -1,14 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import DonateOrNotDonate from './DonateOrNotDonateNew';
 import TermsOfServiceAcceptance from '../TermsOfServiceAcceptance';
 import ContactButton from '../ContactButton';
 import EmailRequestField from '../EmailRequestField';
-import PaymentModule from '../PaymentModule';
 import { calculateTimeToRender } from '../../extras/auxiliar';
 import { QUEUED } from '../constants';
 import Atat from '../Atat';
-import SocialButtons from '../SocialButtons';
 
 const RequestDownloadPage = ({
   donate,
@@ -23,7 +21,6 @@ const RequestDownloadPage = ({
   const position = 1 + isQueued ? queuePosition : queueSize;
 
   const timeToRender = calculateTimeToRender(position);
-  const urlToEdit = `#!/${openingKey}/edit`;
 
   const notQueuedText = 'will be';
   const qeuedText = 'is';
@@ -61,9 +58,6 @@ const RequestDownloadPage = ({
       <EmailRequestField
         openingKey={openingKey}
         finishRequestHandle={finishRequestHandle}
-      />
-      <SocialButtons
-        text="Also check out our social media below to get our latest updates"
       />
     </div>
   );

@@ -15,7 +15,9 @@ const RenderedPage = ({ status }) => (
     <DownloadVideoButton url={status.downloadUrl} />
     <ContactButton customText="If you have any problem while trying to download the video, please contact us:" />
     <SocialButtons
-      text="Check out our social media below to get our latest updates, if you liked our services leave a review for us on our Facebook page!"
+      text="Don't forget to follow us on social media below to get our latest updates.
+      If you like the video, please write us a review on our Facebook page.
+      It would help us a lot!"
     />
   </div>
 );

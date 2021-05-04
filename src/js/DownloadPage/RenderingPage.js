@@ -28,7 +28,7 @@ const RenderingPage = ({ statusType, openingKey, finishRequestHandle }) => {
         finishRequestHandle={finishRequestHandle}
       />
       <SocialButtons
-        text="In the meantime, checkout our social media pages and get our latest updates!"
+        text="In the meantime, follow us on our social media to get our latest updates!"
       />
     </div>
   );
