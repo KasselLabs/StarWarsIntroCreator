@@ -34,6 +34,7 @@ const VideoOptions = ({ updatePaymentAmount }) => {
           <span className="description">MP4 File</span>
           <span className="description">
             Donate at least
+            {' '}
             <b>$7</b>
           </span>
         </button>
@@ -48,6 +49,7 @@ const VideoOptions = ({ updatePaymentAmount }) => {
           <span className="description">MP4 File</span>
           <span className="description">
             Donate at least
+            {' '}
             <b>$10</b>
           </span>
         </button>
@@ -70,6 +72,7 @@ const VideoOptions = ({ updatePaymentAmount }) => {
           </span>
           <span className="description">
             Donate at least
+            {' '}
             <b>$30</b>
           </span>
         </button>
