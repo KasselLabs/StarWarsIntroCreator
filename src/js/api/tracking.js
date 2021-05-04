@@ -1,51 +1,59 @@
+import { registerTawkEvent, registerTawkTag } from '../extras/tawkToChat';
+
 const _getVideoTypeByValue = (value) => {
   if (value >= 30) {
-    return 'Custom Image'
+    return 'Custom Image';
   }
 
   if (value >= 10) {
-    return 'Full HD'
+    return 'Full HD';
   }
 
   if (value >= 7) {
-    return 'HD'
+    return 'HD';
   }
 
   // This should not happen
-  return 'Low Donation'
-}
+  return 'Low Donation';
+};
 
 export const trackSubmitWithoutDonation = () => {
   window.dataLayer.push({
-    'event': 'submit_without_donating',
-  })
-}
+    event: 'submit_without_donating',
+  });
+
+  registerTawkEvent('submit-without-donating');
+};
 
 export const trackPlayedIntro = () => {
   window.fbq('track', 'ViewContent', {
-    content_name: 'Played Intro'
+    content_name: 'Played Intro',
   });
-}
+
+  registerTawkEvent('played-intro');
+};
 
 export const trackOpenedDownloadModal = () => {
   window.fbq('track', 'ViewContent', {
-    content_name: 'Opened Download Modal'
-  })
-}
+    content_name: 'Opened Download Modal',
+  });
+
+  registerTawkEvent('opened-download-modal');
+};
 
 export const trackAddToCart = (value) => {
-  const videoType = _getVideoTypeByValue(value)
+  const videoType = _getVideoTypeByValue(value);
 
   window.dataLayer.push({
-    'event': 'add_to_cart',
-    'ecommerce': {
-        'value': value,
-        'items': [{
-          'item_id': videoType,
-          'price': value,
-          'quantity': 1
-        }]
-    }
+    event: 'add_to_cart',
+    ecommerce: {
+      value,
+      items: [{
+        item_id: videoType,
+        price: value,
+        quantity: 1,
+      }],
+    },
   });
 
   window.fbq('track', 'AddToCart', {
@@ -54,29 +62,42 @@ export const trackAddToCart = (value) => {
     content_type: 'product',
     value,
   });
-}
+
+  registerTawkEvent('add-to-cart', {
+    videoType,
+    value,
+  });
+};
 
 export const trackPurchase = (value, currency) => {
-  const videoType = _getVideoTypeByValue(value)
+  const videoType = _getVideoTypeByValue(value);
 
   window.dataLayer.push({
-    'event': 'purchase',
-    'ecommerce': {
-        'value': value,
-        'currency': currency,
-        'items': [{
-          'item_id': videoType,
-          'price': value,
-          'currency': currency,
-          'quantity': 1
-        }]
-    }
+    event: 'purchase',
+    ecommerce: {
+      value,
+      currency,
+      items: [{
+        item_id: videoType,
+        price: value,
+        currency,
+        quantity: 1,
+      }],
+    },
   });
 
   window.fbq('track', 'Purchase', {
     content_ids: [videoType],
-    currency: currency,
+    currency,
     content_type: 'product',
     value,
   });
-}
+
+  registerTawkEvent('purchase', {
+    videoType,
+    currency,
+    value,
+  });
+
+  registerTawkTag('Donator');
+};
