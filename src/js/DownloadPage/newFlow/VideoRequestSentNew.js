@@ -6,6 +6,7 @@ import TermsOfServiceAcceptance from '../TermsOfServiceAcceptance';
 import ContactButton from '../ContactButton';
 import UrlHandler from '../../extras/UrlHandler';
 import Atat from '../Atat';
+import SocialButtons from '../SocialButtons';
 
 class VideoRequestSent extends Component {
   constructor(props) {
@@ -40,7 +41,8 @@ class VideoRequestSent extends Component {
     }
 
     return (
-      <span>The link to download the video will be sent to the email:
+      <span>
+        The link to download the video will be sent to the email:
         <p className="email">
           {requestEmail}
         </p>
@@ -57,8 +59,15 @@ class VideoRequestSent extends Component {
       <p>
         <Atat />
         Your video request has been queued!
-        Your current position on the queue is <b>{queuePosition}</b>,
-        and may take up to {timeToRender} to send your video.
+        Your current position on the queue is
+        {' '}
+        <b>{queuePosition}</b>
+        ,
+        and may take up to
+        {' '}
+        {timeToRender}
+        {' '}
+        to send your video.
         {this.renderEmail()}
         The link to download will also be available on this page when it&apos;s ready.
         You can add more emails to receive the video if you want in the button below.
@@ -74,7 +83,7 @@ class VideoRequestSent extends Component {
 
     const { method, receiptURL } = paymentData;
 
-    const isPaypal = 'paypal' === method;
+    const isPaypal = method === 'paypal';
     const hasReceiptURL = !!receiptURL;
 
     return (
@@ -95,7 +104,7 @@ class VideoRequestSent extends Component {
 
         {hasReceiptURL
         && (
-        <Fragment>
+        <>
           <p>
             Check your payment receipt on the link below.
             It was also sent to your email address.
@@ -105,9 +114,8 @@ class VideoRequestSent extends Component {
               <button type="button">Payment Receipt</button>
             </a>
           </div>
-        </Fragment>
-        )
-        }
+        </>
+        )}
 
         <p>
           <ContactButton
@@ -134,6 +142,9 @@ class VideoRequestSent extends Component {
           <button type="button" onClick={this.handleOkButton}>OK</button>
           <button type="button" onClick={this.handleAddEmailButton}>Add another Email</button>
         </div>
+        <SocialButtons
+          text="Don't forget to follow us on social media below to get our latest updates."
+        />
       </div>
     );
   }

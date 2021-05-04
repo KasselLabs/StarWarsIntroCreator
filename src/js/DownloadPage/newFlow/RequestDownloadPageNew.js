@@ -1,10 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import DonateOrNotDonate from './DonateOrNotDonateNew';
 import TermsOfServiceAcceptance from '../TermsOfServiceAcceptance';
 import ContactButton from '../ContactButton';
 import EmailRequestField from '../EmailRequestField';
-import PaymentModule from '../PaymentModule';
 import { calculateTimeToRender } from '../../extras/auxiliar';
 import { QUEUED } from '../constants';
 import Atat from '../Atat';
@@ -22,7 +21,6 @@ const RequestDownloadPage = ({
   const position = 1 + isQueued ? queuePosition : queueSize;
 
   const timeToRender = calculateTimeToRender(position);
-  const urlToEdit = `#!/${openingKey}/edit`;
 
   const notQueuedText = 'will be';
   const qeuedText = 'is';
@@ -31,9 +29,19 @@ const RequestDownloadPage = ({
     <div>
       <Atat />
       <p>
-        Your video request {isQueued ? qeuedText : notQueuedText}{' '}
-        queued at position <b>{position}</b>.
-        It may take up to <b>{timeToRender}</b> to have your video rendered.
+        Your video request
+        {' '}
+        {isQueued ? qeuedText : notQueuedText}
+        {' '}
+        queued at position
+        {' '}
+        <b>{position}</b>
+        .
+        It may take up to
+        {' '}
+        <b>{timeToRender}</b>
+        {' '}
+        to have your video rendered.
         Free videos will be rendered in the HD quality (1280x720).
         <p>
           <DonateOrNotDonate question="You can still donate to get it earlier if you want." yesText="Go back to donate" {...props} hideNoDonateOption />

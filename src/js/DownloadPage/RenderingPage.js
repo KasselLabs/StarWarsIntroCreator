@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ContactButton from './ContactButton';
 import EmailRequestField from './EmailRequestField';
+import SocialButtons from './SocialButtons';
 import Atat from './Atat';
 
 import { RENDERING } from './constants';
@@ -25,8 +27,17 @@ const RenderingPage = ({ statusType, openingKey, finishRequestHandle }) => {
         openingKey={openingKey}
         finishRequestHandle={finishRequestHandle}
       />
+      <SocialButtons
+        text="In the meantime, follow us on our social media to get our latest updates!"
+      />
     </div>
   );
+};
+
+RenderingPage.propTypes = {
+  statusType: PropTypes.string,
+  openingKey: PropTypes.string,
+  finishRequestHandle: PropTypes.func,
 };
 
 export default RenderingPage;
