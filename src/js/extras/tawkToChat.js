@@ -36,7 +36,6 @@ TawkAPI.onStatusChange = function (status) {
   handleRightFooterClassOnChatAvailable(status);
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export const setUserEmail = (email) => {
   if (!TawkAPI.setAttributes) {
     state.email = email;
@@ -47,6 +46,28 @@ export const setUserEmail = (email) => {
     email,
   }, (error) => {
     console.error('Error on setting user email on tawk.to');
+    console.error(error);
+  });
+};
+
+export const registerTawkEvent = (eventName, eventData) => {
+  if (!TawkAPI.addEvent) {
+    return;
+  }
+
+  TawkAPI.addEvent(eventName, eventData, (error) => {
+    console.error('Tawkto error on adding event');
+    console.error(error);
+  });
+};
+
+export const registerTawkTag = (tag) => {
+  if (!TawkAPI.addTags) {
+    return;
+  }
+
+  TawkAPI.addTags([tag], (error) => {
+    console.error('Tawkto error on adding tags');
     console.error(error);
   });
 };
