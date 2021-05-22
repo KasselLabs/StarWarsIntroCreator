@@ -55,10 +55,15 @@ export const registerTawkEvent = (eventName, eventData) => {
     return;
   }
 
-  TawkAPI.addEvent(eventName, eventData, (error) => {
-    console.error('Tawkto error on adding event');
+  try {
+    TawkAPI.addEvent(eventName, eventData, (error) => {
+      console.error('Tawkto error on adding event');
+      console.error(error);
+    });
+  } catch (error) {
+    console.error('Try oncatch Tawkto error on adding event');
     console.error(error);
-  });
+  }
 };
 
 export const registerTawkTag = (tag) => {
@@ -66,8 +71,13 @@ export const registerTawkTag = (tag) => {
     return;
   }
 
-  TawkAPI.addTags([tag], (error) => {
-    console.error('Tawkto error on adding tags');
+  try {
+    TawkAPI.addTags([tag], (error) => {
+      console.error('Tawkto error on adding tags');
+      console.error(error);
+    });
+  } catch (error) {
+    console.error('Try oncatch Tawkto error on adding tags');
     console.error(error);
-  });
+  }
 };
