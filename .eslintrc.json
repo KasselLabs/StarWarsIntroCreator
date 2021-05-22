@@ -29,7 +29,6 @@
     "jest": false,
     "it": false,
     "describe": false,
-    "expect": false,
-    "Raven": false
+    "expect": false
   }
 }

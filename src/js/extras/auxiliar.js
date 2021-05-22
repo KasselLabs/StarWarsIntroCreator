@@ -1,11 +1,12 @@
 import swal from 'sweetalert2';
+import * as Sentry from '@sentry/browser';
 
 import ApplicationState, { CREATING } from '../ApplicationState';
 
 export const checkSWFontCompatibility = (title) => {
   const supportedChars = ' qwertyuiopasdfghjklzxcvbnm0123456789!$'.split(''); // all supported supported chars
   const chars = title.toLowerCase().split('');
-  return chars.every(char => supportedChars.indexOf(char) !== -1);
+  return chars.every((char) => supportedChars.indexOf(char) !== -1);
 };
 
 export const apiError = (message, reloadPage = false, keepPage = false) => {
@@ -33,10 +34,10 @@ I want to provide the following details:
     confirmButtonText: 'CONTACT SUPPORT',
   }).then((result) => {
     if (result.value) {
-      if (Raven.lastEventId()) {
-        Raven.showReportDialog();
+      if (Sentry.lastEventId()) {
+        Sentry.showReportDialog({ eventId: Sentry.lastEventId() });
       } else { // send email as fallback when no error reported on sentry.
-        window.open(`mailto:kassellabs+starwars@googlegroups.com?Subject=SWIC%20Error&Body=${bodyMessage}`);
+        window.open(`mailto:StarWars@kassellabs.io?Subject=SWIC%20Error&Body=${bodyMessage}`);
       }
     }
     if (result.dismiss === swal.DismissReason.cancel && reloadPage) {
@@ -64,13 +65,13 @@ export const calculateTimeToRender = (queuePosition) => {
     return ` ${totalDays} days`;
   }
   if (partialDays > 0) {
-    time += ` ${partialDays} day${1 !== partialDays ? 's' : ''}`;
+    time += ` ${partialDays} day${partialDays !== 1 ? 's' : ''}`;
   }
 
   const hours = totalHours % 24;
   const minutes = totalMinutes % 60;
   if (hours > 0) {
-    time += `${partialDays ? ',' : ''} ${hours} hour${1 !== hours ? 's' : ''}`;
+    time += `${partialDays ? ',' : ''} ${hours} hour${hours !== 1 ? 's' : ''}`;
   }
   if (minutes > 0) {
     time += ` and ${minutes} minutes`;
