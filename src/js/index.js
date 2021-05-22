@@ -1,6 +1,7 @@
 import 'babel-polyfill';
 import swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import * as Sentry from '@sentry/browser';
 
 import '../styles/main.styl';
 
@@ -21,7 +22,8 @@ swal.setDefaults({
     return;
   }
 
-  Raven.config(process.env.RAVEN, {
+  Sentry.init({
+    dsn: 'https://1613dee0f015471fafcf9bf88ceaf748@o152641.ingest.sentry.io/1204808',
     ignoreErrors: [
       'AutoPlayError',
       'null is not an object (evaluating \'elt.parentNode\')',
@@ -51,16 +53,15 @@ swal.setDefaults({
       // if ('https://connect.facebook.net/en_US/sdk.js' === data.culprit) {
       //   return false;
       // }
-      Raven.captureBreadcrumb({
-        message: 'Raven shouldSendCallback error data',
+      Sentry.addBreadcrumb({
+        message: 'Sentry shouldSendCallback error data',
         category: 'info',
         data,
       });
       return true;
     },
     release: '0e4fdef81448dcfa0e16ecc4433ff3997aa53572',
-  }).install();
-  Raven.context(() => {
-    startApplication();
   });
+
+  startApplication();
 }());

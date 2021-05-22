@@ -1,6 +1,7 @@
 /* eslint-disable import/no-cycle */
 import swal from 'sweetalert2';
 import isEqual from 'lodash.isequal';
+import * as Sentry from '@sentry/browser';
 
 import '../config';
 import UrlHandler from '../extras/UrlHandler';
@@ -14,7 +15,7 @@ import ApplicationState, {
 } from '../ApplicationState';
 import { fetchKey, saveOpening, parseSpecialKeys } from './firebaseApi';
 import { fetchStatus, requestDownload } from './serverApi';
-import { trackPlayedIntro } from './tracking'
+import { trackPlayedIntro } from './tracking';
 import { apiError } from '../extras/auxiliar';
 
 export const setCreateMode = (props = {}) => {
@@ -26,6 +27,7 @@ export const loadOpening = async (key) => {
   try {
     opening = await fetchKey(key);
   } catch (error) {
+    Sentry.captureException(error);
     apiError(`We could not load the introduction "${key}"`, true);
     return null;
   }
@@ -94,7 +96,7 @@ export const playButtonHandler = async (opening) => {
 
   ApplicationState.setState(LOADING);
 
-  Raven.captureBreadcrumb({
+  Sentry.addBreadcrumb({
     message: 'Saving new intro',
     category: 'action',
     data: opening,
@@ -103,9 +105,9 @@ export const playButtonHandler = async (opening) => {
   let key;
   try {
     key = await saveOpening(opening);
-
-    trackPlayedIntro()
+    trackPlayedIntro();
   } catch (error) {
+    Sentry.captureException(error);
     apiError('There was an error creating your intro.');
     return;
   }
@@ -161,6 +163,7 @@ export const loadDownloadPage = async (key, subpage) => {
       subpage,
     });
   } catch (error) {
+    Sentry.captureException(error);
     apiError(`We could not contact our servers for the download of ID: "${key}"`, true).then((result) => {
       const closedOrClickedOut = result.dismiss === swal.DismissReason.backdrop
         || result.dismiss === swal.DismissReason.close;
@@ -177,9 +180,10 @@ export const requestIntroDownload = async (rawKey, email) => {
   try {
     statusObject = await requestDownload(key, email);
   } catch (error) {
+    Sentry.captureException(error);
     apiError('We could not contact our servers to request the download your intro', false, true);
   }
   return statusObject;
 };
 
-export const loadDownloadStatus = rawKey => _loadStatus(rawKey);
+export const loadDownloadStatus = (rawKey) => _loadStatus(rawKey);

@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/browser';
 import { defaultFirebasePrefix } from '../config';
 import Http from './Http';
 
@@ -56,11 +57,10 @@ export const _generateUrlWithKey = (key) => {
   return `${openingPrefix}-${key}.json`;
 };
 
-
 export const fetchKey = async (initialKey) => {
   const openingFromCache = openingsCache[initialKey];
   if (openingFromCache) {
-    Raven.captureBreadcrumb({
+    Sentry.addBreadcrumb({
       message: 'Getting intro from cache.',
       category: 'info',
       data: openingFromCache,
@@ -74,7 +74,7 @@ export const fetchKey = async (initialKey) => {
 
   const url = _generateUrlWithKey(key);
 
-  Raven.captureBreadcrumb({
+  Sentry.addBreadcrumb({
     message: 'Loading intro from Firebase.',
     category: 'info',
     data: { initialKey },
@@ -83,16 +83,16 @@ export const fetchKey = async (initialKey) => {
   const opening = response.data;
 
   // const opening = {
-  //   "center":true,
-  //   "episode":"Episode VIII",
-  //   "intro":"Kassel Labs",
-  //   "logo":"kassel\nlabs",
-  //   "text":"Kassel Labs\n\nkassel\nlabs\n\nKASSEL LABS\n\nKASSEL\nLABS\n\nkassel labs"
-  //   ,"title":"KASSEL LABS"
+  //   center: true,
+  //   episode: 'Episode VIII',
+  //   intro: 'Kassel Labs',
+  //   logo: 'kassel\nlabs',
+  //   text: 'Kassel Labs\n\nkassel\nlabs\n\nKASSEL LABS\n\nKASSEL\nLABS\n\nkassel labs',
+  //   title: 'KASSEL LABS',
   // };
   if (!opening) {
     const error = new Error(`Opening not found: ${initialKey}`);
-    Raven.captureException(error);
+    Sentry.captureException(error);
     return opening;
   }
   // Remove created for when the opening is compared to the form it should ignore this property.
@@ -100,7 +100,6 @@ export const fetchKey = async (initialKey) => {
   openingsCache[initialKey] = opening;
   return opening;
 };
-
 
 export const saveOpening = async (opening) => {
   const http = Http(window.firebases[defaultFirebasePrefix]);

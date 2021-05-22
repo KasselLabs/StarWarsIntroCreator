@@ -1,5 +1,7 @@
+import * as Sentry from '@sentry/browser';
+
 export const documentReady = (handler) => {
-  if (document.attachEvent ? 'complete' === document.readyState : 'loading' !== document.readyState) {
+  if (document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading') {
     handler();
   } else {
     document.addEventListener('DOMContentLoaded', handler);
@@ -9,7 +11,6 @@ export const documentReady = (handler) => {
 export const urlHashChange = (handler) => {
   window.addEventListener('hashchange', handler);
 };
-
 
 export const callOnFocus = (callback) => {
   if (window.renderer) {
@@ -33,7 +34,7 @@ export const callOnFocus = (callback) => {
 export const appendKeyframesRule = (keyframeName, ruleToAppend) => {
   const { styleSheets } = document;
   let cssRuleToChange = null;
-  Raven.captureBreadcrumb({
+  Sentry.addBreadcrumb({
     message: 'Appending CSS Keyframes',
     category: 'appendKeyframesRule',
     data: {
@@ -49,7 +50,7 @@ export const appendKeyframesRule = (keyframeName, ruleToAppend) => {
     }
 
     // loop in all css rules
-    if (-1 !== styleSheet.href?.indexOf('necolas')) {
+    if (styleSheet.href?.indexOf('necolas') !== -1) {
       try {
         /* eslint-disable-next-line */
         let tryToReadRules = styleSheet.cssRules.length;
@@ -59,7 +60,7 @@ export const appendKeyframesRule = (keyframeName, ruleToAppend) => {
         continue;
       }
 
-      Raven.captureBreadcrumb({
+      Sentry.addBreadcrumb({
         message: 'Appending CSS Keyframes',
         category: 'appendKeyframesRule',
         data: {
