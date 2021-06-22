@@ -15,6 +15,8 @@ const firebases = {
   B: process.env.FIREBASE_B,
   C: process.env.FIREBASE_C,
   D: process.env.FIREBASE_D,
+
+  S: process.env.FIREBASE_S,
 };
 
 window.firebases = firebases;
