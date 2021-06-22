@@ -52,7 +52,11 @@ export const parseSpecialKeys = (key) => {
 
 const openingsCache = {};
 
-export const _generateUrlWithKey = (key) => {
+export const _generateUrlWithKey = (key, rawkey) => {
+  if (rawkey[0] === 'S') {
+    return `/-${key}`;
+  }
+
   const openingPrefix = '/openings/';
   return `${openingPrefix}-${key}.json`;
 };
@@ -72,7 +76,7 @@ export const fetchKey = async (initialKey) => {
   const { baseURL, key } = _parseFirebasekey(rawkey);
   const http = Http(baseURL);
 
-  const url = _generateUrlWithKey(key);
+  const url = _generateUrlWithKey(key, rawkey);
 
   Sentry.addBreadcrumb({
     message: 'Loading intro from Firebase.',
@@ -106,7 +110,14 @@ export const saveOpening = async (opening) => {
 
   opening.created = SERVER_TIMESTAMP;
 
-  const response = await http.post('/openings.json', opening);
-  const key = `${defaultFirebasePrefix}${response.data.name.substr(1)}`;
-  return key;
+  try {
+    const response = await http.post('/openings.json', opening);
+    const key = `${defaultFirebasePrefix}${response.data.name.substr(1)}`;
+    return key;
+  } catch (error) {
+    const fallbackApi = Http(window.firebases.S);
+    const response = await fallbackApi.post('/', opening);
+    const key = `S${response.data.name.substr(1)}`;
+    return key;
+  }
 };
