@@ -23,10 +23,9 @@ I want to provide the following details:
 
   return swal({
     title: 'an unexpected error occured',
-    text: `${message}.
-    The empire may have intercepted our transmission.
-    The alliance has already been informed and is working on correcting this.
-    Please try again and if the problem persists, contact us to give more details clicking on the button below.`,
+    html: `${message}.<br/>
+    <b style="font-weight: bold">There was an error on your connection.</b> Check if you are using a VPN, or a company network, or an ad block that may block the connection with our website.<br/><br/>
+    Please try to use the website again on a different browser or device. If the problem persists, contact us to give more details by clicking on the button below.`,
     type: 'error',
     showCloseButton: true,
     showCancelButton: true,
