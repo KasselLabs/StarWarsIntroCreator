@@ -1,11 +1,14 @@
-import swal from 'sweetalert2';
 import 'babel-polyfill';
+import swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import * as Sentry from '@sentry/browser';
 
 import '../styles/main.styl';
 
-import './extras/facebooksdk';
+import './extras/facebookpixel';
 import './extras/googleanalytics';
+import './extras/donateFlowTest';
+import './extras/tawkToChat';
 
 import startApplication from './App';
 
@@ -13,14 +16,14 @@ swal.setDefaults({
   customClass: 'starwars-sweetalert',
 });
 
-
 (function _() {
-  if ('development' === process.env.NODE_ENV) {
+  if (process.env.NODE_ENV === 'development') {
     startApplication();
     return;
   }
 
-  Raven.config(process.env.RAVEN, {
+  Sentry.init({
+    dsn: 'https://1613dee0f015471fafcf9bf88ceaf748@o152641.ingest.sentry.io/1204808',
     ignoreErrors: [
       'AutoPlayError',
       'null is not an object (evaluating \'elt.parentNode\')',
@@ -44,21 +47,21 @@ swal.setDefaults({
       // Chrome extensions
       /extensions\//i,
       /^chrome:\/\//i,
+      /googletagmanager.com/i,
     ],
     shouldSendCallback: (data) => {
       // if ('https://connect.facebook.net/en_US/sdk.js' === data.culprit) {
       //   return false;
       // }
-      Raven.captureBreadcrumb({
-        message: 'Raven shouldSendCallback error data',
+      Sentry.addBreadcrumb({
+        message: 'Sentry shouldSendCallback error data',
         category: 'info',
         data,
       });
       return true;
     },
     release: '0e4fdef81448dcfa0e16ecc4433ff3997aa53572',
-  }).install();
-  Raven.context(() => {
-    startApplication();
   });
+
+  startApplication();
 }());

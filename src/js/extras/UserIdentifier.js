@@ -1,5 +1,7 @@
 import uniq from 'lodash.uniq';
+import * as Sentry from '@sentry/browser';
 import { setGAUser } from './googleanalytics';
+import { setUserEmail } from './tawkToChat';
 
 const KEY = 'KasselLabsUser';
 
@@ -65,19 +67,13 @@ export default class UserIdentifier {
     return user.emails[0];
   }
 
-  static _setUserRaven(user) {
-    if (!window.Raven) {
-      return;
-    }
-
+  static _setSentryUser(user) {
     const email = this._getEmailId(user);
     if (email) {
-      Raven.setUserContext({
+      Sentry.setUser({
         email,
       });
     }
-
-    Raven.setExtraContext({ user });
   }
 
   static _setUserGtag(user) {
@@ -88,24 +84,20 @@ export default class UserIdentifier {
     setGAUser(email);
   }
 
-  static _setUserFreshchat(user) {
+  static _setUserTawkTo(user) {
     const email = user.lastEmail;
     if (!email) {
       return;
     }
 
-    if (window.fcWidget) {
-      window.fcWidget.user.setProperties({
-        email,
-      });
-    }
+    setUserEmail(email);
   }
 
   static setUser(appName) {
     const user = this._loadUser(appName);
-    this._setUserRaven(user);
+    this._setSentryUser(user);
     this._setUserGtag(user);
-    this._setUserFreshchat(user);
+    this._setUserTawkTo(user);
   }
 
   static addEmail(email) {

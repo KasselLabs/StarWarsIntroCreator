@@ -40,8 +40,11 @@
 
     margin: 0 auto;
     opacity: 0;
-    transform: scale(2.2);
     animation: logoAnimation var(--intro-logo-duration) cubic-bezier(.11, .6, .48, .88) var(--intro-logo-delay);
+
+    &.-firefox-desktop {
+      transform: scale(2.2);
+    }
 
     .logoSub {
       width: 100vw;
@@ -82,7 +85,7 @@
     transform: perspective(300px) rotateX(25deg);
 
     @media mobile {
-      bottom: -5%;
+      bottom: 33%;
       left: 52.5%;
     }
 
@@ -177,6 +180,49 @@
     }
   }
 
+  .playing-buttons {
+    position: fixed;
+    bottom: 0;
+    background-color: $panelBackgroundColor;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    transition: opacity 0.5s ease;
+
+    @media mobile {
+      padding: 20px;
+      flex-direction: column;
+    }
+
+    > .playing-button {
+      @extend $actionButtonStyle;
+      font-size: 30px;
+      border-width: 2px;
+
+      &:not(:last-child) {
+        margin-right: 10px;
+
+        @media mobile {
+          margin-right: 0;
+          margin-bottom: 20px;
+        }
+      }
+
+      &:focus, &:hover {
+        box-shadow: -1px 1px 4px $greenShadow, 1px -1px 4px $greenShadow, inset -3px -2px 4px $greenShadow, inset 2px 3px 4px $greenShadow;
+        text-shadow: -1px 1px 4px $greenShadow, 1px -1px 4px $greenShadow;
+      }
+
+      @media mobile {
+        padding: 12px 30px 30px;
+        border-width: 8px;
+        border-radius: 30px;
+        font-size: 100px;
+      }
+    }
+  }
 }
 
 

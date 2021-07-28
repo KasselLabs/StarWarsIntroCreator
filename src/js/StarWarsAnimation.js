@@ -1,7 +1,9 @@
 import { checkSWFontCompatibility } from './extras/auxiliar';
 import { appendKeyframesRule } from './extras/utils';
 import escapeHtml from './extras/escapeHtml';
-import { checkChromeBugOnContainer } from './extras/checkChromeBug';
+import ApplicationState from './ApplicationState';
+import UrlHandler from './extras/UrlHandler';
+import isFirefoxDesktop from './extras/isFirefoxDesktop';
 
 class StarWarsAnimation {
   constructor() {
@@ -70,10 +72,30 @@ class StarWarsAnimation {
     // TEXT CENTER ALIGNMENT
     textContainer.style.textAlign = opening.center ? 'center' : ''; // empty will not override the justify default rule
 
+    // PLAYING BUTTONS
+    const downloadButton = animation.querySelector('#playing-download-button');
+    if (downloadButton) {
+      downloadButton.onclick = () => {
+        UrlHandler.goToDownloadPage(ApplicationState.state.key);
+      };
+    }
+    const editButton = animation.querySelector('#playing-edit-button');
+    if (editButton) {
+      editButton.onclick = () => {
+        this.reset();
+        UrlHandler.goToEditPage(ApplicationState.state.key);
+      };
+    }
+
     // LOGO
     const starwarsDefaultText = 'star\nwars';
     const logoTextContainer = animation.querySelector('.logoText');
     const logoDefaultContainer = animation.querySelector('#logoDefault');
+
+    const logoContainer = animation.querySelector('#logo');
+    if (isFirefoxDesktop()) {
+      logoContainer.classList.add('-firefox-desktop');
+    }
 
     const logoText = opening.logo;
     // is default logo
@@ -103,8 +125,6 @@ class StarWarsAnimation {
 
     this.animationContainer.appendChild(this.animation);
 
-    const textContainer = this.animation.querySelector('#text');
-
     // adjust animation speed
     const titlesContainer = this.animation.querySelector('#titles > div');
     if (titlesContainer.offsetHeight > DEFAULT_LENGTH) {
@@ -112,9 +132,6 @@ class StarWarsAnimation {
       const animationFinalPosition = FINAL_POSITION - (exceedSize * ANIMATION_CONSTANT);
       appendKeyframesRule('titlesAnimation', `100% { top: ${animationFinalPosition}% }`);
     }
-    setTimeout(() => {
-      checkChromeBugOnContainer(textContainer, true);
-    }, 1500);
   }
 }
 

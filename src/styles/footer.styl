@@ -47,7 +47,7 @@ footer {
     z-index: 10;
 
     div {
-      margin-bottom: .33em;
+      margin-bottom: .5em;
 
       &:last-of-type{
         margin-bottom: 0;
@@ -57,10 +57,28 @@ footer {
     > #donateFooterButton {
       buttonStyle();
       margin-bottom: 10px;
+      margin-left: 0;
 
       @media mobile {
         width: auto;
         font-size: 1.5em;
+      }
+    }
+
+    .social-pages {
+      margin-bottom: 10px;
+
+      > a {
+        margin-right: 10px;
+        fill: $titlesColor;
+
+        &:hover {
+          fill: lighten($titlesColor, 30);
+        }
+      }
+
+      svg {
+        width: 40px;
       }
     }
   }
@@ -70,6 +88,7 @@ footer {
 
     @media mobile {
       margin-top: 380px;
+      padding-bottom: 50px;
     }
 
     position: fixed;
@@ -91,6 +110,10 @@ footer {
 
     #anotherServiceLink {
       margin-bottom: 20px;
+    }
+
+    &.-chat-available {
+      bottom: 11em;
     }
   }
 

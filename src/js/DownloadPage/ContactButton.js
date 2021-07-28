@@ -1,6 +1,9 @@
 import React from 'react';
 
-const ContactButton = ({ customText = 'If you have any questions, please check our FAQ or contact us through the link:' }) => {
+const ContactButton = ({
+  customText = 'If you have any questions, please check our FAQ or contact us through the link:',
+  endText = null,
+}) => {
   const link = (
     <a
       className="contactButton"
@@ -17,6 +20,7 @@ const ContactButton = ({ customText = 'If you have any questions, please check o
       <p>
         {customText}&nbsp;
         {link}
+        {endText && ` ${endText}`}
       </p>
     );
   }

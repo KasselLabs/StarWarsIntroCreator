@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as Sentry from '@sentry/browser';
 import Counter from './Counter';
 
 const REQUEST_TIMEOUT = 20000;
@@ -6,10 +7,10 @@ const MAX_TRIES = 3;
 
 const Tries = new Counter(MAX_TRIES);
 
-const _successInterceptor = res => res;
+const _successInterceptor = (res) => res;
 
-const _sendRavenNotification = (errorData) => {
-  Raven.captureException(new Error(JSON.stringify(errorData)));
+const _sendSentryNotification = (errorData) => {
+  Sentry.captureException(new Error(JSON.stringify(errorData)));
 };
 
 const _retryLastRequest = ({ config }) => {
@@ -30,7 +31,7 @@ const _retryLastRequest = ({ config }) => {
 const _errorInterceptor = (error) => {
   if (Tries.isMaxValue()) {
     Tries.reset();
-    Raven.captureBreadcrumb({
+    Sentry.addBreadcrumb({
       message: `Error on request. Error code: ${error.code}`,
       level: 'error',
       data: {
@@ -38,7 +39,7 @@ const _errorInterceptor = (error) => {
       },
     });
 
-    _sendRavenNotification(error);
+    _sendSentryNotification(error);
     throw error;
   }
 

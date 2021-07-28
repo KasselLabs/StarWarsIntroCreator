@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import swal from 'sweetalert2';
 import { requestIntroDownload } from '../api/actions';
 import UserIdentifier from '../extras/UserIdentifier';
+import { trackSubmitWithoutDonation } from '../api/tracking';
 
 class EmailRequestField extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { openingKey, finishRequestHandle } = this.props;
+    const { openingKey, finishRequestHandle, isDonating } = this.props;
     const emailField = document.querySelector('#emailRequestField input');
     const email = emailField.value;
 
@@ -26,13 +27,28 @@ class EmailRequestField extends Component {
         if (requestDownloadStatus) {
           swal.hideLoading();
           swal.clickConfirm();
+
+          // TODO Remove when migrate to new flow is complete
+          if(isDonating) {
+            trackSubmitWithoutDonation();
+            swal({
+              title: 'donate',
+              html: '<p>Your payment seems to be not completed, please make sure to click on the Pay button after you fill the payment data.</p>',
+              onClose: () => {
+                if (requestDownloadStatus) {
+                  finishRequestHandle(requestDownloadStatus, email);
+                }
+              }
+            });
+            return
+          }
+
+          if (requestDownloadStatus) {
+            finishRequestHandle(requestDownloadStatus, email);
+          }
         }
       },
     });
-
-    if (requestDownloadStatus) {
-      finishRequestHandle(requestDownloadStatus, email);
-    }
 
     // window.fcWidget.user.setEmail(email);
   }
@@ -60,6 +76,7 @@ EmailRequestField.propTypes = {
   buttonlabel: PropTypes.string,
   openingKey: PropTypes.string,
   finishRequestHandle: PropTypes.func,
+  isDonating: PropTypes.bool,
 };
 
 export default EmailRequestField;

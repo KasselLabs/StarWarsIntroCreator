@@ -38,7 +38,7 @@ $titlesColor = #ffd54e;
 $formBackgroundColor = lighten(black, 3%);
 $panelBackgroundColor = lighten(black, 5%);
 
-$buttonHoverColor = lighten($formBackgroundColor, 20%);
+$buttonHoverColor = #382b00;
 $buttonFocusColor = lighten($formBackgroundColor, 40%);
 
 $errorRed = #ab0000;
@@ -109,8 +109,8 @@ iframe{
   height: 100%;
 
   @media mobile {
-    width: 105%;
-    height: 105%;
+    height: 100vh;
+    width: 100vw;
   }
 }
 
@@ -158,6 +158,7 @@ buttonStyle() {
   font-size: 1.0625em;
   font-family: $defaultFontFamily;
   cursor: pointer;
+  outline: none;
 
   &:hover, &:active {
     background-color: $buttonHoverColor !important;
@@ -221,8 +222,8 @@ buttonStyle() {
 @import './downloadPage.styl';
 @import './donation_after.styl';
 
-@import './checkChromeBug.styl';
 @import './scrollbar.styl';
 @import './checkForDonation.styl';
-@import './freshchat.styl';
 @import './Loader.styl';
+@import './videoOptions.styl';
+@import './socialButtons.styl';

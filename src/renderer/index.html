@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html lang="en_US">
+<html lang="en_US" class="not-ready">
 <head>
     <title>SWIC Renderer</title>
     <meta charset="utf-8"/>
     <meta name="robots" content="noindex">
 
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
+    <style>
+      html.not-ready {
+        background: black;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      html.not-ready * {
+        display: none;
+      }
+    </style>
 </head>
 <body>
 
@@ -54,6 +65,5 @@
   <script>
     window.renderer = true;
   </script>
-  <script src="./rendererPage.js"></script>
 </body>
 </html>

@@ -1,21 +1,12 @@
 language: node_js
 node_js:
-  - "9"
+  - "14"
 cache:
-  yarn: true
   directories:
     - node_modules
 script:
-  - yarn test:coverage
-  - yarn build
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  local_dir: dist
-  keep-history: true
-  fqdn: starwarsintrocreator.kassellabs.io
-  on:
-    branch: master
+  - npm run test:coverage
+  - npm run build
+
 notifications:
   webhooks: https://fathomless-fjord-24024.herokuapp.com/notify

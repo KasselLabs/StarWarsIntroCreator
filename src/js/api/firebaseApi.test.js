@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import { _parseFirebasekey, parseSpecialKeys, _generateUrlWithKey } from './firebaseApi';
 
 jest.mock('../config');
@@ -44,6 +45,10 @@ describe('firebaseApi.js', () => {
   });
 
   it('should get Url with key', () => {
-    expect(_generateUrlWithKey('foo')).toBe('/openings/-foo.json');
+    expect(_generateUrlWithKey('foo', 'Dfoo')).toBe('/openings/-foo.json');
+  });
+
+  it('should get Url for Fallback api with key', () => {
+    expect(_generateUrlWithKey('foo', 'Sfoo')).toBe('/-foo');
   });
 });
