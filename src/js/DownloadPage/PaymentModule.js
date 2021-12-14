@@ -29,7 +29,7 @@ const PaymentModule = ({ openingKey }) => {
           className="stripe"
           id="stripeDonateIframe"
           title="Stripe Payment Form"
-          src={`${paymentPageUrl}?embed=true&app=star-wars&code=${openingKey}&amount=1000`}
+          src={`${paymentPageUrl}?embed=true&app=star-wars&code=${openingKey}&amount=1500`}
           allowpaymentrequest="true"
         />
       </div>
