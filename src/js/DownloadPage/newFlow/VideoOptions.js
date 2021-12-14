@@ -6,9 +6,8 @@ import DeathStar from '../../../assets/favicon.png';
 import HelpButton from './HelpButton';
 
 const amounts = {
-  hd: 7,
-  fhd: 10,
-  custom: 30,
+  fhd: 15,
+  custom: 40,
 };
 
 const VideoOptions = ({ updatePaymentAmount }) => {
@@ -26,21 +25,6 @@ const VideoOptions = ({ updatePaymentAmount }) => {
         <button
           type="button"
           className={classnames('option',
-            { '-selected': selectedOption === 'hd' })}
-          onClick={() => selectOption('hd')}
-        >
-          <span className="title">HD video</span>
-          <span className="description">1280 x 720</span>
-          <span className="description">MP4 File</span>
-          <span className="description">
-            Donate at least
-            {' '}
-            <b>$7</b>
-          </span>
-        </button>
-        <button
-          type="button"
-          className={classnames('option',
             { '-selected': selectedOption === 'fhd' })}
           onClick={() => selectOption('fhd')}
         >
@@ -50,7 +34,7 @@ const VideoOptions = ({ updatePaymentAmount }) => {
           <span className="description">
             Donate at least
             {' '}
-            <b>$10</b>
+            <b>$15</b>
           </span>
         </button>
         <button
@@ -73,7 +57,7 @@ const VideoOptions = ({ updatePaymentAmount }) => {
           <span className="description">
             Donate at least
             {' '}
-            <b>$30</b>
+            <b>$40</b>
           </span>
         </button>
       </div>
