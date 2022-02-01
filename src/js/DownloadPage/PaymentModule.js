@@ -1,11 +1,9 @@
 import React, { Fragment, useCallback, useRef } from 'react';
-import { trackAddToCart } from '../api/tracking';
 import PropTypes from 'prop-types';
+import { trackAddToCart } from '../api/tracking';
 import { paymentPageUrl } from '../config';
 import Loader from './Loader';
 import VideoOptions from './newFlow/VideoOptions';
-
-const isNewDonateFlow = 'new' === window.paymentFlowAB;
 
 const PaymentModule = ({ openingKey }) => {
   const iframeRef = useRef(null);
@@ -17,8 +15,8 @@ const PaymentModule = ({ openingKey }) => {
   }, [iframeRef.current]);
 
   return (
-    <Fragment>
-      {isNewDonateFlow && <VideoOptions updatePaymentAmount={updatePaymentAmount} />}
+    <>
+      <VideoOptions updatePaymentAmount={updatePaymentAmount} />
       <p>Fill the form below to donate:</p>
       <div className="payment-container">
         <div className="center">
@@ -33,14 +31,7 @@ const PaymentModule = ({ openingKey }) => {
           allowpaymentrequest="true"
         />
       </div>
-      {!isNewDonateFlow && (
-      <p>
-        You will receive the confirmation and the video
-        on the email you put in the form above.
-        Please, confirm your email below.
-      </p>
-      )}
-    </Fragment>
+    </>
   );
 };
 

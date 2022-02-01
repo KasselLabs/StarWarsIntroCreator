@@ -9,14 +9,10 @@ import {
   RENDERED,
 } from './constants';
 
-import NotQueuedPage from './NotQueuedPage';
 import NotQueuedPageNew from './newFlow/NotQueuedPageNew';
 import VideoRequestSentNew from './newFlow/VideoRequestSentNew';
 import RequestDownloadPageNew from './newFlow/RequestDownloadPageNew';
-import RequestDownloadPage from './RequestDownloadPage';
-import VideoQueuedPage from './VideoQueuedPage';
 import VideoQueuedPageNew from './newFlow/VideoQueuedPageNew';
-import VideoRequestSent from './VideoRequestSent';
 import RenderingPage from './RenderingPage';
 import RenderedPage from './RenderedPage';
 import AddEmailForm from './AddEmailForm';
@@ -119,23 +115,18 @@ class DownloadPage extends Component {
   }
 
   yesDonateHandle = () => {
-    const { paymentFlowAB } = window;
     const { page, openingKey } = this.state;
 
-    if ('new' === paymentFlowAB) {
-      if (page === INITIAL_PAGE) {
-        swal({
-          title: 'donate',
-          html: '<p>Fill the payment form above to make your payment first.</p>',
-        });
-        return;
-      }
-
-      this.setState({ page: INITIAL_PAGE });
-      UrlHandler.goToDownloadPage(openingKey);
+    if (page === INITIAL_PAGE) {
+      swal({
+        title: 'donate',
+        html: '<p>Fill the payment form above to make your payment first.</p>',
+      });
       return;
     }
-    UrlHandler.goToDownloadPage(openingKey, 'donate');
+
+    this.setState({ page: INITIAL_PAGE });
+    UrlHandler.goToDownloadPage(openingKey);
   };
 
   noDonateHandle = () => {
@@ -153,48 +144,33 @@ class DownloadPage extends Component {
     });
   }
 
+  addEmailNextPage = (requestStatus, requestEmail) => {
+    this.setState({
+      status: requestStatus,
+      requestStatus,
+      requestEmail,
+    });
+  }
+
   renderInitialPage() {
-    const { status, openingKey } = this.state;
+    const { status, openingKey, requestEmail } = this.state;
     const statusType = status.status;
-    const { paymentFlowAB } = window;
 
     switch (statusType) {
       default:
       case NOT_QUEUED:
-        if ('new' === paymentFlowAB) {
-          return (
-            <NotQueuedPageNew
-              status={status}
-              openingKey={openingKey}
-              yesDonateHandle={this.yesDonateHandle}
-              noDonateHandle={this.noDonateHandle}
-            />
-          );
-        }
         return (
-          <NotQueuedPage
-            status={status}
+          <NotQueuedPageNew
             openingKey={openingKey}
-            yesDonateHandle={this.yesDonateHandle}
-            noDonateHandle={this.noDonateHandle}
+            finishRequestHandle={this.addEmailNextPage}
           />
         );
 
       case QUEUED:
-        if ('new' === paymentFlowAB) {
-          return (
-            <VideoQueuedPageNew
-              status={status}
-              openingKey={openingKey}
-              yesDonateHandle={this.yesDonateHandle}
-              noDonateHandle={this.noDonateHandle}
-            />
-          );
-        }
-
         return (
-          <VideoQueuedPage
+          <VideoQueuedPageNew
             status={status}
+            requestEmail={requestEmail}
             openingKey={openingKey}
             yesDonateHandle={this.yesDonateHandle}
             noDonateHandle={this.noDonateHandle}
@@ -230,7 +206,6 @@ class DownloadPage extends Component {
       requestEmail,
       paymentData,
     } = this.state;
-    const { paymentFlowAB } = window;
 
     switch (page) {
       default:
@@ -238,20 +213,8 @@ class DownloadPage extends Component {
         return this.renderInitialPage();
 
       case REQUEST_PAGE:
-        if ('new' === paymentFlowAB) {
-          return (
-            <RequestDownloadPageNew
-              donate={donate}
-              status={status}
-              openingKey={openingKey}
-              yesDonateHandle={this.yesDonateHandle}
-              finishRequestHandle={this.finishRequestHandle}
-            />
-          );
-        }
-
         return (
-          <RequestDownloadPage
+          <RequestDownloadPageNew
             donate={donate}
             status={status}
             openingKey={openingKey}
@@ -261,24 +224,13 @@ class DownloadPage extends Component {
         );
 
       case FINAL_PAGE:
-        if ('new' === paymentFlowAB) {
-          return (
-            <VideoRequestSentNew
-              requestStatus={requestStatus}
-              requestEmail={requestEmail}
-              openingKey={openingKey}
-              donate={donate}
-              paymentData={paymentData}
-            />
-          );
-        }
-
         return (
-          <VideoRequestSent
+          <VideoRequestSentNew
             requestStatus={requestStatus}
             requestEmail={requestEmail}
             openingKey={openingKey}
             donate={donate}
+            paymentData={paymentData}
           />
         );
 
