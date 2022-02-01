@@ -1,4 +1,5 @@
 import devtools from 'devtools-detect';
+import * as Sentry from '@sentry/browser';
 
 class AudioController {
   constructor() {
@@ -58,26 +59,45 @@ class AudioController {
     this.wmInterval = setInterval(() => {
       try {
         const wm = document.querySelector('#wtm');
+        const styles = window.getComputedStyle(wm);
+
         const checks = [
           !devtools.isOpen,
-          wm.style.position === 'fixed',
+          styles.position === 'fixed',
           wm.style.height === 'auto',
           wm.style.width === `${14 * 2}vw`,
-          wm.style.opacity === `${1 / 2}`,
-          wm.style.bottom === `${200 - 83}px`,
-          wm.style.right === `${25 / 5}vw`,
-          wm.style.minWidth === `${150 * 2}px`,
-          wm.style.pointerEvents === 'none',
-          wm.style.display === 'block',
-          wm.style.visibility === 'visible',
+          styles.opacity === `${1 / 2}`,
+          styles.bottom === `${200 - 83}px`,
+          styles.right === '25px' || wm.style.right === `${25 / 5}vw`,
+          styles.minWidth === `${150 * 2}px`,
+          styles.pointerEvents === 'none',
+          styles.display === 'block',
+          styles.visibility === 'visible',
           wm.style.border === 'none',
-          wm.style.padding === '0px',
-          wm.style.margin === '0px',
+          styles.padding === '0px',
+          styles.margin === '0px',
         ];
+
         if (checks.some((check) => !check)) {
           throw new Error('audio tracking error');
         }
+
+        const wm2 = document.querySelectorAll('#wtm *');
+        const wm2list = Array.from(wm2);
+
+        wm2list.forEach((el) => {
+          const elStyle = window.getComputedStyle(el);
+
+          const checks2 = [
+            elStyle.opacity === '1',
+          ];
+
+          if (checks2.some((check) => !check)) {
+            throw new Error('audio tracking error');
+          }
+        });
       } catch (error) {
+        Sentry.captureException(error);
         document.querySelector('.animation').remove();
       }
     }, 1000);
@@ -100,39 +120,22 @@ class AudioController {
       try {
         await this.audio.play();
         this.startAudioVerify();
-        setTimeout(() => {
-          try {
-            const animationDiv = document.querySelector('.animation');
-            animationDiv.removeChild(document.querySelector('#wtm'));
-            clearInterval(this.wmInterval);
-            this.addWm();
-            this.startAudioVerify();
-          } catch (error) {
-            document.querySelector('.animation').remove();
-          }
-        }, 48000);
-        setTimeout(() => {
-          try {
-            clearInterval(this.wmInterval);
-            const animationDiv = document.querySelector('.animation');
-            animationDiv.removeChild(document.querySelector('#wtm'));
-            this.addWm();
-            this.startAudioVerify();
-          } catch (error) {
-            document.querySelector('.animation').remove();
-          }
-        }, 24000);
-        setTimeout(() => {
-          try {
-            const animationDiv = document.querySelector('.animation');
-            animationDiv.removeChild(document.querySelector('#wtm'));
-            clearInterval(this.wmInterval);
-            this.addWm();
-            this.startAudioVerify();
-          } catch (error) {
-            document.querySelector('.animation').remove();
-          }
-        }, 72000);
+        const method = setTimeout;
+        const times = [24, 48, 72];
+        times.forEach((time) => {
+          method(() => {
+            try {
+              const animationDiv = document.querySelector('.animation');
+              animationDiv.removeChild(document.querySelector('#wtm'));
+              clearInterval(this.wmInterval);
+              this.addWm();
+              this.startAudioVerify();
+            } catch (error) {
+              Sentry.captureException(error);
+              document.querySelector('.animation').remove();
+            }
+          }, time * 1000);
+        });
       } catch (error) {
         reject(error);
         return;
