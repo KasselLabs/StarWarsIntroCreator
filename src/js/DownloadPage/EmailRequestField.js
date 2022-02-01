@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import swal from 'sweetalert2';
+import axios from 'axios';
 import { requestIntroDownload } from '../api/actions';
 import UserIdentifier from '../extras/UserIdentifier';
 import { trackSubmitWithoutDonation } from '../api/tracking';
+
+const newsletterApiURL = process.env.NEWSLETTER_API_URL;
 
 class EmailRequestField extends Component {
   handleSubmit = async (e) => {
@@ -12,9 +15,18 @@ class EmailRequestField extends Component {
     const emailField = document.querySelector('#emailRequestField #email');
     const email = emailField.value;
     const subscribeCheckbox = document.querySelector('#emailRequestField #subscribe-newsletter');
-    const subscribeCheckboxValue = subscribeCheckbox.checked;
 
-    // TODO submit to newsletter
+    if (subscribeCheckbox.checked) {
+      axios.request({
+        url: newsletterApiURL,
+        method: 'POST',
+        data: {
+          email,
+          language: navigator.language,
+          source: 'star-wars-intro-creator',
+        },
+      });
+    }
 
     UserIdentifier.addEmail(email);
 
