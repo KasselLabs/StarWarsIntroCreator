@@ -58,21 +58,21 @@ class DownloadPage extends Component {
     let page = INITIAL_PAGE;
     let donate = false;
 
-    if ('donate' === subpage) {
+    if (subpage === 'donate') {
       donate = true;
       page = REQUEST_PAGE;
     }
 
-    if ('request' === subpage) {
+    if (subpage === 'request') {
       donate = false;
       page = REQUEST_PAGE;
     }
 
-    if ('add_email' === subpage) {
+    if (subpage === 'add_email') {
       page = ADD_EMAIL_PAGE;
     }
 
-    if ('donated' === subpage) {
+    if (subpage === 'donated') {
       donate = true;
       page = FINAL_PAGE;
     }
@@ -246,7 +246,7 @@ class DownloadPage extends Component {
 
   render() {
     const { status } = this.state.status;
-    const canDonateToReceiveFaster = status === NOT_QUEUED || status === QUEUED;
+    const canDonateToReceiveFaster = status === QUEUED;
     const title = canDonateToReceiveFaster ? 'donate and download' : 'download';
     return (
       <div>

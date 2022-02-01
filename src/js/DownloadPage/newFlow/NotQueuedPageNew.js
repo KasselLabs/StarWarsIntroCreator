@@ -1,61 +1,42 @@
 import React from 'react';
-import DonateOrNotDonateNew from './DonateOrNotDonateNew';
-import { calculateTimeToRender } from '../../extras/auxiliar';
+import EmailRequestField from '../EmailRequestField';
 import TermsOfServiceAcceptance from '../TermsOfServiceAcceptance';
 import ContactButton from '../ContactButton';
-import PaymentModule from '../PaymentModule';
 
-const NotQueuedPage = ({ status, openingKey, ...props }) => {
-  const { queueSize } = status;
-  const timeToRender = calculateTimeToRender(queueSize + 1);
+const NotQueuedPage = ({ openingKey, finishRequestHandle }) => (
+  <div>
+    <p>
+      You can now request a download a video of your creation.
+    </p>
+    <p>
+      The video will rendered in our servers and take some time to be delivered.
+      After the video is ready, it will be sent to your email address.
+    </p>
+    <p>
+      Your email address will be used only to send the video, but
+      you can choose to receive news from Kassel Labs about new releases.
+    </p>
+    {/* <p>
+      Before sending the download request make sure there are no typos in your text
+      to grant that your video will be with the correct text.
+    </p> */}
 
-  return (
-    <div>
-      <p>
-        You can now request a download a video of your creation.
-        We want to provide the video for free, but we have costs with
-        the servers where the video are rendered.
-      </p>
-      <p>
-        There are
-        {' '}
-        <b>
-          {queueSize}
-          {' '}
-          videos
-        </b>
-        {' '}
-        in front of you to be rendered and
-        may take up to
-        <b>{timeToRender}</b>
-        {' '}
-        to send your video.
-      </p>
-      <p>
-        Can&apos;t wait for it? Donate to support our service and your video will
-        be ready in a few hours (2 hours usually).
-      </p>
-      <PaymentModule openingKey={openingKey} />
-      <p>
-        Do you want to see a sample video?
-        {' '}
-        <a target="_blank" rel="noopener noreferrer" href="https://www.youtube.com/watch?v=lYnLLF2QyM4">
-          Take a look at this one on YouTube.
-        </a>
-      </p>
+    <ContactButton
+      customText="Do you have questions? Please check our"
+      endText="page."
+    />
+    <TermsOfServiceAcceptance />
 
-      <ContactButton
-        customText="Need any help? Please check our"
-        endText="page"
-      />
-      <p>
-        Before sending the download request make sure there are no typos in your text
-        to grant that your video will be with the correct text.
-      </p>
-      <TermsOfServiceAcceptance />
-      <DonateOrNotDonateNew {...props} />
-    </div>
-  );
-};
+    <p style={{ fontWeight: 'bold', marginTop: '30px', marginBottom: 0 }}>
+      Type your email below to receive your video download link:
+    </p>
+
+    <EmailRequestField
+      buttonlabel="REQUEST VIDEO DOWNLOAD"
+      openingKey={openingKey}
+      finishRequestHandle={finishRequestHandle}
+    />
+  </div>
+);
 
 export default NotQueuedPage;
