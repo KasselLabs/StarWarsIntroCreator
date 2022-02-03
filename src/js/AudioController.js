@@ -67,7 +67,7 @@ class AudioController {
           wm.style.height === 'auto',
           wm.style.width === `${14 * 2}vw`,
           styles.opacity === `${1 / 2}`,
-          styles.bottom === `${200 - 83}px`,
+          styles.bottom === '600px' || wm.style.bottom === `${200 - 83}px`,
           styles.right === '25px' || wm.style.right === `${25 / 5}vw`,
           styles.minWidth === `${150 * 2}px`,
           styles.pointerEvents === 'none',
@@ -90,6 +90,8 @@ class AudioController {
 
           const checks2 = [
             elStyle.opacity === '1',
+            elStyle.visibility === 'visible',
+            elStyle.position === 'static',
           ];
 
           if (checks2.some((check) => !check)) {
