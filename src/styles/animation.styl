@@ -236,9 +236,38 @@
         font-size: 100px;
       }
     }
+
+    .help-button {
+      position: absolute;
+      right: 3em;
+      text-decoration: none;
+
+      > .icon {
+        color: $titlesColor;
+        border: 3px solid currentcolor;
+        border-radius: 100%;
+        display: block;
+        font-weight: bold;
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+        padding: 4px;
+        padding-left: 5px
+        cursor: pointer;
+        text-align: center;
+        font-family: Arial, sans-serif;
+
+        @media mobile {
+          font-size: 60px;
+          border-width: 6px;
+          padding: 4px;
+          width: 60px;
+          height: 60px;
+        }
+      }
+    }
   }
 }
-
 
  // background scroll at the end
 body.runningVideo {
