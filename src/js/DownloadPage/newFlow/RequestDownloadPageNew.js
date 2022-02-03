@@ -50,7 +50,10 @@ const RequestDownloadPage = ({
       <p>
         Fill your email below and when your video is ready
         you will receive a message with the link to download it.
-        We promise not to send spam!
+      </p>
+      <p>
+        Your email address will be used only to send the video, but
+        you can choose to receive news from Kassel Labs about new releases.
       </p>
 
       <TermsOfServiceAcceptance />

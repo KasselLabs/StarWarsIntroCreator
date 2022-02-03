@@ -1,16 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import swal from 'sweetalert2';
+import axios from 'axios';
 import { requestIntroDownload } from '../api/actions';
 import UserIdentifier from '../extras/UserIdentifier';
 import { trackSubmitWithoutDonation } from '../api/tracking';
 
+const newsletterApiURL = process.env.NEWSLETTER_API_URL;
+
 class EmailRequestField extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { openingKey, finishRequestHandle, isDonating } = this.props;
-    const emailField = document.querySelector('#emailRequestField input');
+    const { openingKey, finishRequestHandle } = this.props;
+    const emailField = document.querySelector('#emailRequestField #email');
     const email = emailField.value;
+    const subscribeCheckbox = document.querySelector('#emailRequestField #subscribe-newsletter');
+
+    if (subscribeCheckbox.checked) {
+      axios.request({
+        url: newsletterApiURL,
+        method: 'POST',
+        data: {
+          email,
+          language: navigator.language,
+          source: 'star-wars-intro-creator',
+        },
+      });
+    }
 
     UserIdentifier.addEmail(email);
 
@@ -28,33 +44,16 @@ class EmailRequestField extends Component {
           swal.hideLoading();
           swal.clickConfirm();
 
-          // TODO Remove when migrate to new flow is complete
-          if(isDonating) {
-            trackSubmitWithoutDonation();
-            swal({
-              title: 'donate',
-              html: '<p>Your payment seems to be not completed, please make sure to click on the Pay button after you fill the payment data.</p>',
-              onClose: () => {
-                if (requestDownloadStatus) {
-                  finishRequestHandle(requestDownloadStatus, email);
-                }
-              }
-            });
-            return
-          }
-
           if (requestDownloadStatus) {
             finishRequestHandle(requestDownloadStatus, email);
           }
         }
       },
     });
-
-    // window.fcWidget.user.setEmail(email);
   }
 
   render() {
-    const { buttonlabel = 'SUBMIT REQUEST' } = this.props;
+    const { buttonlabel = 'ADD EMAIL TO REQUEST' } = this.props;
     return (
       <div id="emailRequestField">
         <form onSubmit={this.handleSubmit}>
@@ -65,6 +64,11 @@ class EmailRequestField extends Component {
             placeholder="Insert your email here..."
             required
           />
+          <div className="checkbox">
+            <input className="regular-checkbox" type="checkbox" id="subscribe-newsletter" />
+            <label htmlFor="subscribe-newsletter" />
+            <label htmlFor="subscribe-newsletter">I agree to receive news from Kassel Labs services.</label>
+          </div>
           <button>{buttonlabel}</button>
         </form>
       </div>
@@ -76,7 +80,6 @@ EmailRequestField.propTypes = {
   buttonlabel: PropTypes.string,
   openingKey: PropTypes.string,
   finishRequestHandle: PropTypes.func,
-  isDonating: PropTypes.bool,
 };
 
 export default EmailRequestField;

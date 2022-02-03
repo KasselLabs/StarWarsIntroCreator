@@ -148,6 +148,69 @@
         font-size: 2.4em;
       }
     }
+
+    .checkbox {
+      font-family: Arial;
+      user-select: none;
+      margin-bottom: 1em;
+
+      label {
+        display: inline;
+        margin-left: 6px;
+        vertical-align: middle;
+        cursor: pointer;
+        fontSizeResponsive();
+
+        @media mobile {
+          margin-left: 15px;
+        }
+      }
+
+      .regular-checkbox {
+        display: block;
+        height: 0;
+        margin: 0;
+        opacity: 0;
+
+        &:hover {
+          &+label {
+            border-color: $inputBorderColorHover;
+          }
+        }
+
+        &:focus {
+          &+label {
+            border-color: $inputBorderColorFocus;
+          }
+        }
+
+        &+label {
+          inputStyle();
+          display: inline-block;
+          width: 9px;
+          height: 9px;
+
+          @media mobile {
+            width: 18px;
+            height: 18px;
+          }
+        }
+
+        &:checked + label:after {
+          position: relative;
+          top: -7px;
+          color: $titlesColor;
+          content: '\25A0';
+          letter-spacing: 0;
+          cursor: pointer;
+          fontSizeResponsive();
+
+          @media mobile {
+            top: -8px;
+          }
+        }
+      }
+    }
   }
 }
 

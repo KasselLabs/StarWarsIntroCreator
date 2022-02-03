@@ -7,7 +7,6 @@ import '../styles/main.styl';
 
 import './extras/facebookpixel';
 import './extras/googleanalytics';
-import './extras/donateFlowTest';
 import './extras/tawkToChat';
 
 import startApplication from './App';
