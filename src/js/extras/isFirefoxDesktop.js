@@ -1,6 +1,6 @@
 const getUserAgent = () => navigator.userAgent || navigator.vendor || window.opera;
 
-const isAndroidOrIos = () => {
+export const isAndroidOrIos = () => {
   const userAgent = getUserAgent();
 
   if (/android/i.test(userAgent)) {

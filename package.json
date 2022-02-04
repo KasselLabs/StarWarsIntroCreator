@@ -62,6 +62,7 @@
     "bowser": "^1.9.4",
     "classnames": "^2.3.1",
     "devtools-detect": "^4.0.0",
+    "exponential-backoff": "^3.1.0",
     "lodash.isequal": "^4.5.0",
     "lodash.uniq": "^4.5.0",
     "prop-types": "^15.7.2",
