@@ -1,6 +1,8 @@
 import devtools from 'devtools-detect';
 import * as Sentry from '@sentry/browser';
 
+const isIframe = window.location !== window.parent.location;
+
 class AudioController {
   constructor() {
     this.audio = document.querySelector('#themeAudio');
@@ -56,9 +58,10 @@ class AudioController {
     svg.style.pointerEvents = 'none';
     svg.style.display = 'block';
     svg.style.visibility = 'visible';
+    svg.style.borderWidth = '0px';
     svg.style.border = 'none';
-    svg.style.padding = '0';
-    svg.style.margin = '0';
+    svg.style.padding = '0px';
+    svg.style.margin = '0px';
     this.wm = svg;
   }
 
@@ -73,7 +76,7 @@ class AudioController {
         const styles = window.getComputedStyle(wm);
 
         const checks = [
-          !devtools.isOpen,
+          !devtools.isOpen || isIframe,
           styles.position === 'fixed',
           wm.style.height === 'auto',
           wm.style.width === `${14 * 2}vw`,
@@ -84,16 +87,16 @@ class AudioController {
           styles.pointerEvents === 'none',
           styles.display === 'block',
           styles.visibility === 'visible',
-          wm.style.border === 'none',
-          styles.padding === '0px',
-          styles.margin === '0px',
+          wm.style.border === 'none' || wm.style.border === 'medium none',
+          styles.padding === '0px' || styles.padding === '',
+          styles.margin === '0px' || styles.margin === '',
         ];
 
         if (checks.some((check) => !check)) {
           Sentry.addBreadcrumb({
             message: 'Verification failed:',
             category: 'info',
-            data: checks,
+            data: { checks },
           });
           throw new Error('audio tracking error');
         }
@@ -114,7 +117,7 @@ class AudioController {
             Sentry.addBreadcrumb({
               message: 'Second level Verification failed:',
               category: 'info',
-              data: checks2,
+              data: { checks2 },
             });
             throw new Error('audio tracking error');
           }
