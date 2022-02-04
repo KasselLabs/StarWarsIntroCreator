@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import swal from 'sweetalert2';
 import axios from 'axios';
+import { backOff } from 'exponential-backoff';
 import { requestIntroDownload } from '../api/actions';
 import UserIdentifier from '../extras/UserIdentifier';
 import { trackSubmitWithoutDonation } from '../api/tracking';
@@ -17,7 +18,7 @@ class EmailRequestField extends Component {
     const subscribeCheckbox = document.querySelector('#emailRequestField #subscribe-newsletter');
 
     if (subscribeCheckbox.checked) {
-      axios.request({
+      backOff(() => axios.request({
         url: newsletterApiURL,
         method: 'POST',
         data: {
@@ -25,7 +26,7 @@ class EmailRequestField extends Component {
           language: navigator.language,
           source: 'star-wars-intro-creator',
         },
-      });
+      }));
     }
 
     UserIdentifier.addEmail(email);
