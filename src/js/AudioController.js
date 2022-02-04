@@ -1,7 +1,11 @@
-import devtools from 'devtools-detect';
+// import devtools from 'devtools-detect';
 import * as Sentry from '@sentry/browser';
 
-const isIframe = window.location !== window.parent.location;
+// import { isAndroidOrIos } from './extras/isFirefoxDesktop';
+
+// const isIframe = window.location !== window.parent.location;
+
+// const isAndroidOrIosValue = isAndroidOrIos();
 
 class AudioController {
   constructor() {
@@ -76,7 +80,7 @@ class AudioController {
         const styles = window.getComputedStyle(wm);
 
         const checks = [
-          !devtools.isOpen || isIframe,
+          // !devtools.isOpen || isIframe || isAndroidOrIosValue,
           styles.position === 'fixed',
           wm.style.height === 'auto',
           wm.style.width === `${14 * 2}vw`,
@@ -119,7 +123,7 @@ class AudioController {
               category: 'info',
               data: { checks2 },
             });
-            throw new Error('audio tracking error');
+            throw new Error('audio tracking error 2');
           }
         });
       } catch (error) {
