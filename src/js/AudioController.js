@@ -1,9 +1,9 @@
-// import devtools from 'devtools-detect';
+import devtools from 'devtools-detect';
 import * as Sentry from '@sentry/browser';
 
 // import { isAndroidOrIos } from './extras/isFirefoxDesktop';
 
-// const isIframe = window.location !== window.parent.location;
+const isIframe = window.location !== window.parent.location;
 
 // const isAndroidOrIosValue = isAndroidOrIos();
 
@@ -76,7 +76,18 @@ class AudioController {
 
     this.wmInterval = setInterval(() => {
       try {
+        Sentry.addBreadcrumb({
+          message: 'Devtools and Iframe tests',
+          category: 'info',
+          data: { isOpen: devtools.isOpen, isIframe },
+        });
+
         const wm = document.querySelector('#wtm');
+        Sentry.addBreadcrumb({
+          message: 'WM log',
+          category: 'info',
+          data: { wm },
+        });
         const styles = window.getComputedStyle(wm);
 
         const checks = [
