@@ -7,7 +7,8 @@ import '../styles/main.styl';
 
 import './extras/facebookpixel';
 import './extras/googleanalytics';
-import './extras/tawkToChat';
+// Uncomment to enable tawk.to
+// import './extras/tawkToChat';
 
 import startApplication from './App';
 
