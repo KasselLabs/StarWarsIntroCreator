@@ -7,6 +7,20 @@ const isIframe = window.location !== window.parent.location;
 
 // const isAndroidOrIosValue = isAndroidOrIos();
 
+Sentry.addBreadcrumb({
+  message: 'Devtools and Iframe tests',
+  category: 'info',
+  data: { isDevToolsOpen: devtools.isOpen, isIframe },
+});
+
+window.addEventListener('devtoolschange', (event) => {
+  Sentry.addBreadcrumb({
+    message: 'Devtools event change',
+    category: 'info',
+    data: { isDevToolsOpen: event.detail.isOpen },
+  });
+});
+
 class AudioController {
   constructor() {
     this.audio = document.querySelector('#themeAudio');
@@ -75,21 +89,21 @@ class AudioController {
     }
 
     this.wmInterval = setInterval(() => {
+      let styles;
+      let wm;
       try {
-        Sentry.addBreadcrumb({
-          message: 'Devtools and Iframe tests',
-          category: 'info',
-          data: { isOpen: devtools.isOpen, isIframe },
-        });
-
-        const wm = document.querySelector('#wtm');
+        wm = document.querySelector('#wtm');
+        styles = window.getComputedStyle(wm);
+      } catch (error) {
         Sentry.addBreadcrumb({
           message: 'WM log',
           category: 'info',
           data: { wm },
         });
-        const styles = window.getComputedStyle(wm);
+        this.verificationFailed(error);
+      }
 
+      try {
         const checks = [
           // !devtools.isOpen || isIframe || isAndroidOrIosValue,
           styles.position === 'fixed',
