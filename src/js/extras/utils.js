@@ -34,13 +34,13 @@ export const callOnFocus = (callback) => {
 export const appendKeyframesRule = (keyframeName, ruleToAppend) => {
   const { styleSheets } = document;
   let cssRuleToChange = null;
-  Sentry.addBreadcrumb({
-    message: 'Appending CSS Keyframes',
-    category: 'appendKeyframesRule',
-    data: {
-      'styleSheets.length': styleSheets.length,
-    },
-  });
+  // Sentry.addBreadcrumb({
+  //   message: 'Appending CSS Keyframes',
+  //   category: 'appendKeyframesRule',
+  //   data: {
+  //     'styleSheets.length': styleSheets.length,
+  //   },
+  // });
   // loop in all stylesheets
   for (let i = 0; i < styleSheets.length; i += 1) {
     const styleSheet = styleSheets[i];
@@ -60,15 +60,15 @@ export const appendKeyframesRule = (keyframeName, ruleToAppend) => {
         continue;
       }
 
-      Sentry.addBreadcrumb({
-        message: 'Appending CSS Keyframes',
-        category: 'appendKeyframesRule',
-        data: {
-          i,
-          styleSheet,
-          'styleSheet.href': styleSheet.href,
-        },
-      });
+      // Sentry.addBreadcrumb({
+      //   message: 'Appending CSS Keyframes',
+      //   category: 'appendKeyframesRule',
+      //   data: {
+      //     i,
+      //     styleSheet,
+      //     'styleSheet.href': styleSheet.href,
+      //   },
+      // });
       for (let j = 0; j < styleSheet.cssRules.length; j += 1) {
         const rule = styleSheet.cssRules[j];
         if (rule.name === keyframeName && rule.type === window.CSSRule.KEYFRAMES_RULE) {
