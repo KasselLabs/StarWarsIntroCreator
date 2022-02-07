@@ -91,6 +91,7 @@ class AudioController {
     this.wmInterval = setInterval(() => {
       let styles;
       let wm;
+
       try {
         wm = document.querySelector('#wtm');
         styles = window.getComputedStyle(wm);
@@ -179,6 +180,9 @@ class AudioController {
         times.forEach((time) => {
           method(() => {
             try {
+              if (document.querySelector('audio').paused) {
+                return;
+              }
               const animationDiv = document.querySelector('.animation');
               animationDiv.removeChild(document.querySelector('#wtm'));
               clearInterval(this.wmInterval);
@@ -203,6 +207,9 @@ class AudioController {
   }
 
   reset() {
+    if (this.wmInterval) {
+      clearInterval(this.wmInterval);
+    }
     if (!this.audio) {
       return;
     }
