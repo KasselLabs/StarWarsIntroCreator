@@ -11,8 +11,49 @@ const setCSSVariable = (variableName, value) => {
   document.documentElement.style.setProperty(variableName, value);
 };
 
-window.playIntro = (opening) => {
+const waitUntilElementExists = (selector) => new Promise((resolve) => {
+  let intervalId = null;
+
+  const resolveIfExists = () => {
+    const element = document.querySelector(selector);
+    if (element) {
+      clearInterval(intervalId);
+      resolve(element);
+    }
+  };
+
+  intervalId = setInterval(resolveIfExists, 100);
+  resolveIfExists();
+});
+
+window.playIntro = async (opening) => {
+  if (opening.timeFactor) {
+    setCSSVariable('--time-factor', opening.timeFactor);
+  }
+
   ViewController.playOpening(opening);
+
+  if (opening.image) {
+    const deathStarElement = await waitUntilElementExists('#deathstar');
+    deathStarElement.src = opening.image.url;
+
+    if (opening.image.height) {
+      deathStarElement.style.height = `${opening.image.height}px`;
+      deathStarElement.style.width = 'auto';
+    }
+
+    if (opening.image.center) {
+      const backgroundSpaceElement = await waitUntilElementExists('#backgroundSpace');
+      backgroundSpaceElement.style.display = 'flex';
+      backgroundSpaceElement.style.alignItems = 'flex-start';
+      backgroundSpaceElement.style.justifyContent = 'center';
+      deathStarElement.style.position = 'initial';
+
+      if (opening.image.height) {
+        deathStarElement.style.marginTop = `calc(var(--scrolldown-height) + 50vh - ${opening.image.height / 2}px)`;
+      }
+    }
+  }
   document.querySelector('html').classList.remove('not-ready');
 };
 
