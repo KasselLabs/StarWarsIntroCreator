@@ -33,6 +33,11 @@ window.playIntro = async (opening) => {
 
   ViewController.playOpening(opening);
 
+  if (opening.logoImage) {
+    const logoElement = await waitUntilElementExists('#logoDefault');
+    logoElement.src = opening.logoImage.url;
+  }
+
   if (opening.image) {
     const deathStarElement = await waitUntilElementExists('#deathstar');
     deathStarElement.src = opening.image.url;
