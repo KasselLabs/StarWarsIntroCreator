@@ -26,12 +26,47 @@ const waitUntilElementExists = (selector) => new Promise((resolve) => {
   resolveIfExists();
 });
 
+window.setAnimationTime = (time) => {
+  [
+    {
+      delay: 0,
+      selector: '.introBackground',
+    },
+    {
+      delay: 1000,
+      selector: '.introBackground .intro',
+    },
+    {
+      delay: 9000,
+      selector: '#logo',
+    },
+    {
+      delay: 13000,
+      selector: '#titles > div',
+    },
+    {
+      delay: 86000,
+      selector: 'body.runningVideo #backgroundSpace',
+    },
+  ].forEach(({ delay, selector }) => {
+    const element = document.querySelector(selector);
+    const delayToSet = delay - time;
+    element.style.setProperty('animation-play-state', 'paused');
+    element.style.setProperty('animation-delay', `${delayToSet}ms`);
+  });
+};
+
 window.playIntro = async (opening) => {
   if (opening.timeFactor) {
     setCSSVariable('--time-factor', opening.timeFactor);
   }
 
   ViewController.playOpening(opening);
+
+  if (opening.paused) {
+    await waitUntilElementExists('#logoDefault');
+    window.setAnimationTime(0);
+  }
 
   if (opening.logoImage) {
     const logoElement = await waitUntilElementExists('#logoDefault');
