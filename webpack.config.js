@@ -9,7 +9,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     port: 8080,
   },
-  entry: { index: path.resolve(__dirname, 'src', 'js', 'index.js') },
+  entry: { index: path.resolve(__dirname, 'src', 'renderer', 'rendererPage.js') },
   module: {
     rules: [
       {
