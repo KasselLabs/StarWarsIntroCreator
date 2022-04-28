@@ -1,133 +1,34 @@
 <!DOCTYPE html>
-<html lang="en_US">
+<html lang="en_US" class="not-ready">
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116931857-1"></script>
-
-    <title>Star Wars Intro Creator</title>
+    <title>SWIC Renderer</title>
     <meta charset="utf-8"/>
-    <meta name="description" content="Create your own Star Wars opening crawl. You type your text, replace the Star Wars logo and play it directly on the website. You can request to Download your video, check the download options, you can replace the final image with any image you want to." />
+    <meta name="robots" content="noindex">
 
-    <meta property="og:locale" content="en_US">
-    <meta property="og:url" content="https://StarWarsIntroCreator.KasselLabs.io/">
-    <meta property="og:title" content="Star Wars Intro Creator">
-    <meta property="og:site_name" content="Star Wars Intro Creator">
-    <meta property="og:description" content="Create your own Star Wars opening crawl.">
-    <meta property="og:image" content="https://StarWarsIntroCreator.KasselLabs.io/assets/preview.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:type" content="website">
-    <meta property="fb:app_id" content="966673750071792"/>
-
-    <meta name="theme-color" content="#000">
-
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
     <style>
-      body {
+      html.not-ready {
+        background: black;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      html.not-ready * {
         display: none;
       }
     </style>
-
-    <link rel="shortcut icon" href="./assets/favicon.png">
-    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
-    <script src="./js/extras/detectIE.js"></script>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KS9JHJT');</script>
-    <!-- End Google Tag Manager -->
 </head>
-<body class="loading">
-
-  <!-- Keep preview for OG meta tags -->
-  <a style="display: none;" href="./assets/preview.png"></a>
-
-  <!-- Configuration Form -->
-  <div id="configForm">
-    <form>
-
-      <h1 class="pageTitle">Star waRS<br>intro CreatoR</h1>
-
-      <button id="downloadButton" type="button">download</button>
-
-      <textarea id="f-intro" rows="2" spellcheck="false" maxlength="100" autofocus></textarea>
-
-      <textarea id="f-logo" rows="2" spellcheck="false" maxlength="100"></textarea>
-
-      <input id="f-episode" type="text" value="" spellcheck="false" maxlength="100">
-
-      <input id="f-title" type="text" value="" spellcheck="false" maxlength="100">
-
-      <textarea id="f-text" spellcheck="false" maxlength="3000"></textarea>
-
-      <div class="center-checkbox">
-        <input class="regular-checkbox" type="checkbox" id="f-center" />
-        <label for="f-center"></label>
-        <label for="f-center" id="flabel">Center text</label>
-      </div>
-
-      <button id="playButton" type="submit">
-        play
-      </button>
-      <span id="playButtonSpan">and request your video to download</span>
-
-    </form>
-  </div>
+<body>
 
   <audio id="themeAudio" preload="auto">
     <source src="./assets/tfa.ogg" type="audio/ogg" />
     <source src="./assets/tfa.mp3" type="audio/mpeg" />
   </audio>
 
-  <!-- Request window focus button -->
-  <div id="requestInteractionButton">
-    <div>
-      Click to Play
-    </div>
-  </div>
-
-  <!-- BB8 Loading -->
-  <div id="bb8-loading" class="verticalWrapper">
-    <div class="inner">
-        <div class="bb8">
-          <div class="bb8-top">
-            <div class="bb8-antena"></div>
-            <div class="bb8-antena-2"></div>
-            <div class="bb8-head">
-              <div class="orange-stripe"></div>
-              <div class="hat"></div>
-              <div class="eye"></div>
-              <div class="eye-large">		</div>
-            </div>
-          </div>
-          <div class="bb8-body">
-            <div class="panel-1"></div>
-            <div class="panel-2">
-              <div class="inset-1"></div>
-              <div class="inset-2"></div>
-            </div>
-            <div class="panel-3">
-              <div class="inset-1"></div>
-              <div class="inset-2"></div>
-            </div>
-            <div class="panel-4">
-              <div class="inset-1"></div>
-              <div class="inset-2"></div>
-            </div>
-            <div class="panel-5">
-              <div class="inset-1"></div>
-              <div class="inset-2"></div>
-              <div class="plating"></div>
-            </div>
-          </div>
-        </div>
-    </div>
-  </div>
-
   <div id="animationContainer">
     <article class="starwarsAnimation">
       <div id="backgroundSpace">
-          <img id="deathstar" src="assets/deathstar.png" alt="Star Wars famous Death Star"/>
+          <img id="deathstar" src="./assets/deathstar.png"/>
       </div>
 
       <div class="animation">
@@ -139,7 +40,7 @@
 
         <div class="verticalWrapper">
             <div id="logo" class="noselect">
-              <img id="logoDefault" class="logoSub" src="./assets/logo.svg" alt="Star Wars Logo"/>
+              <img id="logoDefault" class="logoSub" src="./assets/logo.svg" />
               <div class="logoSub logoText">
                 <div>STaR</div>
                 <div>waRS</div>
@@ -147,7 +48,6 @@
           </div>
         </div>
 
-        <div class="center-titles">
         <div id="titles" class="noselect">
           <div>
             <p id="episode" class="tcenter">
@@ -158,114 +58,12 @@
             </div>
           </div>
         </div>
-      </div>
 
-        <div class="playing-buttons">
-          <button id="playing-download-button" class="playing-button">
-            download
-          </button>
-          <button id="playing-edit-button" class="playing-button">
-            edit text
-          </button>
-        </div>
       </div>
     </article>
   </div>
-
-  <div id="downloadPage">
-    <h1 class="pageTitle">Star waRS<br>intro CreatoR</h1>
-    <div class="panel">
-      <button id="closeButton" aria-label="Close button">x</button>
-      <div id="reactDownloadPage"></div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="socialButtons">
-
-      <button id="donateFooterButton">DONATE</button>
-
-      <div class="social-pages">
-        <a href="https://www.facebook.com/KasselLabs" target="_blank" rel="noopener"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Facebook icon</title><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-        <a href="https://instagram.com/KasselLabs" target="_blank" rel="noopener"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Instagram icon</title><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg></a>
-        <a href="https://twitter.com/KasselLabs" target="_blank" rel="noopener"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Twitter icon</title><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
-      </div>
-
-      <div class="fb-share-button" data-href="https://starwarsintrocreator.kassellabs.io/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fstarwarsintrocreator.kassellabs.io%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"></a></div>
-      <div>
-          <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out the Star Wars Intro Creator from @KasselLabs!" data-hashtags="StarWars,KasselLabs" data-url="https://starwarsintrocreator.kassellabs.io/"></a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-      </div>
-    </div>
-
-    <div class="rightFooter">
-      <a id="anotherServiceLink" href="https://gameofthronesintrocreator.kassellabs.io/" target="_blank"><img src="./assets/gotic.jpg" alt="Game of Thrones Intro Creator" width="150" /></a>
-      <a id="anotherServiceLink" href="https://westworldintrocreator.kassellabs.io/" target="_blank"><img src="./assets/wic.jpg" alt="Westworld Intro Creator" width="120" /></a>
-      <a id="anotherServiceLink" href="https://StrangerThingsIntroCreator.kassellabs.io/" target="_blank"><img src="./assets/stic.jpg" alt="Stranger Things Intro Creator" width="120" /></a>
-
-      <a
-        href="https://help.kassellabs.io/starwars/"
-        rel="noopener noreferrer"
-        target="_blank"
-        >
-        FAQ and Support
-      </a>
-
-      <a
-        href="https://help.kassellabs.io/starwars/#termsOfService"
-        rel="noopener noreferrer"
-        target="_blank"
-        >
-        Terms of Service
-      </a>
-
-      <a
-        href="https://help.kassellabs.io/privacy/"
-        rel="noopener noreferrer"
-        target="_blank"
-        >
-        Privacy Policy
-      </a>
-
-      <a
-        href="mailto:StarWars@kassellabs.io"
-        rel="noopener noreferrer"
-        target="_blank"
-        >
-        Contact us
-      </a>
-
-      <a style="display: none;" href="./donation_success/index.html" rel="nofollow">Success</a>
-      <a style="display: none;" href="./donation_cancelled/index.html" rel="nofollow">Cancelled</a>
-      <a style="display: none;" href="./renderer/index.html" rel="nofollow">r</a>
-
-    </div>
-
-    <div class="kasselLogo">
-      <a href="https://kassellabs.io" target="_blank">
-        <img src="./assets/KasselLabsLogo.png" alt="Kassel Labs" height="20" />
-      </a>
-    </div>
-  </footer>
-
-<script src="./js/index.js"></script>
-
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  (function(){
-  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-  s1.async=true;
-  s1.src='https://embed.tawk.to/608ee63362662a09efc430c1/1f4n36fap';
-  s1.charset='UTF-8';
-  s1.setAttribute('crossorigin','*');
-  s0.parentNode.insertBefore(s1,s0);
-  })();
+  <script>
+    window.renderer = true;
   </script>
-  <!--End of Tawk.to Script-->
-
-  <!-- Facebook -->
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0&appId=4079763512114809&autoLogAppEvents=1" nonce="tkGlsfVv"></script>
 </body>
 </html>
