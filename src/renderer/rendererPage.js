@@ -94,7 +94,9 @@ window.playIntro = async (opening) => {
       }
     }
   }
+
   document.querySelector('html').classList.remove('not-ready');
+  ViewController.adjustTitlesSpeed();
 };
 
 window.previewIntro = async ({ key = 'BLz2gfYtRmFeXOjF6FH1', timeFactor = 1, section }) => {

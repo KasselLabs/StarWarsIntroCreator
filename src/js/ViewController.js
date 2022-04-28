@@ -155,6 +155,10 @@ class ViewController {
     this.formFields.text.style.textAlign = centralizedText ? 'center' : 'justify';
   }
 
+  adjustTitlesSpeed() {
+    this.starWarsAnimation.adjustTitlesSpeed();
+  }
+
   playOpening(opening) {
     window.scrollTo(0, 0);
     this.starWarsAnimation.load(opening);

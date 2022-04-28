@@ -118,12 +118,10 @@ class StarWarsAnimation {
     logoDefaultContainer.style.display = 'none';
   }
 
-  play() {
+  adjustTitlesSpeed() {
     const DEFAULT_LENGTH = 1977;
     const ANIMATION_CONSTANT = 0.04041570438799076;
     const FINAL_POSITION = 20;
-
-    this.animationContainer.appendChild(this.animation);
 
     // adjust animation speed
     const titlesContainer = this.animation.querySelector('#titles > div');
@@ -132,6 +130,11 @@ class StarWarsAnimation {
       const animationFinalPosition = FINAL_POSITION - (exceedSize * ANIMATION_CONSTANT);
       appendKeyframesRule('titlesAnimation', `100% { top: ${animationFinalPosition}% }`);
     }
+  }
+
+  play() {
+    this.animationContainer.appendChild(this.animation);
+    this.adjustTitlesSpeed();
   }
 }
 
