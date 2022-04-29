@@ -11,6 +11,10 @@ const setCSSVariable = (variableName, value) => {
   document.documentElement.style.setProperty(variableName, value);
 };
 
+const getCSSVariable = (variableName) => (
+  document.documentElement.style.getPropertyValue(variableName)
+);
+
 const waitUntilElementExists = (selector) => new Promise((resolve) => {
   let intervalId = null;
 
@@ -27,6 +31,8 @@ const waitUntilElementExists = (selector) => new Promise((resolve) => {
 });
 
 window.setAnimationTime = (time) => {
+  const extraTime = parseInt(getCSSVariable('--extra-time').slice(0, -1), 10) * 1000;
+
   [
     {
       delay: 0,
@@ -45,7 +51,7 @@ window.setAnimationTime = (time) => {
       selector: '#titles > div',
     },
     {
-      delay: 86000,
+      delay: 86000 * extraTime,
       selector: 'body.runningVideo #backgroundSpace',
     },
   ].forEach(({ delay, selector }) => {
@@ -60,6 +66,10 @@ window.setAnimationTime = (time) => {
 window.playIntro = async (opening) => {
   if (opening.timeFactor) {
     setCSSVariable('--time-factor', opening.timeFactor);
+  }
+
+  if (opening.extraTime) {
+    setCSSVariable('--extra-time', `${opening.extraTime}s`);
   }
 
   if (opening.logoImage) {
