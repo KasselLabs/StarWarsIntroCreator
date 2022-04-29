@@ -15,6 +15,8 @@ const getCSSVariable = (variableName) => (
   document.documentElement.style.getPropertyValue(variableName)
 );
 
+window.getCSSVariable = getCSSVariable
+
 const waitUntilElementExists = (selector) => new Promise((resolve) => {
   let intervalId = null;
 
@@ -51,7 +53,7 @@ window.setAnimationTime = (time) => {
       selector: '#titles > div',
     },
     {
-      delay: 86000 * extraTime,
+      delay: 86000 + extraTime,
       selector: 'body.runningVideo #backgroundSpace',
     },
   ].forEach(({ delay, selector }) => {
