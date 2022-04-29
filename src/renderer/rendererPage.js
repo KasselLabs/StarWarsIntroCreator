@@ -31,7 +31,7 @@ const waitUntilElementExists = (selector) => new Promise((resolve) => {
 });
 
 window.setAnimationTime = (time) => {
-  const extraTime = parseInt(getCSSVariable('--extra-time').slice(0, -1), 10) * 1000;
+  const extraTime = (parseInt(getCSSVariable('--extra-time').slice(0, -1), 10) * 1000) || 0;
 
   [
     {
