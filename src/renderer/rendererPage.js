@@ -54,6 +54,7 @@ window.setAnimationTime = (time) => {
     element.style.setProperty('animation-play-state', 'paused');
     element.style.setProperty('animation-delay', `${delayToSet}ms`);
   });
+  ViewController.adjustTitlesSpeed();
 };
 
 window.playIntro = async (opening) => {
