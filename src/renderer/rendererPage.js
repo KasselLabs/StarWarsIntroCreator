@@ -61,6 +61,11 @@ window.playIntro = async (opening) => {
     setCSSVariable('--time-factor', opening.timeFactor);
   }
 
+  if (opening.logoImage) {
+    // eslint-disable-next-line no-param-reassign
+    opening.logo = 'STaR\nwaRS';
+  }
+
   ViewController.playOpening(opening);
 
   if (opening.paused) {
