@@ -73,7 +73,7 @@ class ViewController {
         return;
       }
 
-      UrlHandler.goToDownloadPage(openingKey, 'donate');
+      UrlHandler.goToDownloadPage(openingKey);
     });
   }
 
