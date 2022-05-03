@@ -97,6 +97,52 @@ stroke($stroke, $color) {
     padding-top: 70px;
   }
 
+  .help-text {
+    text-align: center;
+
+    @media mobile {
+      font-size: 2em;
+      line-height: 1.2em;
+    }
+  }
+
+  .may-fourth-alert {
+    font-weight: bold;
+    border: 2px solid $panelTextColor;
+    border-radius: 16px;
+    background-color: $panelBackgroundColor;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+
+    @media mobile {
+      font-size: 2em;
+      line-height: 1.2em;
+    }
+
+    .close-button {
+      buttonStyle();
+      margin-left: 12px;
+      margin-right: 0;
+      padding: 2px 8px 6px;
+      font-size: 1.5em;
+      line-height: 24px;
+      background: transparent;
+      color: $titlesColor;
+
+      @media mobile {
+        margin-left: 12px;
+        margin-top: 0;
+        margin-right: 0;
+        padding: 24px 14px 32px;
+        width: auto;
+        font-size: 2em;
+        line-height: 13px;
+      }
+    }
+  }
+
   form {
     z-index: 1;
     display: flex;
