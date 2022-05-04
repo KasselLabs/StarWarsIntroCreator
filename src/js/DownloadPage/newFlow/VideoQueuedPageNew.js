@@ -31,8 +31,8 @@ const VideoQueuedPage = ({
       <p>
         Your video is in the queue to be rendered.
         We provide the video for free, but we have costs with
-        the servers where the video are rendered. All the videos
-        will not have the watermark.
+        the servers where the video are rendered.
+        All the videos are provided without Watermark.
       </p>
       <p>
         There are
