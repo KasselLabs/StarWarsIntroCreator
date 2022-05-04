@@ -37,7 +37,7 @@ class AudioController {
     this.audio.load();
     // this.audio.volume = 0;
     this.wmInterval = null;
-    this.addWm();
+    // this.addWm();
   }
 
   loadAudio() {
@@ -48,6 +48,7 @@ class AudioController {
   }
 
   verificationFailed(error) {
+    console.log(error);
     try {
       document.querySelector('#logo').remove();
       document.querySelector('.center-titles').remove();
@@ -174,25 +175,25 @@ class AudioController {
       this.reset();
       try {
         await this.audio.play();
-        this.startAudioVerify();
-        const method = setTimeout;
-        const times = [24, 48, 72];
-        times.forEach((time) => {
-          method(() => {
-            try {
-              if (document.querySelector('audio').paused) {
-                return;
-              }
-              const animationDiv = document.querySelector('.animation');
-              animationDiv.removeChild(document.querySelector('#wtm'));
-              clearInterval(this.wmInterval);
-              this.addWm();
-              this.startAudioVerify();
-            } catch (error) {
-              this.verificationFailed(error);
-            }
-          }, time * 1000);
-        });
+        // this.startAudioVerify();
+        // const method = setTimeout;
+        // const times = [24, 48, 72];
+        // times.forEach((time) => {
+        //   method(() => {
+        //     try {
+        //       if (document.querySelector('audio').paused) {
+        //         return;
+        //       }
+        //       const animationDiv = document.querySelector('.animation');
+        //       animationDiv.removeChild(document.querySelector('#wtm'));
+        //       clearInterval(this.wmInterval);
+        //       this.addWm();
+        //       this.startAudioVerify();
+        //     } catch (error) {
+        //       this.verificationFailed(error);
+        //     }
+        //   }, time * 1000);
+        // });
       } catch (error) {
         reject(error);
         return;
@@ -200,7 +201,7 @@ class AudioController {
 
       const endedListener = () => {
         resolve();
-        clearInterval(this.wmInterval);
+        // clearInterval(this.wmInterval);
       };
       this.audio.addEventListener('ended', endedListener);
     });
