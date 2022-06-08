@@ -11,14 +11,14 @@ export const fetchStatus = async (key) => {
     },
   });
 
-  // return response.data;
+  return response.data;
 
-  const randq = 7400 + Math.floor(Math.random() * 50);
-  return {
-    ...response.data,
-    queueSize: randq,
-    queuePosition: randq + 1,
-  };
+  // const randq = 7400 + Math.floor(Math.random() * 50);
+  // return {
+  //   ...response.data,
+  //   queueSize: randq,
+  //   queuePosition: randq + 1,
+  // };
 
   // return {
   //   url: 'https://s3.amazonaws.com/star-wars-intros/AL6yNfOxCGkHKBUi54xp.mp4',
