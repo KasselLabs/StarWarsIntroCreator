@@ -51,7 +51,8 @@ I want to provide the following details:
 };
 
 export const calculateTimeToRender = (queuePosition) => {
-  const totalMinutes = queuePosition * 30;
+  const workers = 4; // We should never have less than 3 workers at the same time
+  const totalMinutes = (queuePosition * 30) / workers;
   const totalHours = Math.floor(totalMinutes / 60);
   const partialDays = Math.floor(totalHours / 24);
   const totalDays = Math.ceil(totalHours / 24);
