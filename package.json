@@ -13,8 +13,8 @@
     "start": "webpack serve --mode development",
     "start-render": "webpack serve --mode development -c webpack.config.render.js",
     "test": "jest",
-    "test:watch": "npm run test --watchAll",
-    "test:coverage": "npm run test --coverage",
+    "test:watch": "npm run test -- --watchAll",
+    "test:coverage": "npm run test -- --coverage",
     "test:coverage:results": "google-chrome coverage/lcov-report/index.html",
     "lint": "eslint src/"
   },
