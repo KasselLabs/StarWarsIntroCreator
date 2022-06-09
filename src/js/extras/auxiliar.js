@@ -52,8 +52,8 @@ I want to provide the following details:
 
 export const calculateTimeToRender = (queuePosition) => {
   const workers = 4; // We should never have less than 3 workers at the same time
-  const totalMinutes = (queuePosition * 30) / workers;
-  const totalHours = Math.floor(totalMinutes / 60);
+  const totalMinutes = Math.ceil((queuePosition * 30) / workers);
+  const totalHours = Math.ceil(totalMinutes / 60);
   const partialDays = Math.floor(totalHours / 24);
   const totalDays = Math.ceil(totalHours / 24);
   let time = '';
@@ -61,20 +61,19 @@ export const calculateTimeToRender = (queuePosition) => {
   if (queuePosition < 3) {
     return ' 1 hour';
   }
+
   if (partialDays >= 3) {
     return ` ${totalDays} days`;
   }
+
   if (partialDays > 0) {
     time += ` ${partialDays} day${partialDays !== 1 ? 's' : ''}`;
   }
 
   const hours = totalHours % 24;
-  const minutes = totalMinutes % 60;
   if (hours > 0) {
     time += `${partialDays ? ',' : ''} ${hours} hour${hours !== 1 ? 's' : ''}`;
   }
-  if (minutes > 0) {
-    time += ` and ${minutes} minutes`;
-  }
+
   return time;
 };
