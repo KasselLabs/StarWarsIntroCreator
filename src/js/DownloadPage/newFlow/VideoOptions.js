@@ -33,7 +33,7 @@ const VideoOptions = ({ updatePaymentAmount }) => {
           <span className="description">1280 x 720</span>
           <span className="description">MP4 File</span>
           <span className="description">
-            Donate at least
+            Pay at least
             {' '}
             <b>$10</b>
           </span>
@@ -48,7 +48,7 @@ const VideoOptions = ({ updatePaymentAmount }) => {
           <span className="description">1920 x 1080</span>
           <span className="description">MP4 File</span>
           <span className="description">
-            Donate at least
+            Pay at least
             {' '}
             <b>$15</b>
           </span>
@@ -71,7 +71,7 @@ const VideoOptions = ({ updatePaymentAmount }) => {
             + Custom Image
           </span>
           <span className="description">
-            Donate at least
+            Pay at least
             {' '}
             <b>$40</b>
           </span>

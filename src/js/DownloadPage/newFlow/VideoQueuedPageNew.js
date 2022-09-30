@@ -59,7 +59,7 @@ const VideoQueuedPage = ({
         )}
       </p>
       <p>
-        Can&apos;t wait for it? Donate to support our service and your video will
+        Can&apos;t wait for it? Pay to support our service and your video will
         be ready in a few hours (1 hour usually).
         <br />
       </p>

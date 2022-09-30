@@ -44,7 +44,7 @@ const RequestDownloadPage = ({
         to have your video rendered.
         Free videos will be rendered in the HD quality (1280x720).
         <p>
-          <DonateOrNotDonate question="You can still donate to get it earlier if you want." yesText="Go back to donate" {...props} hideNoDonateOption />
+          <DonateOrNotDonate question="You can still pay to get it earlier if you want." yesText="Go back to payment" {...props} hideNoDonateOption />
         </p>
       </p>
       <p>
