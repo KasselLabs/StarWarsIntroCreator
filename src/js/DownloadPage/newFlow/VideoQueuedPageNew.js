@@ -50,6 +50,7 @@ const VideoQueuedPage = ({
         to send the video.
         {requestEmail && (
           <span>
+            {' '}
             The link to download the video will be sent to the email:
             <p className="email">
               {requestEmail}
