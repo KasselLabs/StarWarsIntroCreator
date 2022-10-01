@@ -14,7 +14,7 @@ class VideoRequestSent extends Component {
 
     const { donate, paymentData, openingKey } = props;
     if (donate && !paymentData) {
-      UrlHandler.goToDownloadPage(openingKey, 'donate');
+      UrlHandler.goToDownloadPage(openingKey, 'pay');
     }
   }
 
@@ -30,7 +30,7 @@ class VideoRequestSent extends Component {
 
   donateButton = () => {
     const { openingKey } = this.props;
-    UrlHandler.goToDownloadPage(openingKey, 'donate');
+    UrlHandler.goToDownloadPage(openingKey, 'pay');
   };
 
   renderEmail() {

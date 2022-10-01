@@ -5,8 +5,8 @@ const callbacks = {
 };
 
 const paymentEventsHandler = (event) => {
-  if (!event.origin.match(/https:\/\/payment\.kassellabs\.io$/)) return;
-  // if (!event.origin.match(/http:\/\/localhost:3000$/)) return;
+  // if (!event.origin.match(/https:\/\/payment\.kassellabs\.io$/)) return;
+  if (!event.origin.match(/http:\/\/localhost:3000$/)) return;
 
   const { data } = event;
   if (data.type !== 'payment') {
