@@ -17,7 +17,7 @@ const PaymentModule = ({ openingKey }) => {
   return (
     <>
       <VideoOptions updatePaymentAmount={updatePaymentAmount} />
-      <p>Fill the form below to donate:</p>
+      <p>Fill the form below to pay:</p>
       <div className="payment-container">
         <div className="center">
           <Loader text="Loading payment form..." />

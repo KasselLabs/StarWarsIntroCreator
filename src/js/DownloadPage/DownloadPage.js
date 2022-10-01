@@ -58,7 +58,7 @@ class DownloadPage extends Component {
     let page = INITIAL_PAGE;
     let donate = false;
 
-    if (subpage === 'donate') {
+    if (subpage === 'pay') {
       donate = true;
       page = REQUEST_PAGE;
     }
@@ -72,7 +72,7 @@ class DownloadPage extends Component {
       page = ADD_EMAIL_PAGE;
     }
 
-    if (subpage === 'donated') {
+    if (subpage === 'paid') {
       donate = true;
       page = FINAL_PAGE;
     }
@@ -95,7 +95,7 @@ class DownloadPage extends Component {
       paymentData: payment,
     });
 
-    UrlHandler.goToDownloadPage(this.state.openingKey, 'donated');
+    UrlHandler.goToDownloadPage(this.state.openingKey, 'paid');
   }
 
   urlChangeHandler = () => {
@@ -119,7 +119,7 @@ class DownloadPage extends Component {
 
     if (page === INITIAL_PAGE) {
       swal({
-        title: 'donate',
+        title: 'pay',
         html: '<p>Fill the payment form above to make your payment first.</p>',
       });
       return;
@@ -136,7 +136,7 @@ class DownloadPage extends Component {
 
   finishRequestHandle = (requestStatus, requestEmail) => {
     const { donate, openingKey } = this.state;
-    UrlHandler.goToDownloadPage(openingKey, donate ? 'donated' : '');
+    UrlHandler.goToDownloadPage(openingKey, donate ? 'paid' : '');
     this.setState({
       page: FINAL_PAGE,
       requestStatus,
@@ -247,7 +247,7 @@ class DownloadPage extends Component {
   render() {
     const { status } = this.state.status;
     const canDonateToReceiveFaster = status === QUEUED;
-    const title = canDonateToReceiveFaster ? 'donate and download' : 'download';
+    const title = canDonateToReceiveFaster ? 'payment and download' : 'download';
     return (
       <div>
         <h2>{title}</h2>
