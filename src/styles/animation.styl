@@ -17,14 +17,14 @@
       justify-content: center;
       width: 100vw;
       height: 100vh;
-      background-color: black;
+      background-color: var(--intro-background-color);
       opacity: 0;
       animation: introBackgroundAnimation var(--intro-background-duration);
 
       .intro {
         padding-right: 5%;
         padding-left: 5%;
-        color: $introColor;
+        color: var(--intro-color);
         font-weight: 400;
         font-size: 4.5vw;
         opacity: 0;
@@ -55,7 +55,7 @@
       flex-direction: column;
       align-items: center;
       color: black;
-      text-shadow: stroke(5, $titlesColor);
+      text-shadow: -5px -5px 0 var(--titles-color), -5px -4px 0 var(--titles-color), -5px -3px 0 var(--titles-color), -5px -2px 0 var(--titles-color), -5px -1px 0 var(--titles-color), -5px 0px 0 var(--titles-color), -5px 1px 0 var(--titles-color), -5px 2px 0 var(--titles-color), -5px 3px 0 var(--titles-color), -5px 4px 0 var(--titles-color), -5px 5px 0 var(--titles-color), -4px -5px 0 var(--titles-color), -4px -4px 0 var(--titles-color), -4px -3px 0 var(--titles-color), -4px -2px 0 var(--titles-color), -4px -1px 0 var(--titles-color), -4px 0px 0 var(--titles-color), -4px 1px 0 var(--titles-color), -4px 2px 0 var(--titles-color), -4px 3px 0 var(--titles-color), -4px 4px 0 var(--titles-color), -4px 5px 0 var(--titles-color), -3px -5px 0 var(--titles-color), -3px -4px 0 var(--titles-color), -3px -3px 0 var(--titles-color), -3px -2px 0 var(--titles-color), -3px -1px 0 var(--titles-color), -3px 0px 0 var(--titles-color),      -3px 1px 0 var(--titles-color), -3px 2px 0 var(--titles-color), -3px 3px 0 var(--titles-color), -3px 4px 0      var(--titles-color), -3px 5px 0 var(--titles-color), -2px -5px 0 var(--titles-color), -2px -4px 0 var(--titles-color),      -2px -3px 0 var(--titles-color), -2px -2px 0 var(--titles-color), -2px -1px 0 var(--titles-color), -2px 0px 0      var(--titles-color), -2px 1px 0 var(--titles-color), -2px 2px 0 var(--titles-color), -2px 3px 0 var(--titles-color), -2px      4px 0 var(--titles-color), -2px 5px 0 var(--titles-color), -1px -5px 0 var(--titles-color), -1px -4px 0      var(--titles-color), -1px -3px 0 var(--titles-color), -1px -2px 0 var(--titles-color), -1px -1px 0 var(--titles-color),      -1px 0px 0 var(--titles-color), -1px 1px 0 var(--titles-color), -1px 2px 0 var(--titles-color), -1px 3px 0      var(--titles-color), -1px 4px 0 var(--titles-color), -1px 5px 0 var(--titles-color), 0px -5px 0 var(--titles-color), 0px      -4px 0 var(--titles-color), 0px -3px 0 var(--titles-color), 0px -2px 0 var(--titles-color), 0px -1px 0      var(--titles-color), 0px 0px 0 var(--titles-color), 0px 1px 0 var(--titles-color), 0px 2px 0 var(--titles-color), 0px 3px      0 var(--titles-color), 0px 4px 0 var(--titles-color), 0px 5px 0 var(--titles-color), 1px -5px 0 var(--titles-color), 1px      -4px 0 var(--titles-color), 1px -3px 0 var(--titles-color), 1px -2px 0 var(--titles-color), 1px -1px 0      var(--titles-color), 1px 0px 0 var(--titles-color), 1px 1px 0 var(--titles-color), 1px 2px 0 var(--titles-color), 1px 3px      0 var(--titles-color), 1px 4px 0 var(--titles-color), 1px 5px 0 var(--titles-color), 2px -5px 0 var(--titles-color), 2px      -4px 0 var(--titles-color), 2px -3px 0 var(--titles-color), 2px -2px 0 var(--titles-color), 2px -1px 0      var(--titles-color), 2px 0px 0 var(--titles-color), 2px 1px 0 var(--titles-color), 2px 2px 0 var(--titles-color), 2px 3px      0 var(--titles-color), 2px 4px 0 var(--titles-color), 2px 5px 0 var(--titles-color), 3px -5px 0 var(--titles-color), 3px      -4px 0 var(--titles-color), 3px -3px 0 var(--titles-color), 3px -2px 0 var(--titles-color), 3px -1px 0      var(--titles-color), 3px 0px 0 var(--titles-color), 3px 1px 0 var(--titles-color), 3px 2px 0 var(--titles-color), 3px 3px      0 var(--titles-color), 3px 4px 0 var(--titles-color), 3px 5px 0 var(--titles-color), 4px -5px 0 var(--titles-color), 4px      -4px 0 var(--titles-color), 4px -3px 0 var(--titles-color), 4px -2px 0 var(--titles-color), 4px -1px 0      var(--titles-color), 4px 0px 0 var(--titles-color), 4px 1px 0 var(--titles-color), 4px 2px 0 var(--titles-color), 4px 3px      0 var(--titles-color), 4px 4px 0 var(--titles-color), 4px 5px 0 var(--titles-color), 5px -5px 0 var(--titles-color), 5px      -4px 0 var(--titles-color), 5px -3px 0 var(--titles-color), 5px -2px 0 var(--titles-color), 5px -1px 0      var(--titles-color), 5px 0px 0 var(--titles-color), 5px 1px 0 var(--titles-color), 5px 2px 0 var(--titles-color), 5px 3px      0 var(--titles-color), 5px 4px 0 var(--titles-color), 5px 5px 0 var(--titles-color);
       letter-spacing: .18em;
       font-size: 200px;
       line-height: 1em;
@@ -164,7 +164,7 @@
     left: 0;
     width: 100%;
     height: 4100px;
-    background: url('../assets/bg-stars.png') repeat;
+    background: var(--background) repeat;
 
     #deathstar {
       position: absolute;

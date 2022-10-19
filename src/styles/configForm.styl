@@ -45,7 +45,7 @@ $actionButtonStyle {
   starWarsFontStyle();
   padding: 6px 15px 15px;
   outline: 0;
-  border: 4px solid $titlesColor;
+  border: 4px solid var(--titles-color);
   border-radius: 15px;
 
   background: transparent;
@@ -91,7 +91,7 @@ stroke($stroke, $color) {
   padding-top: 16px;
   padding-bottom: 80px;
   justify-content: center;
-  color: $titlesColor;
+  color: var(--titles-color);
 
   @media mobile {
     padding-top: 70px;
@@ -114,7 +114,7 @@ stroke($stroke, $color) {
       margin-top: $marginTopFormInput;
       margin-bottom: 0;
       width: $formInputWidth;
-      color: $titlesColor;
+      color: var(--titles-color);
       word-break: break-word;
       letter-spacing: .05em;
       fontSizeResponsive();
@@ -133,7 +133,7 @@ stroke($stroke, $color) {
         font-size: 50px;
         font-family: StarWars;
         line-height: 86%;
-        caret-color: $titlesColor; // partial support https://caniuse.com/#search=caret-color
+        caret-color: var(--titles-color); // partial support https://caniuse.com/#search=caret-color
         letter-spacing: initial;
 
         @media mobile {
@@ -182,7 +182,7 @@ stroke($stroke, $color) {
     #f-intro {
       padding: 6px 79px;
       width: 480px;
-      color: $introColor;
+      color: var(--intro-color);
       @media mobile {
         padding: 6px;
         width: $formInputWidth;
@@ -250,7 +250,7 @@ stroke($stroke, $color) {
         &:checked + label:after {
           position: relative;
           top: -7px;
-          color: $titlesColor;
+          color: var(--titles-color);
           content: '\25A0';
           letter-spacing: 0;
           cursor: pointer;

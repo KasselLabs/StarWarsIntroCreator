@@ -15,7 +15,7 @@ const getCSSVariable = (variableName) => (
   document.documentElement.style.getPropertyValue(variableName)
 );
 
-window.getCSSVariable = getCSSVariable
+window.getCSSVariable = getCSSVariable;
 
 const waitUntilElementExists = (selector) => new Promise((resolve) => {
   let intervalId = null;
@@ -66,6 +66,22 @@ window.setAnimationTime = (time) => {
 };
 
 window.playIntro = async (opening) => {
+  if (opening.introBackgroundColor) {
+    setCSSVariable('--intro-background-color', opening.introBackgroundColor);
+  }
+
+  if (opening.introColor) {
+    setCSSVariable('--intro-color', opening.introColor);
+  }
+
+  if (opening.titlesColor) {
+    setCSSVariable('--titles-color', opening.titlesColor);
+  }
+
+  if (opening.background) {
+    setCSSVariable('--background', opening.background);
+  }
+
   if (opening.timeFactor) {
     setCSSVariable('--time-factor', opening.timeFactor);
   }
