@@ -5,15 +5,15 @@ const callbacks = {
 };
 
 const paymentEventsHandler = (event) => {
-  // if (!event.origin.match(/https:\/\/payment\.kassellabs\.io$/)) return;
-  if (!event.origin.match(/http:\/\/localhost:3000$/)) return;
+  if (!event.origin.match(/https:\/\/payment\.kassellabs\.io$/)) return;
+  // if (!event.origin.match(/http:\/\/localhost:3000$/)) return;
 
   const { data } = event;
   if (data.type !== 'payment') {
     return;
   }
 
-  if ('success' === data.action) {
+  if (data.action === 'success') {
     if (callbacks.success) {
       callbacks.success(data.payload);
     }
@@ -21,7 +21,6 @@ const paymentEventsHandler = (event) => {
     trackPurchase(data.payload.finalAmount, data.payload.currency);
   }
 };
-
 
 export const registerPaymentEventsHandler = (paymentSuccessCallback) => {
   callbacks.success = paymentSuccessCallback;
