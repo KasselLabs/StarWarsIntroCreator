@@ -95,6 +95,15 @@ window.playIntro = async (opening) => {
     opening.logo = 'STaR\nwaRS';
   }
 
+  // Sanitize all L SEPs out of the main intro
+  ['episode', 'intro', 'logo', 'text', 'title'].forEach((attr) => {
+    const text = opening[attr];
+    if (text) {
+      // eslint-disable-next-line no-param-reassign
+      opening[attr] = text.replace(/[\u2028]/g, ' ');
+    }
+  });
+
   ViewController.playOpening(opening);
 
   if (opening.paused) {
