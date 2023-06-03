@@ -57,7 +57,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "@sentry/browser": "^6.4.1",
+    "@sentry/browser": "^6.19.7",
     "axios": "^0.18.0",
     "bowser": "^1.9.4",
     "classnames": "^2.3.1",
