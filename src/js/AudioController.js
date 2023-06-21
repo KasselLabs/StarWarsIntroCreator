@@ -117,7 +117,7 @@ class AudioController {
           styles.pointerEvents === 'none',
           styles.display === 'block',
           styles.visibility === 'visible',
-          wm.style.border === 'none' || wm.style.border === 'medium none',
+          (wm.style.border === 'none' || wm.style.border === 'medium none' || wm.style.border === 'medium'),
           styles.padding === '0px' || styles.padding === '',
           styles.margin === '0px' || styles.margin === '',
         ];
