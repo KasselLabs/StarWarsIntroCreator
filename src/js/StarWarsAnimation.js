@@ -97,7 +97,7 @@ class StarWarsAnimation {
       logoContainer.classList.add('-firefox-desktop');
     }
 
-    const logoText = opening.logo;
+    const logoText = opening.logo.trim();
     // is default logo
     if (logoText.toLowerCase() === starwarsDefaultText) {
       logoTextContainer.style.display = 'none';
