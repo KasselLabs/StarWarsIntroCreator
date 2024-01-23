@@ -142,6 +142,27 @@ window.playIntro = async (opening) => {
   ViewController.adjustTitlesSpeed();
 };
 
+window.onload = () => {
+  const params = new URLSearchParams(window.location.search);
+  const image = params.get('image');
+  if (image) {
+    window.playIntro({
+      center: true,
+      episode: '',
+      intro: '',
+      logo: '',
+      text: '',
+      title: '',
+      image: {
+        url: image,
+        height: 1080,
+        center: true,
+      },
+      paused: true,
+    }).then(() => window.setAnimationTime(95000));
+  }
+};
+
 window.previewIntro = async ({ key = 'BLz2gfYtRmFeXOjF6FH1', timeFactor = 1, section }) => {
   setCSSVariable('--time-factor', timeFactor);
 
