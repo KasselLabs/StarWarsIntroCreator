@@ -22,10 +22,10 @@ const DEFAULT_CROP = {
   y: 0
 }
 
-const CROP_SIZE = {
+const IMAGE_SIZE = {
   width: 1920,
-  height: 1080
-}
+  height: 1080,
+};
 
 const CropDialog = ({ image, onChange, open, onClose }) => {
   const [mediaSize, setMediaSize] = React.useState(null)
@@ -34,6 +34,7 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
   const [zoom, setZoom] = React.useState(1)
   const [rotation, setRotation] = React.useState(0)
   const [loading, setLoading] = React.useState(false)
+  const [cropSize, setCropSize] = React.useState({ width: 0, height: 0 });
 
   return (
     <Dialog
@@ -60,7 +61,7 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
               const croppedImages = await getCroppedImages(image, cropArea, rotation)
               const resizedImages = await getResizedImages(
                 croppedImages,
-                { maxWidth: CROP_SIZE.width, maxHeight: CROP_SIZE.height, backgroundColor: 'rgba(0, 0, 0, 0)' }
+                { maxWidth: IMAGE_SIZE.width, maxHeight: IMAGE_SIZE.height, backgroundColor: 'rgba(0, 0, 0, 0)' }
               )
               onChange(resizedImages)
               onClose()
@@ -98,12 +99,27 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
           onCropChange={setCrop}
           onZoomChange={setZoom}
           onRotationChange={setRotation}
-          aspect={1}
+          aspect={16 / 9}
           restrictPosition={false}
           onCropAreaChange={(_, newCropArea) => setCropArea(newCropArea)}
-          cropSize={CROP_SIZE}
+          onCropSizeChange={(newCropSize) => {
+            setCropSize(newCropSize)
+          }}
           onMediaLoaded={(loadedMediaSize) => {
             setMediaSize(loadedMediaSize)
+          }}
+        />
+        <img
+          src="https://storage.kassellabs.io/star-wars/bg-stars.png"
+          alt="background"
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 9,
+            width: `${cropSize.width}px`,
+            height: `${cropSize.height}px`,
           }}
         />
         {mediaSize && (
@@ -114,6 +130,7 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
             left="8px"
             bottom="8px"
             flexDirection="column"
+            sx={{ gap: '8px', zIndex: 12 }}
           >
             <Box style={{ transform: 'rotate(90deg)' }}>
               <Tooltip title={'Center the image horizontally'} placement="right">
@@ -145,8 +162,8 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
                 color="primary"
                 onClick={() => {
                   // Adjust the size
-                  const widthResize = CROP_SIZE.width / mediaSize.width
-                  const heightResize = CROP_SIZE.height / mediaSize.height
+                  const widthResize = cropSize.width / mediaSize.width
+                  const heightResize = cropSize.height / mediaSize.height
                   const newZoom = Math.min(widthResize, heightResize)
                   setZoom(newZoom)
                   setRotation(0)
@@ -164,8 +181,8 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
                 color="primary"
                 onClick={async () => {
                   // Adjust the size
-                  const widthResize = CROP_SIZE.width / mediaSize.width
-                  const heightResize = CROP_SIZE.height / mediaSize.height
+                  const widthResize = cropSize.width / mediaSize.width
+                  const heightResize = cropSize.height / mediaSize.height
                   const newZoom = Math.max(widthResize, heightResize)
                   setZoom(newZoom)
                   setRotation(0)

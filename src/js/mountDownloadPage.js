@@ -37,7 +37,7 @@ export const mountDownloadPage = async () => {
   ReactDOM.render((
     <ThemeProvider theme={theme}>
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-      <CssBaseline />
+      {/* <CssBaseline /> 
       <DownloadPage
         status={downloadStatus}
         openingKey={key}
