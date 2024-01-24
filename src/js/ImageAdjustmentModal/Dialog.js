@@ -23,9 +23,6 @@ export default function Dialog({
       maxWidth={maxWidth}
       fullScreen={!isDesktop}
       TransitionComponent={Transition}
-      style={{
-        backgroundColor: '#0D0D0D',
-      }}
     >
       <DialogTitle>
         <Box display="flex" justifyContent="space-between" alignItems="center">

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { ThemeProvider } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import { createMuiTheme } from '@material-ui/core/styles'
-import { red } from '@material-ui/core/colors'
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+import { red } from '@material-ui/core/colors';
 
 import ApplicationState from './ApplicationState';
 import DownloadPage from './DownloadPage/DownloadPage';
@@ -13,19 +13,26 @@ const theme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: '#ffd54e'
+      main: '#ffd54e',
     },
     secondary: {
-      main: '#0D0D0D'
+      main: '#0D0D0D',
     },
     error: {
-      main: red.A400
+      main: red.A400,
     },
     background: {
-      default: '#fff'
-    }
-  }
-})
+      default: '#fff',
+    },
+  },
+  overrides: {
+    MuiDialog: {
+      paper: {
+        background: '#0D0D0D',
+      },
+    },
+  },
+});
 
 const dom = document.querySelector('#reactDownloadPage');
 
