@@ -1,20 +1,20 @@
-import React from 'react'
+import React from 'react';
 import {
   Box,
   Dialog as MUIDialog,
   DialogTitle,
   DialogContent,
-  Slide
-} from '@material-ui/core'
-import useWindowSize from '../hooks/useWindowSize'
-import CloseIcon from '@material-ui/icons/Close'
+  Slide,
+} from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+import useWindowSize from '../hooks/useWindowSize';
 
-const Transition = React.forwardRef(function Transition (props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />
-})
+const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
 
-export default function Dialog ({ title, open, onClose, maxWidth, children, actions }) {
-  const { isDesktop } = useWindowSize()
+export default function Dialog({
+  title, open, onClose, maxWidth, children, actions,
+}) {
+  const { isDesktop } = useWindowSize();
 
   return (
     <MUIDialog
@@ -24,7 +24,7 @@ export default function Dialog ({ title, open, onClose, maxWidth, children, acti
       fullScreen={!isDesktop}
       TransitionComponent={Transition}
       style={{
-        background-color: '#0D0D0D'
+        backgroundColor: '#0D0D0D',
       }}
     >
       <DialogTitle>
@@ -42,5 +42,5 @@ export default function Dialog ({ title, open, onClose, maxWidth, children, acti
         { actions }
       </Box>
     </MUIDialog>
-  )
+  );
 }
