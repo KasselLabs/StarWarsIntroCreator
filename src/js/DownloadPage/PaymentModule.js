@@ -1,5 +1,5 @@
 import React, {
-  Fragment, useCallback, useState, useRef,
+  Fragment, useCallback, useState, useRef, useMemo
 } from 'react';
 import PropTypes from 'prop-types';
 import { trackAddToCart } from '../api/tracking';
@@ -20,6 +20,14 @@ const PaymentModule = ({ openingKey }) => {
 
     setIsCustomImage(amount >= 40);
   }, [iframeRef.current]);
+
+  const paymentCode = useMemo(() => {
+    if (!customImage) {
+      return openingKey;
+    }
+
+    return JSON.stringify({ code: openingKey, image: customImage });
+  }, [openingKey, customImage]);
 
   return (
     <>
@@ -68,7 +76,7 @@ const PaymentModule = ({ openingKey }) => {
           className="stripe"
           id="stripeDonateIframe"
           title="Stripe Payment Form"
-          src={`${paymentPageUrl}?embed=true&app=star-wars&code=${openingKey}&amount=1500`}
+          src={`${paymentPageUrl}?embed=true&app=star-wars&code=${paymentCode}&amount=1500`}
           allowpaymentrequest="true"
         />
       </div>

@@ -5,7 +5,7 @@ import {
   Slider,
   CircularProgress,
   Typography,
-  Tooltip
+  Tooltip,
 } from '@material-ui/core'
 import CropIcon from '@material-ui/icons/Crop'
 import VerticalAlignCenterIcon from '@material-ui/icons/VerticalAlignCenter'
@@ -16,6 +16,7 @@ import Cropper from 'react-easy-crop'
 import Dialog from './Dialog'
 import getCroppedImages from '../util/getCroppedImages'
 import getResizedImages from '../util/getResizedImages'
+import { c } from 'bowser'
 
 const DEFAULT_CROP = {
   x: 0,
@@ -41,11 +42,11 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
       open={open}
       onClose={onClose}
       maxWidth="xl"
-      title={'Crop Image'}
+      title={<span style={{ color: '#ffd54e' }}>Crop Image</span>}
       actions={(
         <>
           <Button
-            color="primary"
+            color='primary'
             variant="text"
             onClick={onClose}
           >
@@ -53,8 +54,8 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
           </Button>
           <Button
             color="primary"
-            variant="contained"
-            startIcon={<CropIcon/>}
+            variant="outlined"
+            startIcon={<CropIcon />}
             disabled={loading}
             onClick={async () => {
               setLoading(true)
@@ -199,7 +200,7 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
       </Box>
       <Box display="flex" justifyContent="space-between" mt={2}>
         <Box width="50%" pr={1}>
-          <Typography gutterBottom>{'Zoom'}</Typography>
+          <Typography gutterBottom color='primary' >{'Zoom'}</Typography>
           <Slider
             value={zoom}
             onChange={(event, newZoom) => setZoom(newZoom)}
@@ -211,7 +212,7 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
           />
         </Box>
         <Box width="50%" pl={1}>
-          <Typography gutterBottom>{'Rotation'}</Typography>
+          <Typography gutterBottom color='primary'>{'Rotation'}</Typography>
           <Slider
             value={rotation}
             onChange={(event, newRotation) => setRotation(newRotation)}

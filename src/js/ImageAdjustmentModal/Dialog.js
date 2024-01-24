@@ -23,11 +23,16 @@ export default function Dialog ({ title, open, onClose, maxWidth, children, acti
       maxWidth={maxWidth}
       fullScreen={!isDesktop}
       TransitionComponent={Transition}
+      style={{
+        background-color: '#0D0D0D'
+      }}
     >
       <DialogTitle>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <span>{ title }</span>
-          <CloseIcon onClick={onClose}/>
+          <span style={{ cursor: 'pointer' }}>
+            <CloseIcon onClick={onClose} color="primary" />
+          </span>
         </Box>
       </DialogTitle>
       <DialogContent>

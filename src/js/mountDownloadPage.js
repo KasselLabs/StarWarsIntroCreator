@@ -13,10 +13,10 @@ const theme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: '#fff'
+      main: '#ffd54e'
     },
     secondary: {
-      main: '#000'
+      main: '#0D0D0D'
     },
     error: {
       main: red.A400
@@ -37,7 +37,7 @@ export const mountDownloadPage = async () => {
   ReactDOM.render((
     <ThemeProvider theme={theme}>
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-      {/* <CssBaseline /> 
+      {/* <CssBaseline /> */}
       <DownloadPage
         status={downloadStatus}
         openingKey={key}
