@@ -159,7 +159,18 @@ window.onload = () => {
         center: true,
       },
       paused: true,
-    }).then(() => window.setAnimationTime(95000));
+    }).then(() => {
+      window.setAnimationTime(95000);
+
+      if (!window.parent) {
+        return;
+      }
+
+      window.parent.postMessage({
+        type: 'animation',
+        action: 'finished',
+      }, '*');
+    });
   }
 };
 
