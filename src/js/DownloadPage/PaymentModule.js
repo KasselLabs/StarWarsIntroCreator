@@ -11,6 +11,9 @@ import ImageUploadButton from './ImageUploadButton';
 const PaymentModule = ({ openingKey }) => {
   const iframeRef = useRef(null);
   const [isCustomImage, setIsCustomImage] = useState(false);
+  const [isLoadingCustomImagePreview, setIsLoadingCustomImagePreview] = useState(true);
+  console.log({ isLoadingCustomImagePreview })
+
   const [customImage, setCustomImage] = useState('https://kassellabs.s3.amazonaws.com/star-wars/DeathStar-Background.png');
 
   const updatePaymentAmount = useCallback((amount) => {
@@ -30,6 +33,27 @@ const PaymentModule = ({ openingKey }) => {
     const code = JSON.stringify({ code: openingKey, image: customImage });
     iframeRef.current.contentWindow.postMessage({ action: 'setCode', payload: code }, '*');
   }, [openingKey, customImage, isCustomImage]);
+
+  useEffect(() => {
+    if (!isCustomImage) {
+      return () => {};
+    }
+
+    const onMessage = (event) => {
+      const isAnimationType = event.data?.type === 'animation';
+      const isFinishedAction = event.data?.action === 'finished';
+
+      if (isAnimationType && isFinishedAction) {
+        setIsLoadingCustomImagePreview(false);
+      }
+    };
+    window.addEventListener('message', onMessage);
+    setIsLoadingCustomImagePreview(true);
+
+    return () => {
+      window.removeEventListener('message', onMessage);
+    };
+  }, [customImage, isCustomImage]);
 
   return (
     <>
@@ -52,13 +76,17 @@ const PaymentModule = ({ openingKey }) => {
               Preview your custom image:
             </p>
             <div
-              style={{
-                position: 'relative', width: '640px', height: '360px', overflow: 'hidden', borderRadius: '5px',
-              }}
+              className="image-preview-container"
             >
               <iframe
                 style={{
-                  width: '1920px', height: '1080px', transformOrigin: '0 0', transform: 'scale(0.3333333333)',
+                  width: '1920px',
+                  height: '1080px',
+                  position: 'absolute',
+                  left: '0',
+                  right: '0',
+                  transformOrigin: '0 0',
+                  transform: 'scale(0.3333333333)',
                 }}
                 src={`https://star-wars-intro-creator-git-custom-image-iframe-kassellabs.vercel.app?image=${customImage}`}
                 title="Custom Image"
