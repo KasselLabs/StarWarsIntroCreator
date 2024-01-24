@@ -1,5 +1,5 @@
 import React, {
-  Fragment, useCallback, useState, useRef, useMemo
+  Fragment, useCallback, useState, useRef, useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
 import { trackAddToCart } from '../api/tracking';
@@ -11,7 +11,7 @@ import ImageUploadButton from './ImageUploadButton';
 const PaymentModule = ({ openingKey }) => {
   const iframeRef = useRef(null);
   const [isCustomImage, setIsCustomImage] = useState(false);
-  const [customImage, setCustomImage] = useState('https://kassellabs.us-east-1.linodeobjects.com/star-wars/86911cf0fdf4ec61398880d3f1b95bd5.jpg');
+  const [customImage, setCustomImage] = useState('https://kassellabs.s3.amazonaws.com/star-wars/DeathStar-Background.png');
 
   const updatePaymentAmount = useCallback((amount) => {
     iframeRef.current.contentWindow.postMessage({ action: 'setAmount', payload: amount }, '*');
@@ -21,13 +21,15 @@ const PaymentModule = ({ openingKey }) => {
     setIsCustomImage(amount >= 40);
   }, [iframeRef.current]);
 
-  const paymentCode = useMemo(() => {
-    if (!customImage) {
-      return openingKey;
+  useEffect(() => {
+    if (!customImage || !isCustomImage) {
+      iframeRef.current.contentWindow.postMessage({ action: 'setCode', payload: openingKey }, '*');
+      return;
     }
 
-    return JSON.stringify({ code: openingKey, image: customImage });
-  }, [openingKey, customImage]);
+    const code = JSON.stringify({ code: openingKey, image: customImage });
+    iframeRef.current.contentWindow.postMessage({ action: 'setCode', payload: code }, '*');
+  }, [openingKey, customImage, isCustomImage]);
 
   return (
     <>
@@ -76,7 +78,7 @@ const PaymentModule = ({ openingKey }) => {
           className="stripe"
           id="stripeDonateIframe"
           title="Stripe Payment Form"
-          src={`${paymentPageUrl}?embed=true&app=star-wars&code=${paymentCode}&amount=1500`}
+          src={`${paymentPageUrl}?embed=true&app=star-wars&code=${openingKey}&amount=1500`}
           allowpaymentrequest="true"
         />
       </div>
