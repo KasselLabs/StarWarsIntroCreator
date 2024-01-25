@@ -31,7 +31,7 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
   const [mediaSize, setMediaSize] = React.useState(null)
   const [cropArea, setCropArea] = React.useState(null)
   const [crop, setCrop] = React.useState(DEFAULT_CROP)
-  const [zoom, setZoom] = React.useState(1)
+  const [zoom, setZoom] = React.useState(0.25)
   const [rotation, setRotation] = React.useState(0)
   const [loading, setLoading] = React.useState(false)
   const [cropSize, setCropSize] = React.useState({ width: 0, height: 0 });
@@ -41,7 +41,7 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
       open={open}
       onClose={onClose}
       maxWidth="xl"
-      title={<span style={{ color: '#ffd54e' }}>Crop Image</span>}
+      title={<span style={{ color: '#ffd54e' }}>Position Image</span>}
       actions={(
         <>
           <Button
@@ -207,9 +207,9 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
             onChange={(event, newZoom) => setZoom(newZoom)}
             valueLabelDisplay="auto"
             valueLabelFormat={value => value.toFixed(2)}
-            min={0.1}
+            min={0.05}
             step={0.01}
-            max={10}
+            max={3}
           />
         </Box>
         <Box width="50%" pl={1}>
