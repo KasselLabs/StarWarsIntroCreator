@@ -16,7 +16,6 @@ import Cropper from 'react-easy-crop'
 import Dialog from './Dialog'
 import getCroppedImages from '../util/getCroppedImages'
 import getResizedImages from '../util/getResizedImages'
-import { c } from 'bowser'
 
 const DEFAULT_CROP = {
   x: 0,
@@ -56,7 +55,9 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
             color="primary"
             variant="outlined"
             startIcon={<CropIcon />}
-            disabled={loading}
+            style={{
+              pointerEvents: loading ? 'none' : 'initial',
+            }}
             onClick={async () => {
               setLoading(true)
               const croppedImages = await getCroppedImages(image, cropArea, rotation)
@@ -64,7 +65,7 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
                 croppedImages,
                 { maxWidth: IMAGE_SIZE.width, maxHeight: IMAGE_SIZE.height, backgroundColor: 'rgba(0, 0, 0, 0)' }
               )
-              onChange(resizedImages)
+              await onChange(resizedImages)
               onClose()
               setLoading(false)
             }}

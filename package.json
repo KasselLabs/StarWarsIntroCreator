@@ -73,7 +73,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-easy-crop": "^3.5.3",
-    "sweetalert2": "^7.15.1"
+    "sweetalert2": "^7.15.1",
+    "usehooks-ts": "^2.10.0"
   },
   "staticFiles": {
     "staticPath": "static",

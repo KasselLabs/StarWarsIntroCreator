@@ -1,7 +1,9 @@
 import React, {
-  Fragment, useCallback, useState, useRef, useEffect,
+  Fragment, useCallback, useState, useRef, useEffect, useMemo,
 } from 'react';
 import PropTypes from 'prop-types';
+import { Box, CircularProgress } from '@material-ui/core';
+import { useElementSize } from 'usehooks-ts';
 import { trackAddToCart } from '../api/tracking';
 import { paymentPageUrl } from '../config';
 import Loader from './Loader';
@@ -12,7 +14,11 @@ const PaymentModule = ({ openingKey }) => {
   const iframeRef = useRef(null);
   const [isCustomImage, setIsCustomImage] = useState(false);
   const [isLoadingCustomImagePreview, setIsLoadingCustomImagePreview] = useState(true);
-  console.log({ isLoadingCustomImagePreview })
+  const [imagePreviewRef, imagePreviewSize] = useElementSize();
+
+  const transformScale = useMemo(() => (
+    imagePreviewSize?.width / 1920
+  ), [imagePreviewSize?.width]);
 
   const [customImage, setCustomImage] = useState('https://kassellabs.s3.amazonaws.com/star-wars/DeathStar-Background.png');
 
@@ -77,6 +83,7 @@ const PaymentModule = ({ openingKey }) => {
             </p>
             <div
               className="image-preview-container"
+              ref={imagePreviewRef}
             >
               <iframe
                 style={{
@@ -85,13 +92,28 @@ const PaymentModule = ({ openingKey }) => {
                   position: 'absolute',
                   left: '0',
                   right: '0',
-                  transformOrigin: '0 0',
-                  transform: 'scale(0.3333333333)',
+                  transformOrigin: 'top left',
+                  transform: `scale(${transformScale})`,
+                  margin: '0',
                 }}
                 src={`https://star-wars-intro-creator-git-custom-image-iframe-kassellabs.vercel.app?image=${customImage}`}
                 title="Custom Image"
                 allowFullScreen
               />
+              {isLoadingCustomImagePreview && (
+                <Box
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  position="absolute"
+                  left={0}
+                  top={0}
+                  bottom={0}
+                  right={0}
+                >
+                  <CircularProgress />
+                </Box>
+              )}
             </div>
           </div>
         )

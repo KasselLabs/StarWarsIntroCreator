@@ -27,12 +27,9 @@ const ImageUploadButton = ({ onChange }) => {
             return
           }
 
-          // setLoading(true)
           const newImage = await getURLFromFile(file)
-          console.log({newImage})
           setImageToCrop(newImage)
           fileInputRef.current.value = null
-          // setLoading(false)
         }}
       />
       <ImageAdjustmentModal
@@ -50,7 +47,6 @@ const ImageUploadButton = ({ onChange }) => {
             },
           });
           const imageURL = uploadURL.replace(/\?.*/g, '')
-          console.log({uploadURL, imageURL});
 
           onChange(imageURL);
         }}
