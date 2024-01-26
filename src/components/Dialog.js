@@ -7,7 +7,7 @@ import {
   Slide,
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import useWindowSize from '../hooks/useWindowSize';
+import useWindowSize from '../js/hooks/useWindowSize';
 
 const Transition = React.forwardRef((props, ref) => <Slide direction="up" ref={ref} {...props} />);
 

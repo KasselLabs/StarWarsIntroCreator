@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider as MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider as MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     type: 'dark',
     primary: {
@@ -17,6 +17,9 @@ const theme = createMuiTheme({
     },
     background: {
       default: '#fff',
+    },
+    text: {
+      main: '#ffd54e',
     },
   },
   overrides: {

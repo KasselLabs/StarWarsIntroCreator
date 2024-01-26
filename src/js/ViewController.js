@@ -7,6 +7,7 @@ import UrlHandler from './extras/UrlHandler';
 import { playButtonHandler, downloadButtonHandler, generateTextHandler } from './api/actions';
 import StarWarsAnimation from './StarWarsAnimation';
 import { mountDownloadPage, unmountDownloadPage } from './mountDownloadPage';
+import { mountGenerateTextPage, unmountGenerateTextPage } from './mountGenerateTextPage';
 
 class ViewController {
   constructor() {
@@ -113,15 +114,11 @@ class ViewController {
   }
 
   setGenerateTextPage() {
-    // TODO
-    mountDownloadPage();
-    this.body.classList.add('downloadPage');
+    mountGenerateTextPage();
   }
 
   unsetGenerateTextPage() {
-    // TODO
-    this.body.classList.remove('downloadPage');
-    unmountDownloadPage();
+    unmountGenerateTextPage();
   }
 
   showDownloadButton() {
