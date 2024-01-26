@@ -2,7 +2,7 @@ import swal from 'sweetalert2';
 import bowser from 'bowser';
 
 import { sendGAPageView } from './extras/googleanalytics';
-import ApplicationState, { PLAYING, EDITING } from './ApplicationState';
+import ApplicationState, { PLAYING, EDITING, GENERATE_TEXT } from './ApplicationState';
 import UrlHandler from './extras/UrlHandler';
 import UserIdentifier from './extras/UserIdentifier';
 import AudioController from './AudioController';
@@ -24,14 +24,20 @@ const startApplication = () => {
     swal.close();
 
     const { key, page, subpage } = UrlHandler.getParams();
+
     if (key) {
+      if (key === 'suggest-text') {
+        ApplicationState.setState(GENERATE_TEXT);
+        return;
+      }
+
       if (!page) {
         lastPage = '';
         loadAndPlay(key);
         return;
       }
 
-      if ('edit' === page) {
+      if (page === 'edit') {
         lastPage = page;
         if (ApplicationState.state.key === key) {
           // interrupt animation if it's playing
@@ -44,7 +50,7 @@ const startApplication = () => {
         return;
       }
 
-      if ('download' === page) {
+      if (page === 'download') {
         const samePage = lastPage === page;
 
         if (samePage) {

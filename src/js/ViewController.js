@@ -4,7 +4,7 @@ import { callOnFocus } from './extras/utils';
 import AudioController from './AudioController';
 import ApplicationState from './ApplicationState';
 import UrlHandler from './extras/UrlHandler';
-import { playButtonHandler, downloadButtonHandler } from './api/actions';
+import { playButtonHandler, downloadButtonHandler, generateTextHandler } from './api/actions';
 import StarWarsAnimation from './StarWarsAnimation';
 import { mountDownloadPage, unmountDownloadPage } from './mountDownloadPage';
 
@@ -12,6 +12,7 @@ class ViewController {
   constructor() {
     this.body = document.querySelector('body');
     this.downloadButton = document.querySelector('#downloadButton');
+    this.generateTextButton = document.querySelector('#generateTextButton');
     this.requestInteractionButton = document.querySelector('#requestInteractionButton');
     this.form = document.querySelector('#configForm > form');
 
@@ -50,6 +51,11 @@ class ViewController {
       e.preventDefault();
       const opening = this.getFormValues();
       downloadButtonHandler(opening);
+    });
+
+    this.generateTextButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      generateTextHandler();
     });
 
     // close download page button
@@ -102,6 +108,18 @@ class ViewController {
   }
 
   unsetDownloadPage() {
+    this.body.classList.remove('downloadPage');
+    unmountDownloadPage();
+  }
+
+  setGenerateTextPage() {
+    // TODO
+    mountDownloadPage();
+    this.body.classList.add('downloadPage');
+  }
+
+  unsetGenerateTextPage() {
+    // TODO
     this.body.classList.remove('downloadPage');
     unmountDownloadPage();
   }

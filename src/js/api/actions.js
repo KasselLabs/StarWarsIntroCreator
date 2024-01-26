@@ -141,6 +141,10 @@ export const downloadButtonHandler = async (opening) => {
   UrlHandler.goToDownloadPage(key);
 };
 
+export const generateTextHandler = async () => {
+  UrlHandler.goToGenerateTextPage();
+};
+
 const _loadStatus = async (rawKey) => {
   const key = parseSpecialKeys(rawKey);
   const statusObject = await fetchStatus(key);

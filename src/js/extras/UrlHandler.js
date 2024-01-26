@@ -1,4 +1,3 @@
-
 export default class UrlHandler {
   static _checkForWrongEncoded = () => {
     const hasWrongChar = window.location.hash.indexOf('#%21/') > -1;
@@ -36,6 +35,11 @@ export default class UrlHandler {
 
   static goToDownloadPage(key, subpage = '') {
     const newHashUrl = `!/${key}/download/${subpage}`;
+    window.location.hash = newHashUrl;
+  }
+
+  static goToGenerateTextPage() {
+    const newHashUrl = '!/suggest-text';
     window.location.hash = newHashUrl;
   }
 }

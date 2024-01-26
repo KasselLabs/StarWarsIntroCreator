@@ -7,6 +7,7 @@ export const LOADING = 'LOADING';
 export const PLAYING = 'PLAYING';
 export const EDITING = 'EDITING';
 export const DOWNLOAD = 'DOWNLOAD';
+export const GENERATE_TEXT = 'GENERATE_TEXT';
 
 class ApplicationState {
   constructor() {
@@ -38,6 +39,10 @@ class ApplicationState {
 
         case DOWNLOAD:
           ViewController.unsetDownloadPage();
+          break;
+
+        case GENERATE_TEXT:
+          ViewController.unsetGenerateTextPage();
           break;
 
         default:
@@ -88,6 +93,10 @@ class ApplicationState {
 
       case DOWNLOAD:
         ViewController.setDownloadPage();
+        break;
+
+      case GENERATE_TEXT:
+        ViewController.setGenerateTextPage();
         break;
 
       default:
