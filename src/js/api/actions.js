@@ -1,6 +1,7 @@
 /* eslint-disable import/no-cycle */
 import swal from 'sweetalert2';
 import isEqual from 'lodash.isequal';
+import lodash from 'lodash';
 import * as Sentry from '@sentry/browser';
 
 import '../config';
@@ -115,10 +116,18 @@ export const playButtonHandler = async (opening) => {
   UrlHandler.setKeyToPlay(key);
 };
 
+const isIntrosEqual = (oldIntro, newIntro) => {
+  const relevantAttributes = ['center', 'episode', 'intro', 'logo', 'text', 'title'];
+  const relevantOldIntro = lodash.pick(oldIntro, relevantAttributes);
+  const relevantNewIntro = lodash.pick(newIntro, relevantAttributes);
+  return isEqual(relevantOldIntro, relevantNewIntro);
+};
+
 export const downloadButtonHandler = async (opening) => {
   const lastOpening = ApplicationState.state.opening;
   const { key } = ApplicationState.state;
-  if (!isEqual(lastOpening, opening)) {
+
+  if (!isIntrosEqual(lastOpening, opening)) {
     swal({
       title: 'Text was modified',
       text: 'You have changed some of the text fields. You need to play the new intro to save and request a download. Do you want to restore your intro text or play the new one?',
