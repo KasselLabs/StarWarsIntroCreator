@@ -29,6 +29,7 @@ const theme = createMuiTheme({
     MuiDialog: {
       paper: {
         background: '#0D0D0D',
+        border: '2px solid #d0ad3e',
       },
     },
   },
