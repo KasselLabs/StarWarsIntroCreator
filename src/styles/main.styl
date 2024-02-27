@@ -33,7 +33,7 @@ $HD = '(max-height: 720px)';
 $timeFactor = 1.0;
 $extraTime = 0s;
 $introColor = #4bd5ee;
-$titlesColor = #ffd54e;
+$titlesColor = #4bd5ee;
 
 $formBackgroundColor = lighten(black, 3%);
 $panelBackgroundColor = lighten(black, 5%);
@@ -52,7 +52,7 @@ mobile = 'only screen and (max-device-width : 500px)';
 
   --intro-background-color: black;
   --intro-color: #4bd5ee;
-  --titles-color: #ffd54e;
+  --titles-color: #4bd5ee;
 
   --scrolldown-height: 2200px;
   --time-factor: $timeFactor;
@@ -224,6 +224,24 @@ buttonStyle() {
   margin-top: 0;
   text-align: center;
 }
+
+.black-bar {
+  position: fixed;
+  height: 132px;
+  left: 0;
+  right: 0;
+  background: black;
+  z-index: 10000;
+
+  &.-top {
+    top: 0;
+  }
+
+  &.-bottom {
+    top: calc(100vh - 132px);
+  }
+}
+
 
 @import './bodyStates.styl';
 @import './downloadPage.styl';
