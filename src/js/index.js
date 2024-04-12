@@ -2,6 +2,7 @@ import 'babel-polyfill';
 import swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import * as Sentry from '@sentry/browser';
+import { utm } from '@distributed/utm';
 
 import '../styles/main.styl';
 
@@ -16,9 +17,29 @@ swal.setDefaults({
   customClass: 'starwars-sweetalert',
 });
 
+const getUTMParams = () => {
+  const utms = utm(window.location.search);
+  const params = new URLSearchParams(window.location.search);
+  return {
+    ...utms,
+    gclid: params.get('gclid'),
+  };
+};
+
+const saveUTMParams = () => {
+  const utms = getUTMParams();
+  const isUtmsEmpty = Object.keys(utms).length === 0;
+  if (isUtmsEmpty) {
+    return;
+  }
+
+  localStorage.setItem('saved-utm-params', JSON.stringify(utms));
+};
+
 (function _() {
   if (process.env.NODE_ENV === 'development') {
     startApplication();
+    saveUTMParams();
     return;
   }
 
@@ -64,4 +85,6 @@ swal.setDefaults({
   });
 
   startApplication();
+
+  saveUTMParams();
 }());
