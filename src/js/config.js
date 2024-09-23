@@ -16,13 +16,14 @@ const firebases = {
   C: process.env.FIREBASE_C,
   D: process.env.FIREBASE_D,
   E: process.env.FIREBASE_E,
+  F: process.env.FIREBASE_F,
 
   S: process.env.FIREBASE_S,
 };
 
 window.firebases = firebases;
 
-export const defaultFirebasePrefix = 'E';
+export const defaultFirebasePrefix = 'F';
 
 export const serverApi = process.env.SERVER_API;
 export const paymentPageUrl = process.env.PAYMENT_PAGE_URL;
