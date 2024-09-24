@@ -13,6 +13,7 @@ import ImageUploadButton from './ImageUploadButton';
 const PaymentModule = ({ openingKey }) => {
   const iframeRef = useRef(null);
   const [isCustomImage, setIsCustomImage] = useState(false);
+  const [utmParamsString, setUtmParamsString] = useState('');
   const [isLoadingCustomImagePreview, setIsLoadingCustomImagePreview] = useState(true);
   const [imagePreviewRef, imagePreviewSize] = useElementSize();
 
@@ -60,6 +61,24 @@ const PaymentModule = ({ openingKey }) => {
       window.removeEventListener('message', onMessage);
     };
   }, [customImage, isCustomImage]);
+
+  useEffect(() => {
+    const savedParamsString = localStorage.getItem('saved-utm-params');
+    if (!savedParamsString) {
+      return;
+    }
+
+    try {
+      const savedUtmParams = JSON.parse(savedParamsString);
+      const params = new URLSearchParams(savedUtmParams);
+      const paramsString = params.toString();
+      if (paramsString) {
+        setUtmParamsString(`&${paramsString}`);
+      }
+    } catch (error) {
+      // Supress any errors here
+    }
+  }, []);
 
   return (
     <>
@@ -128,7 +147,7 @@ const PaymentModule = ({ openingKey }) => {
           className="stripe"
           id="stripeDonateIframe"
           title="Stripe Payment Form"
-          src={`${paymentPageUrl}?embed=true&app=star-wars&code=${openingKey}&amount=1500`}
+          src={`${paymentPageUrl}?embed=true&app=star-wars&code=${openingKey}&amount=1500${utmParamsString}`}
           allowpaymentrequest="true"
         />
       </div>
