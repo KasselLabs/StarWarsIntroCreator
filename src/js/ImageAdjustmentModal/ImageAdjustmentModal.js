@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Box,
   Button,
@@ -6,34 +6,36 @@ import {
   CircularProgress,
   Typography,
   Tooltip,
-} from '@material-ui/core'
-import CropIcon from '@material-ui/icons/Crop'
-import VerticalAlignCenterIcon from '@material-ui/icons/VerticalAlignCenter'
-import FullscreenIcon from '@material-ui/icons/Fullscreen'
-import FullscreenExitIcon from '@material-ui/icons/FullscreenExit'
-import Cropper from 'react-easy-crop'
+} from '@material-ui/core';
+import CropIcon from '@material-ui/icons/Crop';
+import VerticalAlignCenterIcon from '@material-ui/icons/VerticalAlignCenter';
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
+import FullscreenExitIcon from '@material-ui/icons/FullscreenExit';
+import Cropper from 'react-easy-crop';
 
-import Dialog from './Dialog'
-import getCroppedImages from '../util/getCroppedImages'
-import getResizedImages from '../util/getResizedImages'
+import Dialog from './Dialog';
+import getCroppedImages from '../util/getCroppedImages';
+import getResizedImages from '../util/getResizedImages';
 
 const DEFAULT_CROP = {
   x: 0,
-  y: 0
-}
+  y: 0,
+};
 
 const IMAGE_SIZE = {
   width: 1920,
   height: 1080,
 };
 
-const CropDialog = ({ image, onChange, open, onClose }) => {
-  const [mediaSize, setMediaSize] = React.useState(null)
-  const [cropArea, setCropArea] = React.useState(null)
-  const [crop, setCrop] = React.useState(DEFAULT_CROP)
-  const [zoom, setZoom] = React.useState(0.25)
-  const [rotation, setRotation] = React.useState(0)
-  const [loading, setLoading] = React.useState(false)
+const CropDialog = ({
+  image, onChange, open, onClose,
+}) => {
+  const [mediaSize, setMediaSize] = React.useState(null);
+  const [cropArea, setCropArea] = React.useState(null);
+  const [crop, setCrop] = React.useState(DEFAULT_CROP);
+  const [zoom, setZoom] = React.useState(0.25);
+  const [rotation, setRotation] = React.useState(0);
+  const [loading, setLoading] = React.useState(false);
   const [cropSize, setCropSize] = React.useState({ width: 0, height: 0 });
 
   return (
@@ -45,11 +47,11 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
       actions={(
         <>
           <Button
-            color='primary'
+            color="primary"
             variant="text"
             onClick={onClose}
           >
-            {'Close'}
+            Close
           </Button>
           <Button
             color="primary"
@@ -59,24 +61,24 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
               pointerEvents: loading ? 'none' : 'initial',
             }}
             onClick={async () => {
-              setLoading(true)
-              const croppedImages = await getCroppedImages(image, cropArea, rotation)
+              setLoading(true);
+              const croppedImages = await getCroppedImages(image, cropArea, rotation);
               const resizedImages = await getResizedImages(
                 croppedImages,
-                { maxWidth: IMAGE_SIZE.width, maxHeight: IMAGE_SIZE.height, backgroundColor: 'rgba(0, 0, 0, 0)' }
-              )
-              await onChange(resizedImages)
-              onClose()
-              setLoading(false)
+                { maxWidth: IMAGE_SIZE.width, maxHeight: IMAGE_SIZE.height, backgroundColor: 'rgba(0, 0, 0, 0)' },
+              );
+              await onChange(resizedImages);
+              onClose();
+              setLoading(false);
             }}
           >
             {
               loading
                 ? (
                   <Box display="inline-flex">
-                    {'Loading'}
+                    Loading
                     <Box display="flex" justifyContent="center" alignItems="center" ml={1}>
-                      <CircularProgress size={16}/>
+                      <CircularProgress size={16} />
                     </Box>
                   </Box>
                 )
@@ -105,14 +107,14 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
           restrictPosition={false}
           onCropAreaChange={(_, newCropArea) => setCropArea(newCropArea)}
           onCropSizeChange={(newCropSize) => {
-            setCropSize(newCropSize)
+            setCropSize(newCropSize);
           }}
           onMediaLoaded={(loadedMediaSize) => {
-            setMediaSize(loadedMediaSize)
+            setMediaSize(loadedMediaSize);
           }}
         />
         <img
-          src="https://storage.kassellabs.io/star-wars/bg-stars.png"
+          src="https://kassellabs.us-east-1.linodeobjects.com/static-assets/star-wars/bg-stars.png"
           alt="background"
           style={{
             position: 'absolute',
@@ -135,65 +137,65 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
             sx={{ gap: '8px', zIndex: 12 }}
           >
             <Box style={{ transform: 'rotate(90deg)' }}>
-              <Tooltip title={'Center the image horizontally'} placement="right">
+              <Tooltip title="Center the image horizontally" placement="right">
                 <Button
                   variant="contained"
                   color="primary"
                   onClick={() => {
-                    setCrop({ ...crop, x: 0 })
+                    setCrop({ ...crop, x: 0 });
                   }}
                 >
-                  <VerticalAlignCenterIcon/>
+                  <VerticalAlignCenterIcon />
                 </Button>
               </Tooltip>
             </Box>
-            <Tooltip title={'Center the image vertically'} placement="right">
+            <Tooltip title="Center the image vertically" placement="right">
               <Button
                 variant="contained"
                 color="primary"
                 onClick={() => {
-                  setCrop({ ...crop, y: 0 })
+                  setCrop({ ...crop, y: 0 });
                 }}
               >
-                <VerticalAlignCenterIcon/>
+                <VerticalAlignCenterIcon />
               </Button>
             </Tooltip>
-            <Tooltip title={'Fits the image inside the crop area'} placement="right">
+            <Tooltip title="Fits the image inside the crop area" placement="right">
               <Button
                 variant="contained"
                 color="primary"
                 onClick={() => {
                   // Adjust the size
-                  const widthResize = cropSize.width / mediaSize.width
-                  const heightResize = cropSize.height / mediaSize.height
-                  const newZoom = Math.min(widthResize, heightResize)
-                  setZoom(newZoom)
-                  setRotation(0)
+                  const widthResize = cropSize.width / mediaSize.width;
+                  const heightResize = cropSize.height / mediaSize.height;
+                  const newZoom = Math.min(widthResize, heightResize);
+                  setZoom(newZoom);
+                  setRotation(0);
 
                   // Adjust the alignment
-                  setCrop({ x: 0, y: 0 })
+                  setCrop({ x: 0, y: 0 });
                 }}
               >
-                <FullscreenExitIcon/>
+                <FullscreenExitIcon />
               </Button>
             </Tooltip>
-            <Tooltip title={'Fill the crop area with the image'} placement="right">
+            <Tooltip title="Fill the crop area with the image" placement="right">
               <Button
                 variant="contained"
                 color="primary"
                 onClick={async () => {
                   // Adjust the size
-                  const widthResize = cropSize.width / mediaSize.width
-                  const heightResize = cropSize.height / mediaSize.height
-                  const newZoom = Math.max(widthResize, heightResize)
-                  setZoom(newZoom)
-                  setRotation(0)
+                  const widthResize = cropSize.width / mediaSize.width;
+                  const heightResize = cropSize.height / mediaSize.height;
+                  const newZoom = Math.max(widthResize, heightResize);
+                  setZoom(newZoom);
+                  setRotation(0);
 
                   // Adjust the alignment
-                  setCrop({ x: 0, y: 0 })
+                  setCrop({ x: 0, y: 0 });
                 }}
               >
-                <FullscreenIcon/>
+                <FullscreenIcon />
               </Button>
             </Tooltip>
           </Box>
@@ -201,24 +203,24 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
       </Box>
       <Box display="flex" justifyContent="space-between" mt={2}>
         <Box width="50%" pr={1}>
-          <Typography gutterBottom color='primary' >{'Zoom'}</Typography>
+          <Typography gutterBottom color="primary">Zoom</Typography>
           <Slider
             value={zoom}
             onChange={(event, newZoom) => setZoom(newZoom)}
             valueLabelDisplay="auto"
-            valueLabelFormat={value => value.toFixed(2)}
+            valueLabelFormat={(value) => value.toFixed(2)}
             min={0.05}
             step={0.01}
             max={3}
           />
         </Box>
         <Box width="50%" pl={1}>
-          <Typography gutterBottom color='primary'>{'Rotation'}</Typography>
+          <Typography gutterBottom color="primary">Rotation</Typography>
           <Slider
             value={rotation}
             onChange={(event, newRotation) => setRotation(newRotation)}
             valueLabelDisplay="auto"
-            valueLabelFormat={value => value.toFixed(1)}
+            valueLabelFormat={(value) => value.toFixed(1)}
             min={-180}
             step={0.1}
             max={180}
@@ -226,7 +228,7 @@ const CropDialog = ({ image, onChange, open, onClose }) => {
         </Box>
       </Box>
     </Dialog>
-  )
-}
+  );
+};
 
-export default CropDialog
+export default CropDialog;
