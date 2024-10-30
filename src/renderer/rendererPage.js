@@ -1,4 +1,5 @@
 import 'babel-polyfill';
+import '../styles/normalize.css';
 import '../styles/main.styl';
 import ViewController from '../js/ViewController';
 import { loadOpening } from '../js/api/actions';
