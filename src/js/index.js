@@ -4,6 +4,7 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import * as Sentry from '@sentry/browser';
 import { utm } from '@distributed/utm';
 
+import '../styles/normalize.css';
 import '../styles/main.styl';
 
 import './extras/facebookpixel';
