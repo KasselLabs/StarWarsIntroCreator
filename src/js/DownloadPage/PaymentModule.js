@@ -21,7 +21,7 @@ const PaymentModule = ({ openingKey }) => {
     imagePreviewSize?.width / 1920
   ), [imagePreviewSize?.width]);
 
-  const [customImage, setCustomImage] = useState('https://kassellabs.s3.amazonaws.com/star-wars/DeathStar-Background.png');
+  const [customImage, setCustomImage] = useState('https://kassellabs.us-east-1.linodeobjects.com/static-assets/star-wars/DeathStar-Background.png');
 
   const updatePaymentAmount = useCallback((amount) => {
     iframeRef.current.contentWindow.postMessage({ action: 'setAmount', payload: amount }, '*');
