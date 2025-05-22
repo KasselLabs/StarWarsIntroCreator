@@ -47,14 +47,7 @@ class AudioController {
     }
   }
 
-  verificationFailed(error) {
-    try {
-      document.querySelector('#logo').remove();
-      document.querySelector('.center-titles').remove();
-      Sentry.captureException(error);
-    } catch (error2) {
-      console.error(error2);
-    }
+  verificationFailed() {
     clearInterval(this.wmInterval);
   }
 
