@@ -5,13 +5,13 @@
   "author": "Kassel Labs <contact@kassellabs.io>",
   "license": "MIT",
   "engines": {
-    "node": "16"
+    "node": "20"
   },
   "scripts": {
     "clear": "rm -rf dist .cache public",
-    "build": "npm run clear && webpack --mode production && webpack --mode production -c webpack.config.render.js --output-path dist-rendering && cp .nojekyll dist && cp dist-rendering/* dist/",
-    "start": "webpack serve --mode development",
-    "start-render": "webpack serve --mode development -c webpack.config.render.js",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider npm run clear && webpack --mode production && webpack --mode production -c webpack.config.render.js --output-path dist-rendering && cp .nojekyll dist && cp dist-rendering/* dist/",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider webpack serve --mode development",
+    "start-render": "NODE_OPTIONS=--openssl-legacy-provider webpack serve --mode development -c webpack.config.render.js",
     "test": "jest",
     "test:watch": "npm run test -- --watchAll",
     "test:coverage": "npm run test -- --coverage",
