@@ -6,13 +6,13 @@
 
 # Star Wars Intro Creator
 
-Create your own Star Wars movie opening.  
-Fill the inputs with any text and hit Play.  
-You can share the URL generated and anyone can see your intro.  
+Create your own Star Wars movie opening.
+Fill the inputs with any text and hit Play.
+You can share the URL generated and anyone can see your intro.
 Access: [https://StarWarsIntroCreator.KasselLabs.io](https://StarWarsIntroCreator.KasselLabs.io)
 
 ## Credits
-Build on top of the [work by Tim Pietrusky](http://timpietrusky.com/star-wars-opening-crawl-from-1977)  
+Build on top of the [work by Tim Pietrusky](http://timpietrusky.com/star-wars-opening-crawl-from-1977)
 By [Bruno Orlandi](https://github.com/BrOrlandi) and [Nihey Takizawa](https://github.com/nihey)
 
 ## Supported by
