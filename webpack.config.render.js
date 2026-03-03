@@ -4,7 +4,7 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    static: path.join(__dirname, 'dist'),
     port: 8080,
   },
   entry: { index: path.resolve(__dirname, 'src', 'renderer', 'rendererPage.js') },
