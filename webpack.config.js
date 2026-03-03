@@ -49,6 +49,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         { from: 'static' },
+        { from: 'src/assets/preview.png', to: 'assets/preview.png' },
       ],
     }),
   ],
