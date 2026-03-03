@@ -6,7 +6,7 @@ const Dotenv = require('dotenv-webpack');
 module.exports = {
   devServer: {
     host: '0.0.0.0',
-    contentBase: path.join(__dirname, 'dist'),
+    static: path.join(__dirname, 'dist'),
     port: 8080,
   },
   entry: { index: path.resolve(__dirname, 'src', 'renderer', 'rendererPage.js') },
@@ -37,7 +37,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[hash].js',
+    filename: '[fullhash].js',
   },
   plugins: [
     new Dotenv({

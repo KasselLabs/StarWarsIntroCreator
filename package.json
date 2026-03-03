@@ -5,7 +5,7 @@
   "author": "Kassel Labs <contact@kassellabs.io>",
   "license": "MIT",
   "engines": {
-    "node": "16"
+    "node": "22"
   },
   "scripts": {
     "clear": "rm -rf dist .cache public",
@@ -55,9 +55,9 @@
     "stylint": "^1.5.9",
     "stylus": "^0.54.5",
     "stylus-loader": "^5.0.0",
-    "webpack": "^5.33.2",
-    "webpack-cli": "^4.6.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack": "^5.105.3",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.3"
   },
   "dependencies": {
     "@sentry/browser": "^6.4.1",
