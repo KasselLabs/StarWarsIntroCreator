@@ -7,7 +7,7 @@ const ContactButton = ({
   const link = (
     <a
       className="contactButton"
-      href="https://help.kassellabs.io/starwars/"
+      href="https://kassellabs.io/help/star-wars-intro-creator"
       rel="noopener noreferrer"
       target="_blank"
     >

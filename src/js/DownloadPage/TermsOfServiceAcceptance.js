@@ -4,7 +4,7 @@ const TermsOfServiceAcceptance = () => (
   <p className="termsOfServiceAcceptance">
     By using this website you are agreeing to our&nbsp;
     <a
-      href="https://help.kassellabs.io/starwars/#termsOfService"
+      href="https://kassellabs.io/terms"
       target="_blank"
       rel="noopener noreferrer"
     >
