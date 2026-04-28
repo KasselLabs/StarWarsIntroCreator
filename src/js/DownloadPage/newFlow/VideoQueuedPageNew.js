@@ -60,7 +60,7 @@ const VideoQueuedPage = ({
       </p>
       <p>
         Can&apos;t wait for it? Pay to support our service and your video will
-        be ready in a few hours (1 hour usually).
+        be ready in about 10 minutes.
         <br />
       </p>
       <PaymentModule openingKey={openingKey} />

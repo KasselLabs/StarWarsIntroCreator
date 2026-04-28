@@ -90,7 +90,7 @@ class VideoRequestSent extends Component {
       <div>
         <p>
           Thank you so much for supporting us!
-          Your video should be rendered soon!
+          Your video will be delivered by email in about 10 minutes.
         </p>
         <p>{this.renderEmail()}</p>
 
