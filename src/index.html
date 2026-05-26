@@ -34,6 +34,99 @@
 
     <link rel="canonical" href="https://starwarsintrocreator.kassellabs.io" />
     <link rel="shortcut icon" href="./assets/favicon.png">
+    <!--
+      During the swic-vs-new A/B, this app is reachable at both
+      starwarsintrocreator.kassellabs.io (current canonical, until the
+      flip) and old.starwarsintrocreator.kassellabs.io (post-flip home).
+      Only the latter should be noindexed — otherwise we'd deindex the
+      live production. Injected client-side based on hostname.
+    -->
+    <script>
+    (function () {
+      if (location.hostname === 'old.starwarsintrocreator.kassellabs.io') {
+        var m = document.createElement('meta');
+        m.name = 'robots';
+        m.content = 'noindex, nofollow';
+        document.head.appendChild(m);
+      }
+    })();
+    </script>
+
+    <!--
+      A/B test handshake. ONLY runs when served from
+      old.starwarsintrocreator.kassellabs.io (the post-flip legacy home).
+      Stays dormant while this same build is still serving as the canonical
+      `starwarsintrocreator.kassellabs.io` so current production traffic
+      isn't affected before the flip.
+
+      When active, the snippet:
+        1. Reads ?ab_variant= URL param (set by the new app on cross-domain
+           redirect) and persists it to localStorage.
+        2. Reads existing localStorage assignment.
+        3. If neither, defaults to "legacy" since the user is physically on
+           the legacy domain.
+        4. Captures utm_campaign / utm_content from the URL so they survive
+           into the payment flow (GA4 also picks them up automatically).
+      Kept in sync with src/lib/ab-test.ts in the new SWIC repo.
+    -->
+    <script>
+    (function () {
+      if (location.hostname !== 'old.starwarsintrocreator.kassellabs.io') return;
+      var STORAGE_KEY = 'kassel_swic_ab_variant';
+      var EXPERIMENT_ID = 'swic-vs-new-2026-q2';
+
+      function read() {
+        try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
+      }
+      function write(v) {
+        try { localStorage.setItem(STORAGE_KEY, v); } catch (e) { /* noop */ }
+      }
+      function valid(v) { return v === 'new' || v === 'legacy'; }
+
+      function urlParam(name) {
+        var m = new RegExp('[?&]' + name + '=([^&#]*)').exec(location.search);
+        return m ? decodeURIComponent(m[1]) : null;
+      }
+
+      // 1. URL handshake (?ab_variant=legacy) when the new app sent us here.
+      var fromUrl = urlParam('ab_variant');
+      if (valid(fromUrl)) write(fromUrl);
+
+      // 2. Final resolution. Default to "legacy" — this domain IS the legacy variant.
+      var variant = read();
+      if (!valid(variant)) {
+        variant = 'legacy';
+        write(variant);
+      }
+
+      // 3. Make sure utm_campaign + utm_content are visible to GA4 + payment.
+      // GA4 captures them from the URL on page-load; the payment flow reads
+      // location.search at checkout time.
+      if (urlParam('utm_campaign') !== EXPERIMENT_ID) {
+        try {
+          var url = new URL(location.href);
+          url.searchParams.set('utm_campaign', EXPERIMENT_ID);
+          url.searchParams.set('utm_content', 'ab_' + EXPERIMENT_ID + '_' + variant);
+          // Strip the internal handshake param now that it's persisted.
+          url.searchParams.delete('ab_variant');
+          history.replaceState({}, '', url.toString());
+        } catch (e) { /* IE / file:// — skip */ }
+      }
+
+      // Expose the variant for the rest of the app (analytics, payment).
+      window.__KASSEL_AB__ = {
+        experimentId: EXPERIMENT_ID,
+        variant: variant,
+        utmParams: function () {
+          return {
+            utm_campaign: EXPERIMENT_ID,
+            utm_content: 'ab_' + EXPERIMENT_ID + '_' + variant
+          };
+        }
+      };
+    })();
+    </script>
+
     <script src="./js/extras/detectIE.js"></script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
