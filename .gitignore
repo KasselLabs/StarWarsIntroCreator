@@ -5,3 +5,4 @@ dist/*
 coverage/
 .env
 public/
+.vercel
