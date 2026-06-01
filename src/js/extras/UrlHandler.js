@@ -11,7 +11,10 @@ export default class UrlHandler {
 
   static getParams() {
     this._checkForWrongEncoded();
-    const params = window.location.hash.replace('#!/', '').split('/');
+    const params = window.location.hash
+      .replace('#!/', '')
+      .split('/')
+      .map((segment) => segment.split('?')[0]);
     return {
       key: params[0] ? params[0] : null,
       page: params[1] ? params[1].toLowerCase() : null,
