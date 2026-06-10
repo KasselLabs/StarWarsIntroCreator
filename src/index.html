@@ -35,22 +35,21 @@
     <link rel="canonical" href="https://starwarsintrocreator.kassellabs.io" />
     <link rel="shortcut icon" href="./assets/favicon.png">
     <!--
-      During the swic-vs-new A/B, this app is reachable at both
-      starwarsintrocreator.kassellabs.io (current canonical, until the
-      flip) and old.starwarsintrocreator.kassellabs.io (post-flip home).
-      Only the latter should be noindexed — otherwise we'd deindex the
-      live production. Injected client-side based on hostname.
+      DO NOT noindex this page — not even gated by hostname.
+
+      We used to inject `noindex, nofollow` here when served from
+      old.starwarsintrocreator.kassellabs.io. During the swic-vs-new A/B,
+      crawlers coin-flipped into "legacy" were JS-redirected from the
+      canonical to old.*, rendered that injected noindex, and Google
+      attributed it to the CANONICAL URL — deindexing the homepage on
+      2026-06-02 (search clicks -85%). Root cause + data:
+      kassellabs-os/planning/swic-vs-new-ab-test.md.
+
+      The `rel=canonical` above is the correct (and sufficient) signal for
+      Google to consolidate old.* into the canonical domain — it's the
+      setup Google recommends for A/B variants. Crawlers are also excluded
+      from the experiment redirect on the new app's side (ab-test.ts).
     -->
-    <script>
-    (function () {
-      if (location.hostname === 'old.starwarsintrocreator.kassellabs.io') {
-        var m = document.createElement('meta');
-        m.name = 'robots';
-        m.content = 'noindex, nofollow';
-        document.head.appendChild(m);
-      }
-    })();
-    </script>
 
     <!--
       A/B test handshake. ONLY runs when served from
