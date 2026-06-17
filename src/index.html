@@ -52,98 +52,28 @@
     -->
 
     <!--
-      A/B test handshake. ONLY runs when served from
-      old.starwarsintrocreator.kassellabs.io (the post-flip legacy home).
-      Stays dormant while this same build is still serving as the canonical
-      `starwarsintrocreator.kassellabs.io` so current production traffic
-      isn't affected before the flip.
-
-      When active, the snippet:
-        1. Reads ?ab_variant= URL param (set by the new app on cross-domain
-           redirect) and persists it to localStorage.
-        2. Reads existing localStorage assignment.
-        3. If neither, defaults to "legacy" since the user is physically on
-           the legacy domain.
-        4. Captures utm_campaign / utm_content from the URL so they survive
-           into the payment flow (GA4 also picks them up automatically).
-      Kept in sync with src/lib/ab-test.ts in the new SWIC repo.
+      old.* → new redirect. The swic-vs-new-2026-q2 A/B concluded 2026-06-17
+      (kassellabs-os/planning/swic-vs-new-ab-test.md). The new app is the
+      consolidated destination; old.* is now a pure forwarder to it. This runs
+      in <head> before the bundle so old.* never fires analytics or paints the
+      legacy UI (body starts display:none). It preserves the path, real query
+      params, and the hash — a legacy deep link carries the intro key in the
+      hash (e.g. #!/<key>/download), and the new app's LegacyHashRedirect lands
+      the visitor on the matching clean URL. Only our own A/B test-helper
+      params are stripped. Mirrors the tested contract in
+      src/js/extras/oldDomainRedirect.js — keep the two in sync.
     -->
     <script>
     (function () {
       if (location.hostname !== 'old.starwarsintrocreator.kassellabs.io') return;
-      var STORAGE_KEY = 'kassel_swic_ab_variant';
-      var EXPERIMENT_ID = 'swic-vs-new-2026-q2';
-
-      function read() {
-        try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
-      }
-      function write(v) {
-        try { localStorage.setItem(STORAGE_KEY, v); } catch (e) { /* noop */ }
-      }
-      function clear() {
-        try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* noop */ }
-      }
-      function valid(v) { return v === 'new' || v === 'legacy'; }
-
-      function urlParam(name) {
-        var m = new RegExp('[?&]' + name + '=([^&#]*)').exec(location.search);
-        return m ? decodeURIComponent(m[1]) : null;
-      }
-
-      // 0. Reset switch (?ab_reset=1).
-      if (urlParam('ab_reset') === '1') clear();
-
-      // 1. URL handshake (?ab_variant=new|legacy).
-      var fromUrl = urlParam('ab_variant');
-      if (valid(fromUrl)) write(fromUrl);
-
-      // 2. Final resolution. Default to "legacy" — this domain IS the legacy variant.
-      var variant = read();
-      if (!valid(variant)) {
-        variant = 'legacy';
-        write(variant);
-      }
-
-      // 3. Make sure utm_campaign + utm_content are visible to GA4 + payment.
-      // GA4 captures them from the URL on page-load; the payment flow reads
-      // location.search at checkout time.
-      if (urlParam('utm_campaign') !== EXPERIMENT_ID) {
-        try {
-          var url = new URL(location.href);
-          url.searchParams.set('utm_campaign', EXPERIMENT_ID);
-          url.searchParams.set('utm_content', 'ab_' + EXPERIMENT_ID + '_' + variant);
-          // Strip our own test-helper params now that the state is persisted.
-          url.searchParams.delete('ab_variant');
-          url.searchParams.delete('ab_reset');
-          history.replaceState({}, '', url.toString());
-        } catch (e) { /* IE / file:// — skip */ }
-      }
-
-      // Expose the variant for the rest of the app (analytics, payment) and
-      // for debugging in the JS console — window.__KASSEL_AB__.reset() etc.
-      window.__KASSEL_AB__ = {
-        experimentId: EXPERIMENT_ID,
-        variant: variant,
-        utmParams: function () {
-          return {
-            utm_campaign: EXPERIMENT_ID,
-            utm_content: 'ab_' + EXPERIMENT_ID + '_' + variant
-          };
-        },
-        setVariant: function (v) {
-          if (!valid(v)) { console.warn('invalid variant', v); return; }
-          write(v); location.reload();
-        },
-        reset: function () { clear(); location.reload(); },
-        inspect: function () {
-          return {
-            experimentId: EXPERIMENT_ID,
-            variant: variant,
-            storage: read(),
-            url: location.href
-          };
-        }
-      };
+      var params = new URLSearchParams(location.search);
+      ['ab_variant', 'ab_reset', 'ab_no_redirect'].forEach(function (key) {
+        params.delete(key);
+      });
+      var qs = params.toString();
+      var target = 'https://starwarsintrocreator.kassellabs.io'
+        + location.pathname + (qs ? '?' + qs : '') + location.hash;
+      location.replace(target);
     })();
     </script>
 
