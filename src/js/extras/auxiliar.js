@@ -52,14 +52,15 @@ I want to provide the following details:
 
 export const calculateTimeToRender = (queuePosition) => {
   const workers = 4; // We should never have less than 3 workers at the same time
-  const totalMinutes = Math.ceil((queuePosition * 10) / workers);
+  const minutesPerRender = 30;
+  const totalMinutes = Math.ceil((queuePosition * minutesPerRender) / workers);
   const totalHours = Math.ceil(totalMinutes / 60);
   const partialDays = Math.floor(totalHours / 24);
   const totalDays = Math.ceil(totalHours / 24);
   let time = '';
 
   if (queuePosition < 3) {
-    return ' 10 minutes';
+    return ' 30 minutes';
   }
 
   if (partialDays >= 3) {
