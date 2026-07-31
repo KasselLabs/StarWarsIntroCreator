@@ -13,6 +13,9 @@ const NotQueuedPage = ({ openingKey, finishRequestHandle }) => (
       After the video is ready, it will be sent to your email address.
     </p>
     <p>
+      Free videos include a Kassel Labs watermark unless you pay.
+    </p>
+    <p>
       Your email address will be used only to send the video, but
       you can choose to receive news from Kassel Labs about new releases.
     </p>
