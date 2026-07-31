@@ -32,6 +32,7 @@ const VideoOptions = ({ updatePaymentAmount }) => {
           <span className="title">HD video</span>
           <span className="description">1280 x 720</span>
           <span className="description">MP4 File</span>
+          <span className="description">Ready in a couple of minutes</span>
           <span className="description">
             Pay at least
             {' '}
@@ -47,6 +48,7 @@ const VideoOptions = ({ updatePaymentAmount }) => {
           <span className="title">Full HD video</span>
           <span className="description">1920 x 1080</span>
           <span className="description">MP4 File</span>
+          <span className="description">Ready in a couple of minutes</span>
           <span className="description">
             Pay at least
             {' '}
@@ -62,7 +64,7 @@ const VideoOptions = ({ updatePaymentAmount }) => {
           <HelpButton>
             A more customizable video with the Death Star image replacement.
             Contact us via email to submit your image.
-            This take usually less than one business day to be delivered.
+            Once submitted, we will start rendering it.
           </HelpButton>
           <img className="deathstar-icon" src={DeathStar} alt="Death Star" />
           <span className="title">
@@ -70,6 +72,7 @@ const VideoOptions = ({ updatePaymentAmount }) => {
             <br />
             + Custom Image
           </span>
+          <span className="description">Ready in a couple of minutes</span>
           <span className="description">
             Pay at least
             {' '}
