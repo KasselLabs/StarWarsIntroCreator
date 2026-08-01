@@ -59,7 +59,7 @@ class VideoRequestSent extends Component {
       <p>
         <Atat />
         Your video request has been queued!
-        Your current position on the queue is
+        Your estimated queue position is
         {' '}
         <b>{queuePosition}</b>
         ,
