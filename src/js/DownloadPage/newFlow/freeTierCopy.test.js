@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import NotQueuedPage from './NotQueuedPageNew';
 import RequestDownloadPage from './RequestDownloadPageNew';
 import VideoQueuedPage from './VideoQueuedPageNew';
+import VideoRequestSent from './VideoRequestSentNew';
 
 jest.mock('./DonateOrNotDonateNew', () => () => null);
 jest.mock('../TermsOfServiceAcceptance', () => () => null);
@@ -10,6 +11,11 @@ jest.mock('../ContactButton', () => () => null);
 jest.mock('../EmailRequestField', () => () => null);
 jest.mock('../PaymentModule', () => () => null);
 jest.mock('../Atat', () => () => null);
+jest.mock('../SocialButtons', () => () => null);
+jest.mock('../../extras/UrlHandler', () => ({
+  goToDownloadPage: jest.fn(),
+  goToEditPage: jest.fn(),
+}));
 jest.mock('../../extras/auxiliar', () => ({
   calculateTimeToRender: () => ' 30 minutes',
 }));
@@ -33,6 +39,7 @@ describe('free-tier download copy', () => {
       />,
     );
     expect(html).toMatch(watermarkDisclosure);
+    expect(html).toMatch(/estimated queue position/i);
   });
 
   it('discloses the watermark while the video is queued', () => {
@@ -40,5 +47,18 @@ describe('free-tier download copy', () => {
       <VideoQueuedPage status={{ queuePosition: 10 }} openingKey="ABC123" />,
     );
     expect(html).toMatch(watermarkDisclosure);
+    expect(html).toMatch(/estimated queue position/i);
+  });
+
+  it('labels the post-request position as estimated', () => {
+    const html = renderToStaticMarkup(
+      <VideoRequestSent
+        donate={false}
+        openingKey="ABC123"
+        requestStatus={{ queuePosition: 10_325 }}
+        requestEmail="user@example.com"
+      />,
+    );
+    expect(html).toMatch(/estimated queue position/i);
   });
 });

@@ -33,7 +33,7 @@ const RequestDownloadPage = ({
         {' '}
         {isQueued ? qeuedText : notQueuedText}
         {' '}
-        queued at position
+        queued with an estimated queue position of
         {' '}
         <b>{position}</b>
         .

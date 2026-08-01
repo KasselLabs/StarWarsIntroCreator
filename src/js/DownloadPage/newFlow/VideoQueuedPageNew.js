@@ -35,15 +35,12 @@ const VideoQueuedPage = ({
         Free videos include a Kassel Labs watermark unless you pay.
       </p>
       <p>
-        There are
+        Your estimated queue position is
         {' '}
         <b>
           {queuePosition}
-          {' '}
-          videos
         </b>
-        {' '}
-        in front of this request to be rendered and
+        , and it
         may take up to
         <b>{timeToRender}</b>
         {' '}
