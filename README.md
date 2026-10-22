@@ -11,6 +11,22 @@ Fill the inputs with any text and hit Play.
 You can share the URL generated and anyone can see your intro.  
 Access: [https://StarWarsIntroCreator.KasselLabs.io](https://StarWarsIntroCreator.KasselLabs.io)
 
+## Development
+
+Use Node.js 24.22.1 (see `.nvmrc`) and npm:
+
+```bash
+nvm install
+nvm use
+npm ci
+npm test -- --runInBand
+npm run build
+```
+
+The build generates the website in `dist/` and the renderer bundle in
+`dist-rendering/`. Keep this branch’s Node security floor aligned with Travis
+and package metadata. See `AGENTS.md` for validation notes.
+
 ## Credits
 Build on top of the [work by Tim Pietrusky](http://timpietrusky.com/star-wars-opening-crawl-from-1977)  
 By [Bruno Orlandi](https://github.com/BrOrlandi) and [Nihey Takizawa](https://github.com/nihey)

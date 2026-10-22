@@ -5,7 +5,7 @@
   "author": "Kassel Labs <contact@kassellabs.io>",
   "license": "MIT",
   "engines": {
-    "node": "24"
+    "node": ">=24.22.1 <25"
   },
   "scripts": {
     "clear": "rm -rf dist .cache public",
